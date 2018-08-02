@@ -50,11 +50,11 @@ class Cards extends React.Component {
     getSampleMana(){
         return {
             w:1,
-            u:1,
+            u:2,
             b:0,
             r:0,
             g:0,
-            total: 2
+            total: 3
         }
             
     }
@@ -65,7 +65,7 @@ class Cards extends React.Component {
 
     filterCardByManaCost(card, mana = this.getSampleMana()) {
         if (card.cmc <= mana.total){
-            return this.checkColouredCost(card, mana = this.getSampleMana)
+            return this.checkColouredCost(card, mana = this.getSampleMana())
         } else {
             return false
         }
@@ -95,9 +95,9 @@ class Cards extends React.Component {
 
     checkColouredCost(card, mana){
         
-        for (let colour in Object.keys(this.translateMana(card))){
-            console.log(`${colour} : ${card[colour]} vs ${mana[colour]}`)
-            if (card[colour] > mana[colour]) return false
+        for (let colour in this.translateMana(card)){
+            console.log(`${this.translateMana(card)[colour]} : ${this.translateMana(card)[colour]} vs ${mana[colour]}`)
+            if (this.translateMana(card)[colour] > mana[colour]) return false
         }
         return true
     }
