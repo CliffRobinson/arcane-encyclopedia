@@ -18,6 +18,7 @@ class Cards extends React.Component {
         this.getSampleMana = this.getSampleMana.bind(this);
         this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
         this.filterAllCardsByMana = this.filterAllCardsByMana.bind(this);
+        this.translateMana = this.translateMana.bind(this);
     }
 
     componentDidMount() {
@@ -49,10 +50,10 @@ class Cards extends React.Component {
         return {
             w:1,
             u:1,
-            b:0,
-            r:0,
-            g:0,
-            total: 2
+            b:1,
+            r:1,
+            g:1,
+            total: 5
         }
             
     }
@@ -76,11 +77,23 @@ class Cards extends React.Component {
             b:0,
             r:0,
             g:0,
-         }
+        }
         let stringMana = card.mana_cost;
-        stringMana = stringMana.replace(/[{}]/g, '')
-        
+        stringMana = stringMana.replace(/[0-9{}]/g, '')
+        const arrayMana = stringMana.split('')
+        arrayMana.map((letter) => {
+            if (letter == 'W') manaCost.w++;
+            if (letter == 'U') manaCost.u++;
+            if (letter == 'B') manaCost.b++;
+            if (letter == 'R') manaCost.r++;
+            if (letter == 'G') manaCost.g++;
+        })
+        return `W:${manaCost.w} U:${manaCost.u} B:${manaCost.b} R:${manaCost.r} G:${manaCost.g} `
 
+    }
+
+    checkColouredCost(card, mana = this.getSampleMana){
+        
     }
 
     render() {
@@ -89,7 +102,7 @@ class Cards extends React.Component {
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
                 <p> There are {this.props.cards.length} cards in state </p>
-                {this.props.cards.length && this.filterAllCardsByMana().map( (card, i) => <Card key={i} card={card} />)}
+                {this.props.cards.length && this.filterAllCardsByMana().map( (card, i) => <span><Card key={i} card={card} />Mana: {this.translateMana(card)}</span>)}
                 
             </div >
         )
