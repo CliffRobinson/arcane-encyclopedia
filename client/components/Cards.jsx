@@ -19,6 +19,7 @@ class Cards extends React.Component {
         this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
         this.filterAllCardsByMana = this.filterAllCardsByMana.bind(this);
         this.translateMana = this.translateMana.bind(this);
+        this.checkColouredCost = this.checkColouredCost.bind(this);
     }
 
     componentDidMount() {
@@ -50,10 +51,10 @@ class Cards extends React.Component {
         return {
             w:1,
             u:1,
-            b:1,
-            r:1,
-            g:1,
-            total: 5
+            b:0,
+            r:0,
+            g:0,
+            total: 2
         }
             
     }
@@ -64,7 +65,7 @@ class Cards extends React.Component {
 
     filterCardByManaCost(card, mana = this.getSampleMana()) {
         if (card.cmc <= mana.total){
-            return true //needs color specificity.
+            return this.checkColouredCost(card, mana = this.getSampleMana)
         } else {
             return false
         }
@@ -88,12 +89,17 @@ class Cards extends React.Component {
             if (letter == 'R') manaCost.r++;
             if (letter == 'G') manaCost.g++;
         })
-        return `W:${manaCost.w} U:${manaCost.u} B:${manaCost.b} R:${manaCost.r} G:${manaCost.g} `
+        return manaCost
 
     }
 
-    checkColouredCost(card, mana = this.getSampleMana){
+    checkColouredCost(card, mana){
         
+        for (let colour in Object.keys(this.translateMana(card))){
+            console.log(`${colour} : ${card[colour]} vs ${mana[colour]}`)
+            if (card[colour] > mana[colour]) return false
+        }
+        return true
     }
 
     render() {
@@ -102,7 +108,7 @@ class Cards extends React.Component {
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
                 <p> There are {this.props.cards.length} cards in state </p>
-                {this.props.cards.length && this.filterAllCardsByMana().map( (card, i) => <span><Card key={i} card={card} />Mana: {this.translateMana(card)}</span>)}
+                {this.props.cards.length && this.filterAllCardsByMana().map( (card, i) => <Card key={i} card={card} />)}
                 
             </div >
         )
