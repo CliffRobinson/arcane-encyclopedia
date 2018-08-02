@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "start": "webpack && node server",
-    "dev": "node server & webpack --watch",
+    "dev": "nodemon server & webpack --watch",
     "test": "jest --watchAll"
   },
   "babel": {
@@ -25,6 +25,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "moment": "^2.22.2",
+    "nodemon": "^1.18.3",
     "react-redux": "^5.0.7",
     "react-tippy": "^1.2.2",
     "redux": "^4.0.0",

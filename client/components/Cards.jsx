@@ -15,7 +15,7 @@ class Cards extends React.Component {
             num: 0,
         }
         this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
-        this.getSampleMana = this.getSampleMana.bind(this);
+        //this.getSampleMana = this.getSampleMana.bind(this);
         this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
         this.filterAllCardsByMana = this.filterAllCardsByMana.bind(this);
         this.translateMana = this.translateMana.bind(this);
@@ -47,25 +47,28 @@ class Cards extends React.Component {
             })
     }
 
-    getSampleMana(){
-        return {
-            w:1,
-            u:2,
-            b:0,
-            r:0,
-            g:0,
-            total: 3
-        }
+    // getSampleMana(){
+    //     return {
+    //         w:1,
+    //         u:2,
+    //         b:0,
+    //         r:0,
+    //         g:0,
+    //         total: 3
+    //     }
             
-    }
+    // }
 
     filterAllCardsByMana() {
-        return this.props.cards.filter( (card) => this.filterCardByManaCost(card))
+        const {mana} = this.props;
+        console.log(`Mana is`)
+        console.log(mana)
+        return this.props.cards.filter( (card) => this.filterCardByManaCost(card, mana))
     }
 
-    filterCardByManaCost(card, mana = this.getSampleMana()) {
+    filterCardByManaCost(card, mana) {
         if (card.cmc <= mana.total){
-            return this.checkColouredCost(card, mana = this.getSampleMana())
+            return this.checkColouredCost(card, mana)
         } else {
             return false
         }
