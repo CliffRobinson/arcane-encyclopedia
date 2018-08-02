@@ -1,6 +1,9 @@
 import React from 'react'
 import request from 'superagent'
+import { connect } from 'react-redux'
+
 import Card from './Card'
+import {addCards} from '../actions/cards'
 
 class Cards extends React.Component {
     constructor(props) {
@@ -12,6 +15,9 @@ class Cards extends React.Component {
             num: 0,
         }
         this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
+        this.getSampleMana = this.getSampleMana.bind(this);
+        this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
+        this.filterAllCardsByMana = this.filterAllCardsByMana.bind(this);
     }
 
     componentDidMount() {
@@ -21,7 +27,8 @@ class Cards extends React.Component {
 
         let queryString = `https://api.scryfall.com/cards/search?q=${setQuery}${tricks}`
         this.getCardsFromScryfall(queryString)
-        //'http://api.scryfall.com/cards/search?format=json&include_extras=false&order=name&page=2&q=e%3Adom&unique=cards'
+
+        
     }
 
     getCardsFromScryfall(queryString) {
@@ -29,16 +36,51 @@ class Cards extends React.Component {
         request.get(queryString)
             .then( (res) =>{
                 console.log(res.body)
-                let currentCards = this.state.cards.concat(res.body.data)
 
-                this.setState({
-                    num:res.body.total_cards,
-                    cards: currentCards,
-                })
+                this.props.dispatch(  addCards(res.body.data)  )
+
                 if (res.body.has_more)  {
                     this.getCardsFromScryfall(res.body.next_page)
                 }
             })
+    }
+
+    getSampleMana(){
+        return {
+            w:1,
+            u:1,
+            b:0,
+            r:0,
+            g:0,
+            total: 2
+        }
+            
+    }
+
+    filterAllCardsByMana() {
+        return this.props.cards.filter( (card) => this.filterCardByManaCost(card))
+    }
+
+    filterCardByManaCost(card, mana = this.getSampleMana()) {
+        if (card.cmc <= mana.total){
+            return true //needs color specificity.
+        } else {
+            return false
+        }
+    }
+
+    translateMana(card){
+        let manaCost = {
+            w:0,
+            u:0,
+            b:0,
+            r:0,
+            g:0,
+         }
+        let stringMana = card.mana_cost;
+        stringMana = stringMana.replace(/[{}]/g, '')
+        
+
     }
 
     render() {
@@ -46,12 +88,17 @@ class Cards extends React.Component {
             <div className="cards" >
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
-                <p> There are {this.state.cards.length} cards in state </p>
-                {this.state.cards.length && this.state.cards.map( (card, i) => <Card key={i} card={card} />)}
+                <p> There are {this.props.cards.length} cards in state </p>
+                {this.props.cards.length && this.filterAllCardsByMana().map( (card, i) => <Card key={i} card={card} />)}
+                
             </div >
         )
     }
 
 }
 
-export default Cards;
+function mapCrepesToHops(state){
+    return state
+}
+
+export default connect(mapCrepesToHops)(Cards);
