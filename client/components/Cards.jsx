@@ -13,13 +13,15 @@ class Cards extends React.Component {
             desc: "A component for showing cards.",
             cards:[],
             num: 0,
+            pointless:0,
+            mana: this.props.mana
         }
         this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
-        //this.getSampleMana = this.getSampleMana.bind(this);
         this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
         this.filterAllCardsByMana = this.filterAllCardsByMana.bind(this);
         this.translateMana = this.translateMana.bind(this);
         this.checkColouredCost = this.checkColouredCost.bind(this);
+        this.alterState = this.alterState.bind(this);
     }
 
     componentDidMount() {
@@ -33,11 +35,18 @@ class Cards extends React.Component {
         
     }
 
+    componentWillReceiveProps(nextProps){
+        //console.log('Receiving props', nextProps.mana)
+        this.setState({
+           mana:nextProps.mana 
+        })
+    }
+
     getCardsFromScryfall(queryString) {
         
         request.get(queryString)
             .then( (res) =>{
-                console.log(res.body)
+                //console.log(res.body)
 
                 this.props.dispatch(  addCards(res.body.data)  )
 
@@ -47,22 +56,11 @@ class Cards extends React.Component {
             })
     }
 
-    // getSampleMana(){
-    //     return {
-    //         w:1,
-    //         u:2,
-    //         b:0,
-    //         r:0,
-    //         g:0,
-    //         total: 3
-    //     }
-            
-    // }
-
-    filterAllCardsByMana() {
-        const {mana} = this.props;
-        console.log(`Mana is`)
-        console.log(mana)
+    filterAllCardsByMana(mana) {
+        
+        //console.log(`Mana is`)
+        //console.log(mana)
+        //console.log('Filtering')
         return this.props.cards.filter( (card) => this.filterCardByManaCost(card, mana))
     }
 
@@ -99,19 +97,27 @@ class Cards extends React.Component {
     checkColouredCost(card, mana){
         
         for (let colour in this.translateMana(card)){
-            console.log(`${this.translateMana(card)[colour]} : ${this.translateMana(card)[colour]} vs ${mana[colour]}`)
+            //console.log(`${this.translateMana(card)[colour]} : ${this.translateMana(card)[colour]} vs ${mana[colour]}`)
             if (this.translateMana(card)[colour] > mana[colour]) return false
         }
         return true
     }
 
+    alterState(){
+        
+        this.setState({
+            pointless: this.pointless++,
+        })
+    }
+
     render() {
         return (
             <div className="cards" >
+                <button onClick={this.alterState}> Check dis</button>
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
                 <p> There are {this.props.cards.length} cards in state </p>
-                {this.props.cards.length && this.filterAllCardsByMana().map( (card, i) => <Card key={i} card={card} />)}
+                {this.props.cards.length && this.filterAllCardsByMana(this.state.mana).map( (card, i) => <Card key={i} card={card} />)}
                 
             </div >
         )
@@ -120,7 +126,12 @@ class Cards extends React.Component {
 }
 
 function mapCrepesToHops(state){
-    return state
+    //console.log(state)
+    return {
+        cards:state.cards, 
+        mana:state.mana, //post refactor, could create a mana object out of 5 top level keys to avoid changing all code.
+        pointless: state.pointless,
+    }
 }
 
 export default connect(mapCrepesToHops)(Cards);

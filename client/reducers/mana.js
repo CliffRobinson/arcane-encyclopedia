@@ -5,11 +5,12 @@ const initialState = {
     u:0,
     b:0,
     r:0,
-    g:3,
-    total:3
+    g:0,
+    total:0
 }
 
 function mana(state = initialState, action) {
+    //console.log("Changing mana", action.type)
     switch (action.type) {
         case ADD_W:
             state.w++;
