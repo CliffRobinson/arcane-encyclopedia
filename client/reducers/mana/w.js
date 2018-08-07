@@ -1,10 +1,10 @@
-import { ADD_W, ADD_U, ADD_B, ADD_R, ADD_G, SUB_W, SUB_U, SUB_B, SUB_R, SUB_G, CLEAR } from '../actions/mana'
+import { ADD_W, SUB_W, CLEAR } from '../../actions/mana'
 
-function b(state = 0, action) {
+function w(state = 0, action) {
     switch (action.type) {
-        case ADD_B:
+        case ADD_W:
             return state + 1;
-        case SUB_B:
+        case SUB_W:
             if (state != 0) {
                 return state - 1;
             }
@@ -15,4 +15,4 @@ function b(state = 0, action) {
     }
 }
 
-export default b;
+export default w;
