@@ -133,7 +133,7 @@ function mapCrepesToHops(state){
           b: state.b,
           r: state.r,
           g: state.g,
-          total: state.total  
+          total: (state.w+state.u+state.b+state.r+state.g) 
         },
         pointless: state.pointless,
     }

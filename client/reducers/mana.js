@@ -60,4 +60,4 @@ function mana(state = initialState, action) {
     }
 }
 
-export default mana;
+//export default mana;

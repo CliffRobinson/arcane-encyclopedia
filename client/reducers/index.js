@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 
 import cards from './cards'
-import mana from './mana'
+//import mana from './mana'
 import pointless from './pointless'
 import w from './w'
 import u from './u'
@@ -12,7 +12,7 @@ import total from './total'
 
 export default combineReducers({
     cards,
-    mana,
+    //mana,
     pointless,
     w, u, b, r, g, total
 

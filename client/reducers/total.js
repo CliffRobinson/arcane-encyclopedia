@@ -1,7 +1,7 @@
 import { ADD_W, ADD_U, ADD_B, ADD_R, ADD_G, SUB_W, SUB_U, SUB_B, SUB_R, SUB_G, CLEAR} from '../actions/mana'
 
-function pointless(state = 0, action) {
-    //console.log("Changing pointless", action.type)
+function total(state = 0, action) {
+    //console.log("Changing total", action.type)
     switch (action.type) {
         case ADD_W:
         case ADD_U:
@@ -25,4 +25,4 @@ function pointless(state = 0, action) {
     }
 }
 
-export default pointless;
+//export default total;
