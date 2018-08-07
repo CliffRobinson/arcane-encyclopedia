@@ -35,12 +35,12 @@ class Cards extends React.Component {
         
     }
 
-    componentWillReceiveProps(nextProps){
-        //console.log('Receiving props', nextProps.mana)
-        this.setState({
-           mana:nextProps.mana 
-        })
-    }
+    // componentWillReceiveProps(nextProps){
+    //     //console.log('Receiving props', nextProps.mana)
+    //     this.setState({
+    //        mana:nextProps.mana 
+    //     })
+    // }
 
     getCardsFromScryfall(queryString) {
         
@@ -95,16 +95,15 @@ class Cards extends React.Component {
     }
 
     checkColouredCost(card, mana){
-        
+        let cardCost = this.translateMana(card)
         for (let colour in this.translateMana(card)){
             //console.log(`${this.translateMana(card)[colour]} : ${this.translateMana(card)[colour]} vs ${mana[colour]}`)
-            if (this.translateMana(card)[colour] > mana[colour]) return false
+            if (cardCost[colour] > mana[colour]) return false
         }
         return true
     }
 
     alterState(){
-        
         this.setState({
             pointless: this.pointless++,
         })
@@ -117,8 +116,7 @@ class Cards extends React.Component {
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
                 <p> There are {this.props.cards.length} cards in state </p>
-                {this.props.cards.length && this.filterAllCardsByMana(this.state.mana).map( (card, i) => <Card key={i} card={card} />)}
-                
+                {this.props.cards.length && this.filterAllCardsByMana(this.props.mana).map( (card, i) => <Card key={i} card={card} />)}
             </div >
         )
     }
@@ -129,7 +127,14 @@ function mapCrepesToHops(state){
     //console.log(state)
     return {
         cards:state.cards, 
-        mana:state.mana, //post refactor, could create a mana object out of 5 top level keys to avoid changing all code.
+        mana:{
+          w: state.w,
+          u: state.u,
+          b: state.b,
+          r: state.r,
+          g: state.g,
+          total: state.total  
+        },
         pointless: state.pointless,
     }
 }
