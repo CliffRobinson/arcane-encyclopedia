@@ -6,31 +6,59 @@ import { subW, subU, subB, subR, subG, clear} from '../actions/mana'
 function ManaSelector(props) {
     return (
         <div className="manaSelector">
-            <button onClick={ ()=> props.dispatch(addW())}> Add W</button> 
-            <button onClick={ ()=> props.dispatch(subW())}> Sub W</button>
+            <div>
+                <button onClick={ ()=> props.dispatch(addW())}> Add W</button>
+                <input type="text" disabled='true' value={props.mana.w} />
+                <button onClick={ ()=> props.dispatch(subW())}> Sub W</button>
+            </div>
 
-            <button onClick={ ()=> props.dispatch(addU())}> Add U</button> 
-            <button onClick={ ()=> props.dispatch(subU())}> Sub U</button>
+            <div>
+                <button onClick={ ()=> props.dispatch(addU())}> Add U</button> 
+                <input type="text" disabled='true' value={props.mana.u} />
+                <button onClick={ ()=> props.dispatch(subU())}> Sub U</button>
+            </div>
 
-            <button onClick={ ()=> props.dispatch(addB())}> Add B</button> 
-            <button onClick={ ()=> props.dispatch(subB())}> Sub B</button>
+            <div>
+                <button onClick={ ()=> props.dispatch(addB())}> Add B</button> 
+                <input type="text" disabled='true' value={props.mana.b} />
+                <button onClick={ ()=> props.dispatch(subB())}> Sub B</button>
+            </div>
 
-            <button onClick={ ()=> props.dispatch(addR())}> Add R</button> 
-            <button onClick={ ()=> props.dispatch(subR())}> Sub R</button>
+            <div>
+                <button onClick={ ()=> props.dispatch(addR())}> Add R</button> 
+                <input type="text" disabled='true' value={props.mana.r} />
+                <button onClick={ ()=> props.dispatch(subR())}> Sub R</button>
+            </div>
 
-            <button onClick={ ()=> props.dispatch(addG())}> Add G</button> 
-            <button onClick={ ()=> props.dispatch(subG())}> Sub G</button>
+            <div>
+                <button onClick={ ()=> props.dispatch(addG())}> Add G</button> 
+                <input type="text" disabled='true' value={props.mana.g} />
+                <button onClick={ ()=> props.dispatch(subG())}> Sub G</button>
+            </div>
 
+            <div>
             <button onClick={ ()=> props.dispatch(clear())}> Clear Mana</button>
-            
+            </div>
         </div>
     )
 
 
 }
 
-function mapStateToProps(state) {
-    return state;
+function mapStateToProps(state){
+    //console.log(state)
+    return {
+        cards:state.cards, 
+        mana:{
+          w: state.w,
+          u: state.u,
+          b: state.b,
+          r: state.r,
+          g: state.g,
+          total: (state.w+state.u+state.b+state.r+state.g) 
+        },
+        //pointless: state.pointless,
+    }
 }
 
 export default connect(mapStateToProps)(ManaSelector)

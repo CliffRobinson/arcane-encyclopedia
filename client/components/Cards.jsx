@@ -13,15 +13,15 @@ class Cards extends React.Component {
             desc: "A component for showing cards.",
             cards:[],
             num: 0,
-            pointless:0,
+            //pointless:0,
             mana: this.props.mana
         }
         this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
         this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
-        this.filterAllCardsByMana = this.filterAllCardsByMana.bind(this);
+        this.filterCards = this.filterCards.bind(this);
         this.translateMana = this.translateMana.bind(this);
         this.checkColouredCost = this.checkColouredCost.bind(this);
-        this.alterState = this.alterState.bind(this);
+        //this.alterState = this.alterState.bind(this);
     }
 
     componentDidMount() {
@@ -56,7 +56,7 @@ class Cards extends React.Component {
             })
     }
 
-    filterAllCardsByMana(mana) {
+    filterCards(mana) {
         
         //console.log(`Mana is`)
         //console.log(mana)
@@ -103,11 +103,11 @@ class Cards extends React.Component {
         return true
     }
 
-    alterState(){
-        this.setState({
-            pointless: this.pointless++,
-        })
-    }
+    // alterState(){
+    //     this.setState({
+    //         pointless: this.pointless++,
+    //     })
+    // }
 
     render() {
         return (
@@ -116,7 +116,7 @@ class Cards extends React.Component {
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
                 <p> There are {this.props.cards.length} cards in state </p>
-                {this.props.cards.length && this.filterAllCardsByMana(this.props.mana).map( (card, i) => <Card key={i} card={card} />)}
+                {this.props.cards.length && this.filterCards(this.props.mana).map( (card, i) => <Card key={i} card={card} />)}
             </div >
         )
     }
@@ -135,7 +135,7 @@ function mapCrepesToHops(state){
           g: state.g,
           total: (state.w+state.u+state.b+state.r+state.g) 
         },
-        pointless: state.pointless,
+        //pointless: state.pointless,
     }
 }
 

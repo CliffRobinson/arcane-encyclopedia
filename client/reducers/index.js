@@ -12,5 +12,4 @@ import g from './mana/g'
 export default combineReducers({
     cards,
     w, u, b, r, g,
-
 })
