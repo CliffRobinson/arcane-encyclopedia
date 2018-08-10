@@ -112,7 +112,6 @@ class Cards extends React.Component {
     render() {
         return (
             <div className="cards" >
-                <button onClick={this.alterState}> Check dis</button>
                 <h1> {this.state.desc} </h1>
                 <p> There are {this.state.num} cards </p>
                 <p> There are {this.props.cards.length} cards in state </p>

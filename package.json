@@ -20,7 +20,8 @@
   "jest": {
     "setupFiles": [
       "./tests/setup.js"
-    ]
+    ],
+    "collectCoverage":true
   },
   "dependencies": {
     "express": "^4.16.2",

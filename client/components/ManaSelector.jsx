@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addW, addU, addB, addR, addG, } from '../actions/mana'
-import { subW, subU, subB, subR, subG, clear} from '../actions/mana'
+import { subW, subU, subB, subR, subG, clearMana} from '../actions/mana'
 
 function ManaSelector(props) {
     return (
@@ -37,7 +37,7 @@ function ManaSelector(props) {
             </div>
 
             <div>
-            <button onClick={ ()=> props.dispatch(clear())}> Clear Mana</button>
+            <button onClick={ ()=> props.dispatch(clearMana())}> Clear Mana</button>
             </div>
         </div>
     )

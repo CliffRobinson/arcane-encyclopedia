@@ -10,7 +10,7 @@ export const SUB_B = 'SUB_B'
 export const SUB_R = 'SUB_R'
 export const SUB_G = 'SUB_G'
 
-export const CLEAR = 'CLEAR'
+export const CLEAR_MANA = 'CLEAR_MANA'
 
 export function addW(){
     return {
@@ -72,8 +72,8 @@ export function subG(){
     }
 }
 
-export function clear(){
+export function clearMana(){
     return {
-        type: CLEAR
+        type: CLEAR_MANA
     }
 }
