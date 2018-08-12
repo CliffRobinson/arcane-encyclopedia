@@ -4,7 +4,7 @@ function cards(state = [], action) {
     switch (action.type) {
         case ADD_CARDS:
             let newCardArray = [...state]
-            action.cardArray.forEach((card) => newCardArray.push(card))
+            action.cardArray.map((card) => newCardArray.push(card))
             return newCardArray
         case CLEAR_CARDS:
             return []

@@ -2,7 +2,7 @@ import {ADD_CARDS, CLEAR_CARDS, addCards, clearCards} from '../client/actions/ca
 
 
 ///// CARDS TESTS ////
-const fakeCards = [1,2,3]
+export const fakeCards = [1,2,3]
 
 test('addCards returns correct action type and data', () => {
     //Arrange

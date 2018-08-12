@@ -3,3 +3,4 @@ static
 npm-debug.log
 bundle.*
 coverage
+yarn-error.log
