@@ -23,6 +23,7 @@ class SearchSelector extends React.Component {
                     <option value="standard"> Standard</option>
                     <option value="aer"> Aether Revolt Limited</option>
                     <option value="hou"> Hour of Devastation Limited</option>
+                    <option value="rix"> Rivals of Ixalan Limited </option>
                     <option value="dom"> Dominaria Limited</option>
                     <option value="m19"> M19 Limited</option>
                 </select>
