@@ -1,9 +1,8 @@
 import React from "react";
-import request from "superagent";
 import { connect } from "react-redux";
 
 import Card from "./Card";
-import {addCards} from "../actions/cards";
+
 
 class Cards extends React.Component {
     constructor(props) {
@@ -16,7 +15,7 @@ class Cards extends React.Component {
             //pointless:0,
             mana: this.props.mana
         };
-        this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
+        //this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
         this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
         this.filterCards = this.filterCards.bind(this);
         this.translateMana = this.translateMana.bind(this);
@@ -25,29 +24,17 @@ class Cards extends React.Component {
     }
 
     componentDidMount() {
-        let set = "DOM"; // 'm19' || 'DOM || 'RIX' || 'XLN' || 'HOU' || 'AKH' || 'AER' || 'KLD'
-        let setQuery = `e%3a${set}`; // e:{set}
-        let tricks = "+%28o%3Aflash+OR+t%3Ainstant%29"; // (o:flash OR t:instant)
+        // let set = "DOM"; // 'm19' || 'DOM || 'RIX' || 'XLN' || 'HOU' || 'AKH' || 'AER' || 'KLD'
+        // let setQuery = `e%3a${set}`; // e:{set}
+        // let tricks = "+%28o%3Aflash+OR+t%3Ainstant%29"; // (o:flash OR t:instant)
 
-        let queryString = `https://api.scryfall.com/cards/search?q=${setQuery}${tricks}`;
-        this.getCardsFromScryfall(queryString);
+        // //let queryString = `https://api.scryfall.com/cards/search?q=${setQuery}${tricks}`;
+        // //this.getCardsFromScryfall(queryString);
 
         
     }
 
-    getCardsFromScryfall(queryString) {
-        
-        request.get(queryString)
-            .then( (res) =>{
-                //console.log(res.body)
 
-                this.props.dispatch(  addCards(res.body.data)  );
-
-                if (res.body.has_more)  {
-                    this.getCardsFromScryfall(res.body.next_page);
-                }
-            });
-    }
 
     filterCards(mana) {
         
@@ -74,7 +61,11 @@ class Cards extends React.Component {
             g:0,
         };
         let stringMana = card.mana_cost;
-        stringMana = stringMana.replace(/[0-9{}]/g, "");
+        if(stringMana){
+            stringMana = stringMana.replace(/[0-9{}]/g, "");
+        } else {
+            console.log("THE OFFENDER IS: ", card.name)
+        }
         const arrayMana = stringMana.split("");
         arrayMana.map((letter) => {
             if (letter == "W") manaCost.w++;

@@ -21,7 +21,7 @@
     "setupFiles": [
       "./tests/setup.js"
     ],
-    "collectCoverage": true,
+    
     "verbose":true
   },
   "dependencies": {
