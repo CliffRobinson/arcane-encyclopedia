@@ -35,13 +35,6 @@ class Cards extends React.Component {
         
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     //console.log('Receiving props', nextProps.mana)
-    //     this.setState({
-    //        mana:nextProps.mana 
-    //     })
-    // }
-
     getCardsFromScryfall(queryString) {
         
         request.get(queryString)
@@ -103,12 +96,6 @@ class Cards extends React.Component {
         return true;
     }
 
-    // alterState(){
-    //     this.setState({
-    //         pointless: this.pointless++,
-    //     })
-    // }
-
     render() {
         return (
             <div className="cards" >
@@ -134,7 +121,6 @@ function mapCrepesToHops(state){
             g: state.g,
             total: (state.w+state.u+state.b+state.r+state.g) 
         },
-        //pointless: state.pointless,
     };
 }
 
