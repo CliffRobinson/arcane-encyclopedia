@@ -16,7 +16,7 @@ export const searchStrings = {
     kld: "e%3akld"
 };
 
-function format(state = "", action) {
+function format(state = searchStrings.standard, action) {
     switch (action.type) {
     case STANDARD:
         return searchStrings.standard;
@@ -37,7 +37,7 @@ function format(state = "", action) {
     case KLD:
         return searchStrings.kld;
     default:
-        return searchStrings.standard;
+        return state;
     }
 }
 

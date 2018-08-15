@@ -60,11 +60,11 @@ class Cards extends React.Component {
             r:0,
             g:0,
         };
-        let stringMana = card.mana_cost;
-        if(stringMana){
-            stringMana = stringMana.replace(/[0-9{}]/g, "");
+        let stringMana;
+        if(card.card_faces){
+            stringMana = card.card_faces[0].mana_cost;
         } else {
-            console.log("THE OFFENDER IS: ", card.name)
+            stringMana = card.mana_cost;
         }
         const arrayMana = stringMana.split("");
         arrayMana.map((letter) => {
@@ -88,6 +88,7 @@ class Cards extends React.Component {
     }
 
     render() {
+        console.log("***********NEW RENDER***********");
         return (
             <div className="cards" >
                 <h1> {this.state.desc} </h1>

@@ -8,9 +8,9 @@ import {
 
 import format, {searchStrings} from "../client/reducers/format";
 
-test("Initial state of format", () => {
+test("Initial state is standard", () => {
     //Arrange
-    const expected = "";
+    const expected = searchStrings.standard;
     //Act
     const actual = format(undefined, {});
     //Assert
