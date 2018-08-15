@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { addW, addU, addB, addR, addG, } from '../actions/mana'
-import { subW, subU, subB, subR, subG, clearMana} from '../actions/mana'
+import React from "react";
+import { connect } from "react-redux";
+import { addW, addU, addB, addR, addG, } from "../actions/mana";
+import { subW, subU, subB, subR, subG, clearMana} from "../actions/mana";
 
 function ManaSelector(props) {
     return (
@@ -37,10 +37,10 @@ function ManaSelector(props) {
             </div>
 
             <div>
-            <button onClick={ ()=> props.dispatch(clearMana())}> Clear Mana</button>
+                <button onClick={ ()=> props.dispatch(clearMana())}> Clear Mana</button>
             </div>
         </div>
-    )
+    );
 
 
 }
@@ -50,15 +50,15 @@ function mapStateToProps(state){
     return {
         cards:state.cards, 
         mana:{
-          w: state.w,
-          u: state.u,
-          b: state.b,
-          r: state.r,
-          g: state.g,
-          total: (state.w+state.u+state.b+state.r+state.g) 
+            w: state.w,
+            u: state.u,
+            b: state.b,
+            r: state.r,
+            g: state.g,
+            total: (state.w+state.u+state.b+state.r+state.g) 
         },
-        //pointless: state.pointless,
-    }
+        
+    };
 }
 
-export default connect(mapStateToProps)(ManaSelector)
+export default connect(mapStateToProps)(ManaSelector);
