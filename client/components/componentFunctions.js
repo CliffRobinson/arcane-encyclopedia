@@ -56,23 +56,25 @@ export function filterLands(cards) {
         return !type.includes("Land");
     }
     return cards.filter(callback);
-}
+} //This might have issues with transform lands. Test suite assumes that only front face determines if a card is a land (IE Westvale Abbey is, Search for Azcanta is not), this might need changing for future sets. 
 
 export function filterForTricks(cards) {
-    function callback(card) {
-        let oText = "";
-        switch (card.layout) {
-        case "transform":
-            if (card.card_faces[0].oracle_text) {
-                oText = card.card_faces[0].oracle_text.toLowerCase();
-            }
-            return (card.card_faces[0].type_line.includes("Instant") || oText.includes("flash"));
-        default:
-            if (card.oracle_text) {
-                oText = card.oracle_text.toLowerCase();
-            }
-            return (card.type_line.includes("Instant") || oText.includes("flash"));
+
+    return cards.filter(callbackToFilterForTricks);
+}
+
+export function callbackToFilterForTricks(card) {
+    let oText = "";
+    switch (card.layout) {
+    case "transform":
+        if (card.card_faces[0].oracle_text) {
+            oText = card.card_faces[0].oracle_text.toLowerCase();
         }
+        return (card.card_faces[0].type_line.includes("Instant") || oText.includes("flash"));
+    default:
+        if (card.oracle_text) {
+            oText = card.oracle_text.toLowerCase();
+        }
+        return (card.type_line.includes("Instant") || oText.includes("flash"));
     }
-    return cards.filter(callback);
 }

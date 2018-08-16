@@ -33,7 +33,8 @@ class SearchSelector extends React.Component {
                 </select>
                 <button onClick={this.createQuery} > Get Cards </button>
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
-                <input type="checkbox" onChange={()=> alert("Butts")} defaultChecked={true} /> Exclude Lands 
+                <input type="checkbox" onChange={()=> alert("Butts")} defaultChecked={true} /> Exclude Lands
+                <button onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
                 <button onClick={this.getFakes}> Get Fakes </button>
             </ div>
         );
