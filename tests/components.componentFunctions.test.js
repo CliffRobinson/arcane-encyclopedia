@@ -73,7 +73,7 @@ function isALand(card) {
     default:
         return card.type_line.includes("Land");
     }
-}
+} //For the purposes of the test, we are only looking at the front face of a card to determine if it is a land. 
 
 test("filterLands returns no lands", ()=> {
     //Arrange is isALand
