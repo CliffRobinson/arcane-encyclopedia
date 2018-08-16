@@ -4,6 +4,7 @@ import request from "superagent";
 
 import * as actions from "../actions/format";
 import {addCards, clearCards} from "../actions/cards";
+import {tricksToggle} from "../actions/onlyTricks";
 
 import fakeCards from "../../tests/testData.json";
 
@@ -31,6 +32,8 @@ class SearchSelector extends React.Component {
                     <option value="m19"> M19 Limited</option>
                 </select>
                 <button onClick={this.createQuery} > Get Cards </button>
+                <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
+                <input type="checkbox" onChange={()=> alert("Butts")} defaultChecked={true} /> Exclude Lands 
                 <button onClick={this.getFakes}> Get Fakes </button>
             </ div>
         );
