@@ -88,7 +88,7 @@ class Cards extends React.Component {
     }
 
     render() {
-        const cardsToDisplay = this.filterCards(this.props.mana)
+        const cardsToDisplay = this.filterCards(this.props.mana);
         return (
             <div className="cards" >
                 <h1> {this.state.desc} </h1>
