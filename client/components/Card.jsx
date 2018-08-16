@@ -38,14 +38,17 @@ const Card = (props) => {
         );
 
     case "transform":
-        return props.card.card_faces.map((face) => {
+        return props.card.card_faces.map((face, i) => {
             return (
-                <Tooltip
-                    trigger='mousenter'
-                    html = {<img src={face.image_uris[hoverCardSize]}></img>}
-                >
-                    <img src={face.image_uris[cardSize]}></img>
-                </Tooltip>
+                <React.Fragment>
+                    <Tooltip
+                        trigger='mousenter'
+                        html = {<img src={face.image_uris[hoverCardSize]}></img>}
+                    >
+                        <img src={face.image_uris[cardSize]}></img>
+                    </Tooltip>
+
+                </React.Fragment>
             );            
         });
     default:

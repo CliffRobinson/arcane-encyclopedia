@@ -5,12 +5,15 @@ import request from "superagent";
 import * as actions from "../actions/format";
 import {addCards, clearCards} from "../actions/cards";
 
+import fakeCards from "../../tests/testData.json";
+
 class SearchSelector extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.createQuery = this.createQuery.bind(this);
         this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
+        this.getFakes = this.getFakes.bind(this);
 
     }
 
@@ -28,8 +31,15 @@ class SearchSelector extends React.Component {
                     <option value="m19"> M19 Limited</option>
                 </select>
                 <button onClick={this.createQuery} > Get Cards </button>
+                <button onClick={this.getFakes}> Get Fakes </button>
             </ div>
         );
+    }
+
+    getFakes() {
+        this.props.dispatch(clearCards());
+        let fakes = fakeCards.data;
+        this.props.dispatch(addCards(fakes))
     }
 
     createQuery(){

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Card from "./Card";
-
+import {filterAllCards} from "./componentFunctions";
 
 class Cards extends React.Component {
     constructor(props) {
@@ -16,10 +16,10 @@ class Cards extends React.Component {
             mana: this.props.mana
         };
         //this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
-        this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
-        this.filterCards = this.filterCards.bind(this);
-        this.translateMana = this.translateMana.bind(this);
-        this.checkColouredCost = this.checkColouredCost.bind(this);
+        //this.filterCardByManaCost = this.filterCardByManaCost.bind(this);
+        //this.filterAllCards = this.filterAllCards.bind(this);
+        //this.translateMana = this.translateMana.bind(this);
+        //this.checkColouredCost = this.checkColouredCost.bind(this);
         //this.alterState = this.alterState.bind(this);
     }
 
@@ -36,59 +36,54 @@ class Cards extends React.Component {
 
 
 
-    filterCards(mana) {
-        
-        //console.log(`Mana is`)
-        //console.log(mana)
-        //console.log('Filtering')
-        return this.props.cards.filter( (card) => this.filterCardByManaCost(card, mana));
-    }
+    // filterAllCards(cards, mana) {
+    //     return cards.filter( (card) => filterCardByManaCost(card, mana));
+    // }
 
-    filterCardByManaCost(card, mana) {
-        if (card.cmc <= mana.total){
-            return this.checkColouredCost(card, mana);
-        } else {
-            return false;
-        }
-    }
+    // filterCardByManaCost(card, mana) {
+    //     if (card.cmc <= mana.total){
+    //         return checkColouredCost(card, mana);
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    translateMana(card){
-        let manaCost = {
-            w:0,
-            u:0,
-            b:0,
-            r:0,
-            g:0,
-        };
-        let stringMana;
-        if(card.card_faces){
-            stringMana = card.card_faces[0].mana_cost;
-        } else {
-            stringMana = card.mana_cost;
-        }
-        const arrayMana = stringMana.split("");
-        arrayMana.map((letter) => {
-            if (letter == "W") manaCost.w++;
-            if (letter == "U") manaCost.u++;
-            if (letter == "B") manaCost.b++;
-            if (letter == "R") manaCost.r++;
-            if (letter == "G") manaCost.g++;
-        });
-        return manaCost;
+    // checkColouredCost(card, mana){
+    //     let cardCost = translateMana(card);
+    //     for (let colour in cardCost){
+    //         if (cardCost[colour] > mana[colour]) return false;
+    //     }
+    //     return true;
+    // }
 
-    }
-
-    checkColouredCost(card, mana){
-        let cardCost = this.translateMana(card);
-        for (let colour in this.translateMana(card)){
-            //console.log(`${this.translateMana(card)[colour]} : ${this.translateMana(card)[colour]} vs ${mana[colour]}`)
-            if (cardCost[colour] > mana[colour]) return false;
-        }
-        return true;
-    }
+    // translateMana(card){
+    //     let manaCost = {
+    //         w:0,
+    //         u:0,
+    //         b:0,
+    //         r:0,
+    //         g:0,
+    //     };
+    //     let stringMana;
+    //     if(card.card_faces){
+    //         stringMana = card.card_faces[0].mana_cost;
+    //     } else {
+    //         stringMana = card.mana_cost;
+    //     }
+    //     const arrayMana = stringMana.split("");
+    //     arrayMana.map((letter) => {
+    //         if (letter == "W") manaCost.w++;
+    //         if (letter == "U") manaCost.u++;
+    //         if (letter == "B") manaCost.b++;
+    //         if (letter == "R") manaCost.r++;
+    //         if (letter == "G") manaCost.g++;
+    //     });
+    //     return manaCost;
+    // }
 
     render() {
-        const cardsToDisplay = this.filterCards(this.props.mana);
+        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, /*onlyTricks*/ false, /*excludeLands*/ true);
+        //cardsToDisplay.map((card) => console.log(card.oracle_text));
         return (
             <div className="cards" >
                 <h1> {this.state.desc} </h1>
@@ -102,7 +97,6 @@ class Cards extends React.Component {
 }
 
 function mapCrepesToHops(state){
-    //console.log(state)
     return {
         cards:state.cards, 
         mana:{
