@@ -88,13 +88,13 @@ class Cards extends React.Component {
     }
 
     render() {
-        console.log("***********NEW RENDER***********");
+        const cardsToDisplay = this.filterCards(this.props.mana)
         return (
             <div className="cards" >
                 <h1> {this.state.desc} </h1>
-                <p> There are {this.state.num} cards </p>
-                <p> There are {this.props.cards.length} cards in state </p>
-                {this.props.cards.length && this.filterCards(this.props.mana).map( (card, i) => <Card key={i} card={card} />)}
+                <p> There are {this.props.cards.length} cards in the format </p>
+                <p> Displaying {cardsToDisplay.length} cards </p>
+                {this.props.cards.length && cardsToDisplay.map( (card, i) => <Card key={i} card={card} />)}
             </div >
         );
     }
