@@ -13,9 +13,9 @@ import format from "./format";
 import filterLands from "./filterLands";
 
 export default combineReducers({
+    format,
     cards,
     w, u, b, r, g,
     onlyTricks,
-    format,
     filterLands,
 });

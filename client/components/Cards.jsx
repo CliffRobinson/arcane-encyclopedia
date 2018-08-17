@@ -34,6 +34,7 @@ function mapCrepesToHops(state){
             total: (state.w+state.u+state.b+state.r+state.g) 
         },
         onlyTricks:state.onlyTricks,
+        filterLands:state.filterLands
     };
 }
 

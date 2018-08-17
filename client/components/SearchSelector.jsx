@@ -5,6 +5,7 @@ import request from "superagent";
 import * as actions from "../actions/format";
 import {addCards, clearCards} from "../actions/cards";
 import {tricksToggle} from "../actions/onlyTricks";
+import {landsToggle} from "../actions/filterLands";
 
 import fakeCards from "../../tests/testData.json";
 
@@ -33,7 +34,7 @@ class SearchSelector extends React.Component {
                 </select>
                 <button onClick={this.createQuery} > Get Cards </button>
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
-                <input type="checkbox" onChange={()=> alert("Butts")} defaultChecked={true} /> Exclude Lands
+                <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
                 <button onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
                 <button onClick={this.getFakes}> Get Fakes </button>
             </ div>
