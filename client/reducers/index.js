@@ -10,10 +10,12 @@ import g from "./mana/g";
 
 import onlyTricks from "./onlyTricks";
 import format from "./format";
+import filterLands from "./filterLands";
 
 export default combineReducers({
     cards,
     w, u, b, r, g,
     onlyTricks,
     format,
+    filterLands,
 });

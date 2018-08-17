@@ -1,6 +1,7 @@
 import { ADD_CARDS, CLEAR_CARDS } from "../actions/cards";
 
 function cards(state = [], action) {
+    
     switch (action.type) {
     case ADD_CARDS:
         let newCardArray = [...state];

@@ -1,5 +1,5 @@
 export function filterAllCards(cards, mana, onlyTricks, excludeLands) {
-    let output = cards.filter((card) => filterCardByManaCost(card, mana));
+    let output = cards.filter((card) => canCastCardWithMana(card, mana));
     if (excludeLands) {
         output = filterLands(output);
     }
@@ -9,20 +9,16 @@ export function filterAllCards(cards, mana, onlyTricks, excludeLands) {
     return output;
 }
 
-export function filterCardByManaCost(card, mana) {
-    if (card.cmc <= mana.total) {
-        return checkColouredCost(card, mana);
-    } else {
+export function canCastCardWithMana(card, mana) {
+    if (card.cmc > mana.total) {
         return false;
+    } else {
+        let cardCost = translateMana(card);
+        for (let colour in cardCost) {
+            if (cardCost[colour] > mana[colour]) return false;
+        }
+        return true;
     }
-}
-
-export function checkColouredCost(card, mana) {
-    let cardCost = translateMana(card);
-    for (let colour in cardCost) {
-        if (cardCost[colour] > mana[colour]) return false;
-    }
-    return true;
 }
 
 export function translateMana(card) {
@@ -51,12 +47,17 @@ export function translateMana(card) {
 }
 
 export function filterLands(cards) {
-    function callback(card) {
-        let type = card.type_line;
-        return !type.includes("Land");
+    return cards.filter(callbackToFilterLands);
+} 
+
+export function callbackToFilterLands(card) {
+    switch (card.layout) {
+    case "transform":
+        return !card.card_faces[0].type_line.includes("Land");
+    default:
+        return !card.type_line.includes("Land");
     }
-    return cards.filter(callback);
-} //This might have issues with transform lands. Test suite assumes that only front face determines if a card is a land (IE Westvale Abbey is, Search for Azcanta is not), this might need changing for future sets. 
+}//This might have issues with transform lands. This assumes that only front face determines if a card is a land (IE Westvale Abbey is, Search for Azcanta is not), this might need changing for future sets. 
 
 export function filterForTricks(cards) {
 

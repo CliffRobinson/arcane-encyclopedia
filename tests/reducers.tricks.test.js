@@ -59,7 +59,7 @@ test("tricksToggle switches state from true to false", ()=>{
         type:TRICKS_TOGGLE
     };
     //Act
-    const actual = onlyTricks({onlyTricks:true}, action);
+    const actual = onlyTricks(true, action);
     //Assert
     expect(actual).toEqual(expected);
 });
