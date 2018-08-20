@@ -55,9 +55,9 @@ export function reduxComparePrice(cardA, cardB) {
 }
 
 export function reduxCompareName(cardA, cardiB) {
-    if (cardA.name < cardiB){
+    if (cardA.name < cardiB.name){
         return -1;
-    } else if (cardA.name > cardiB) {
+    } else if (cardA.name > cardiB.name) {
         return 1;
     } else {
         console.log("Sort function found 2 cards with the same name. This should not be possible, all MTG cards have unique names.");

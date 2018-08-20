@@ -16,6 +16,17 @@ import {data as fakeCards}  from "../tests/testData.json";
 //     expect(actual).toEqual(expected);
 // });
 
+test("Initial state of reducer", () => {
+    //Arrange
+    const action = {
+        type: "butts"
+    };
+    //Act
+    const actual = sort(undefined, action);
+    //Assert
+    expect(actual).toBeUndefined;
+});
+
 test("Test sort CMC case", () => {
     //Arrange
     const expected = reduxCompareCMC;
@@ -68,8 +79,9 @@ test("reduxCompareName sorts correctly", ()=> {
     //Arrange
     const expected = fakeCards.slice();
     //Act
-    let actual = fakeCards.slice().reverse().sort(reduxCompareName);
-    //clone, reverse, and then sort the array.
+    let actual = fakeCards.slice().reverse().sort((card) => Math.random()-0.5);
+    actual.sort(reduxCompareName);
+    //clone, randomise, and then sort the array.
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);

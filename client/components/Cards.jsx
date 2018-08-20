@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import Card from "./Card";
 import {filterAllCards} from "./componentFunctions";
 
+import {reduxComparePrice, reduxCompareColor, reduxCompareCMC, reduxCompareName} from "../reducers/sort";
+
 class Cards extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, this.props.onlyTricks, this.props.filterLands);
+        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, this.props.onlyTricks, this.props.filterLands, reduxCompareName);
         return (
             <div className="cards" >
                 <p> There are {this.props.cards.length} cards in the format </p>
