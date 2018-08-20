@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import request from "superagent";
+//import {createQuery, getCardsFromScryfall} from "./componentFunctions";
 
 import * as actions from "../actions/format";
 import {addCards, clearCards} from "../actions/cards";
@@ -13,8 +14,8 @@ class SearchSelector extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.createQuery = this.createQuery.bind(this);
-        this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
+        //this.createQuery = this.createQuery.bind(this);
+        //this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
         this.getFakes = this.getFakes.bind(this);
 
     }
@@ -32,7 +33,7 @@ class SearchSelector extends React.Component {
                     <option value="dom"> Dominaria Limited</option>
                     <option value="m19"> M19 Limited</option>
                 </select>
-                <button onClick={this.createQuery} > Get Cards </button>
+                <button onClick={() => this.createQuery()/*createQuery.call(this)*/} > Get Cards </button>
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
                 <button onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
@@ -44,7 +45,7 @@ class SearchSelector extends React.Component {
     getFakes() {
         this.props.dispatch(clearCards());
         let fakes = fakeCards.data;
-        this.props.dispatch(addCards(fakes))
+        this.props.dispatch(addCards(fakes));
     }
 
     createQuery(){

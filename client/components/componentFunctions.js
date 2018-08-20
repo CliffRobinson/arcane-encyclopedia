@@ -1,10 +1,16 @@
-export function filterAllCards(cards, mana, onlyTricks, excludeLands) {
+import request from "superagent";
+import {addCards, clearCards } from "../actions/cards";
+
+export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort) {
     let output = cards.filter((card) => canCastCardWithMana(card, mana));
     if (excludeLands) {
         output = filterLands(output);
     }
     if (onlyTricks) {
         output = filterForTricks(output);
+    }
+    if(sort) {
+        output = output.sort(sort);
     }
     return output;
 }
@@ -79,3 +85,21 @@ export function callbackToFilterForTricks(card) {
         return (card.type_line.includes("Instant") || oText.includes("flash"));
     }
 }
+
+// export function createQuery(){
+//     this.props.dispatch(clearCards());
+//     let queryString = `https://api.scryfall.com/cards/search?q=${this.props.format}`;
+//     getCardsFromScryfall.call(this,queryString);
+// }
+
+// export function getCardsFromScryfall(queryString) {
+    
+//     request.get(queryString)
+//         .then( (res) =>{
+//             this.props.dispatch(  addCards(res.body.data)  );
+
+//             if (res.body.has_more)  {
+//                 getCardsFromScryfall(res.body.next_page);
+//             }
+//         });
+// }
