@@ -12,7 +12,7 @@ export const searchStrings = {
     xln: "e%3axln",
     hou: "%28e%3Ahou+or+e%3Aakh%29",
     akh: "e%3aakh",
-    aer: "%28e%3Aaer+or+e%3Alkd%29",
+    aer: "%28e%3Aaer+or+e%3Akld%29",    
     kld: "e%3akld"
 };
 

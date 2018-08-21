@@ -1,8 +1,8 @@
-import React from 'react'
-import {shallow} from 'enzyme'
+import React from "react";
+import {shallow} from "enzyme";
 
-import App from '../client/components/App'
+import App from "../client/components/App";
 
-test('Test Suite Running', () => {
-  expect(true).toBeTruthy()
-})
+test("Test Suite Running", () => {
+    expect(true).toBeTruthy();
+});

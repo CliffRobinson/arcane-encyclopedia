@@ -70,7 +70,7 @@ class SearchSelector extends React.Component {
         
         request.get(queryString)
             .then( (res) =>{
-                this.props.dispatch(  addCards(res.body.data)  );
+                this.props.dispatch(addCards(res.body.data));
 
                 if (res.body.has_more)  {
                     this.getCardsFromScryfall(res.body.next_page);
@@ -83,7 +83,6 @@ class SearchSelector extends React.Component {
     }
 
     sortHandleChange(e){
-        console.log(sortActions);
         this.props.dispatch(sortActions[e.target.value]());
     }
 

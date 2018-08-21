@@ -10,17 +10,6 @@ import {
     aer, kld,
 } from "../client/actions/format";
 
-// test("[funcname] returns correct type.", ()=> {
-//     //Arrange
-//     const expected = {
-//         type: [varname],
-//     };
-//     //Act
-//     const actual = [funcname]();
-//     //Assert
-//     expect(actual).toEqual(expected);
-// });
-
 test("standard returns correct type.", ()=> {
     //Arrange
     const expected = {
