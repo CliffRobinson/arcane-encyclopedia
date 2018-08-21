@@ -161,13 +161,13 @@ export const sortFunctions = {
             return compareName(cardA, cardB);
         } else return diff;
     },
-    compareColor: function (cardA, cardB) {
+    compareColor: function (cardA, cardB) {        
         let diff = getColorSortIndex(cardA) - getColorSortIndex(cardB);
         if (diff == 0){
             return compareName(cardA, cardB);
         } else return diff;
     },
-    compareCollector: function (cardA, cardB) {
+    compareCollector: function (cardA, cardB) {        
         let diff = cardA.collector_number - cardB.collector_number;
         if (diff == 0){
             return compareName(cardA, cardB);

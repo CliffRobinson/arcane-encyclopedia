@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Card from "./Card";
-import {filterAllCards} from "./componentFunctions";
+import {filterAllCards, sortFunctions} from "./componentFunctions";
 
 class Cards extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class Cards extends React.Component {
     }
 
     render() {
-        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, this.props.onlyTricks, this.props.filterLands, this.props.sort);
+        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, this.props.onlyTricks, this.props.filterLands, sortFunctions[this.props.sort]);
         return (
             <div className="cards" >
                 <p> There are {this.props.cards.length} cards in the format </p>
@@ -34,7 +34,8 @@ function mapCrepesToHops(state){
             total: (state.w+state.u+state.b+state.r+state.g) 
         },
         onlyTricks:state.onlyTricks,
-        filterLands:state.filterLands
+        filterLands:state.filterLands,
+        sort: state.sort
     };
 }
 
