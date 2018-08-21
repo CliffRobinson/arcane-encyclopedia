@@ -1,4 +1,4 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
 //Small set of sample data showing a wide variety of cards.
@@ -181,4 +181,104 @@ test("If you have enough mana, FilterAllCards will allow you to cast all spells.
     const actual = filterAllCards(fakeCards, mana, false, false);
     //Assert
     expect(actual).toEqual(expected);
+});
+
+//sortFunctions
+//Specific tests
+
+test("sortFunctions.CompareName sorts correctly", ()=> {
+    //Arrange
+    const expected = fakeCards.slice();
+    //Act
+    let actual = fakeCards.slice().reverse().sort(() => Math.random()-0.5);
+    actual.sort(sortFunctions.compareName);
+    //clone, randomise, and then sort the array.
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("sortFunctions.CompareCMC sorts correctly", ()=> {
+    //Arrange
+    const expected = [
+        fakeCards[0], //Arch: 0
+        fakeCards[1], //Die: 2
+        fakeCards[3], //Essence Scatter: 2
+        fakeCards[6], //L. Cubby: 2
+        fakeCards[5], //G. Chainwhirler: 3
+        fakeCards[7], //Nicky B: 4
+        fakeCards[4], //Garna: 5
+        fakeCards[8], //Prepare2Fight: 6
+        fakeCards[2], //Dusk2Dawn: 9
+    ];
+    //Act
+    let actual = fakeCards.slice()/*.reverse()*/.sort(sortFunctions.compareCMC);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("sortFunctions.comparePrice sorts correctly", ()=> {
+    //Arrange
+    const expected = [
+        fakeCards[1], //Die Young, 0.03
+        fakeCards[4], //Garna, 0.08
+        fakeCards[6], //L. Cubby, 0.08
+        fakeCards[3], //E. scat, 0.09
+        fakeCards[8], //Prepare2fight, 0.16
+        fakeCards[2], //Dusk2Dawn, 0.99
+        fakeCards[0], //Arch, 1.82
+        fakeCards[5], //g chainz, 3.82
+        fakeCards[7], //nicky B, 35.97
+    ];
+    //Act
+    let actual = fakeCards.slice().sort(sortFunctions.comparePrice);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("sortFunctions.compareColor sorts correctly", ()=>{
+    //Arrange
+    const expected = [
+        fakeCards[2], //D2D, W
+        fakeCards[3], //Escat, U
+        fakeCards[1], //Die young, B
+        fakeCards[5], //g Chainz, R
+        fakeCards[6], //l cubby, G
+        fakeCards[4], //Garna, gold
+        fakeCards[7], //nicky, gold
+        fakeCards[8], //prep2fight, gold
+        fakeCards[0], //arch, colorless
+    ];
+    //Act
+    let actual = fakeCards.slice().sort(sortFunctions.compareColor);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("sortFunctions.compareCollector sorts correctly", ()=>{
+    //Arrange
+    const expected = [
+        fakeCards[3], //Escat, 54
+        fakeCards[1], //Die young, 76
+        fakeCards[5], //g Chainz, 129
+        fakeCards[6], //l cubby, 161
+        fakeCards[0], //arch, 185
+        fakeCards[4], //Garna, 194
+        fakeCards[2], //D2D, 218
+        fakeCards[7], //nicky, 218
+        fakeCards[8], //prep2fight, 220
+    ];
+    //Act
+    let actual = fakeCards.slice().sort(sortFunctions.compareCollector);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
 });

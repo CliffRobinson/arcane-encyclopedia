@@ -11,6 +11,7 @@ import g from "./mana/g";
 import onlyTricks from "./onlyTricks";
 import format from "./format";
 import filterLands from "./filterLands";
+import {sort} from "./sort";
 
 export default combineReducers({
     format,
@@ -18,4 +19,5 @@ export default combineReducers({
     w, u, b, r, g,
     onlyTricks,
     filterLands,
+    sort
 });
