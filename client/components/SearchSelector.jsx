@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import request from "superagent";
 //import {createQuery, getCardsFromScryfall} from "./componentFunctions";
 
-import * as actions from "../actions/format";
+import * as formatActions from "../actions/format";
+import * as sortActions from "../actions/sort";
 import {addCards, clearCards} from "../actions/cards";
 import {tricksToggle} from "../actions/onlyTricks";
 import {landsToggle} from "../actions/filterLands";
@@ -13,7 +14,8 @@ import fakeCards from "../../tests/testData.json";
 class SearchSelector extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.searchHandleChange = this.searchHandleChange.bind(this);
+        this.sortHandleChange = this.sortHandleChange.bind(this);
         //this.createQuery = this.createQuery.bind(this);
         //this.getCardsFromScryfall = this.getCardsFromScryfall.bind(this);
         this.getFakes = this.getFakes.bind(this);
@@ -25,7 +27,7 @@ class SearchSelector extends React.Component {
         
         return (
             <div className='searchSelector' >
-                <select onChange={this.handleChange}> {/*values of options correspond to the action to dispatch*/}
+                <select onChange={this.searchHandleChange}> {/*values of options correspond to the action to dispatch*/}
                     <option value="standard"> Standard</option>
                     <option value="aer"> Aether Revolt Limited</option>
                     <option value="hou"> Hour of Devastation Limited</option>
@@ -34,8 +36,18 @@ class SearchSelector extends React.Component {
                     <option value="m19"> M19 Limited</option>
                 </select>
                 <button onClick={() => this.createQuery()/*createQuery.call(this)*/} > Get Cards </button>
+
+                <select onChange={this.sortHandleChange}> {/*values of options correspond to the action to dispatch*/} 
+                    <option value ="sortName" > Sort by Name </option>
+                    <option value ="sortColor" > Sort by Color </option>
+                    <option value ="sortCMC" > Sort by CMC </option>
+                    <option value ="sortPrice" > Sort by Price </option>
+                    <option value ="sortCollector" > Sort by Collector </option>
+                </select>
+
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
+
                 <button onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
                 <button onClick={this.getFakes}> Get Fakes </button>
             </ div>
@@ -66,8 +78,13 @@ class SearchSelector extends React.Component {
             });
     }
 
-    handleChange(e) {
-        this.props.dispatch(actions[e.target.value]());
+    searchHandleChange(e) {
+        this.props.dispatch(formatActions[e.target.value]());
+    }
+
+    sortHandleChange(e){
+        console.log(sortActions);
+        this.props.dispatch(sortActions[e.target.value]());
     }
 
 }
