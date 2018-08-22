@@ -34,6 +34,7 @@ export function translateMana(card) {
         b: 0,
         r: 0,
         g: 0,
+        c: 0,
     };
     let stringMana;
     if (card.card_faces) {
@@ -48,6 +49,7 @@ export function translateMana(card) {
         if (letter == "B") manaCost.b++;
         if (letter == "R") manaCost.r++;
         if (letter == "G") manaCost.g++;
+        if (letter == "C") manaCost.c++;
     });
     return manaCost;
 }
@@ -177,7 +179,15 @@ export const sortFunctions = {
 
 export function customTextFilter(cards, key, text){
     let output = cards;
-
+    output = output.filter((card) => {
+        switch (card.layout){
+        case "transform":
+        case "split":
+            return card.card_faces[0][key].toLowerCase().includes(text.toLowerCase()) ||card.card_faces[1][key].toLowerCase().includes(text.toLowerCase());
+        default:
+            return card[key].toLowerCase().includes(text.toLowerCase());
+        }
+    });
     return output;
 }
 

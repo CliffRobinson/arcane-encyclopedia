@@ -105,7 +105,8 @@ test("translateMana gets Nicol Bolas right", () => {
         u:1,
         b:1,
         r:1,
-        g:0
+        g:0,
+        c:0,
     };
     //Act
     const actual = translateMana(bolas);
@@ -293,6 +294,20 @@ test("customTextFilter can get oracle text of 'enters the battlefield' returning
     ];
     //Act
     const actual = customTextFilter(fakeCards, "oracle_text", "enters the battlefield");
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("customTextFilter can get name of 'the' returning garna, nicol bolas", ()=> {
+    //Arrange
+    const expected = [
+        fakeCards[4],
+        fakeCards[7]
+    ];
+    //Act
+    const actual = customTextFilter(fakeCards, "name", "the");
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
