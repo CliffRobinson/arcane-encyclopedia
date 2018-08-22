@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Card from "./Card";
-import {filterAllCards, sortFunctions} from "./componentFunctions";
+import {filterAllCards, sortFunctions, mapManaToProps} from "./componentFunctions";
 
 class Cards extends React.Component {
     constructor(props) {
@@ -22,21 +22,21 @@ class Cards extends React.Component {
 
 }
 
-function mapCrepesToHops(state){
-    return {
-        cards:state.cards, 
-        mana:{
-            w: state.w,
-            u: state.u,
-            b: state.b,
-            r: state.r,
-            g: state.g,
-            total: (state.w+state.u+state.b+state.r+state.g) 
-        },
-        onlyTricks:state.onlyTricks,
-        filterLands:state.filterLands,
-        sort: state.sort
-    };
-}
+// function mapCrepesToHops(state){
+//     return {
+//         cards:state.cards, 
+//         mana:{
+//             w: state.w,
+//             u: state.u,
+//             b: state.b,
+//             r: state.r,
+//             g: state.g,
+//             total: (state.w+state.u+state.b+state.r+state.g) 
+//         },
+//         onlyTricks:state.onlyTricks,
+//         filterLands:state.filterLands,
+//         sort: state.sort
+//     };
+// }
 
-export default connect(mapCrepesToHops)(Cards);
+export default connect(mapManaToProps)(Cards);

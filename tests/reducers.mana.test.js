@@ -3,6 +3,7 @@ import u from "../client/reducers/mana/u";
 import b from "../client/reducers/mana/b";
 import r from "../client/reducers/mana/r";
 import g from "../client/reducers/mana/g";
+import c from "../client/reducers/mana/c";
 import {CLEAR_MANA} from "../client/actions/mana";
 
 testMana(w, "W");
@@ -10,6 +11,7 @@ testMana(u, "U");
 testMana(b, "B");
 testMana(r, "R");
 testMana(g, "G");
+testMana(c, "C");
 
 function testMana(mana, name) {
     test(`${name} mana initial state`, () => {

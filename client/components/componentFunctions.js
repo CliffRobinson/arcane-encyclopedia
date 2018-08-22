@@ -181,3 +181,21 @@ export function customTextFilter(cards, key, text){
     return output;
 }
 
+export function mapManaToProps(state){
+    return {
+        cards:state.cards, 
+        mana:{
+            w: state.w,
+            u: state.u,
+            b: state.b,
+            r: state.r,
+            g: state.g,
+            c: state.c,
+            total: (state.w+state.u+state.b+state.r+state.g+state.c) 
+        },
+        onlyTricks:state.onlyTricks,
+        filterLands:state.filterLands,
+        sort: state.sort
+    };
+}
+
