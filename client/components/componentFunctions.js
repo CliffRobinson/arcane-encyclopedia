@@ -174,3 +174,10 @@ export const sortFunctions = {
         } else return diff;
     }
 };
+
+export function customTextFilter(cards, key, text){
+    let output = cards;
+
+    return output;
+}
+

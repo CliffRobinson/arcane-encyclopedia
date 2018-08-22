@@ -8,7 +8,7 @@ function u(state = 0, action) {
         if (state != 0) {
             return state - 1;
         }
-        break;
+        return 0;
     case CLEAR_MANA:
         return 0;
     default:

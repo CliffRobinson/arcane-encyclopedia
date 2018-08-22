@@ -1,4 +1,4 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
 //Small set of sample data showing a wide variety of cards.
@@ -197,6 +197,7 @@ test("sortFunctions.CompareName sorts correctly", ()=> {
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
+    //This pattern is equivalent to expect(actual).toEqual(expected), but it's much easier to read the test output if it's failed. 
 });
 
 test("sortFunctions.CompareCMC sorts correctly", ()=> {
@@ -277,6 +278,21 @@ test("sortFunctions.compareCollector sorts correctly", ()=>{
     ];
     //Act
     let actual = fakeCards.slice().sort(sortFunctions.compareCollector);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("customTextFilter can get oracle text of 'enters the battlefield' returning garna, gobbo and nicol bolas", ()=> {
+    //Arrange
+    const expected = [
+        fakeCards[4],
+        fakeCards[5],
+        fakeCards[7]
+    ];
+    //Act
+    const actual = customTextFilter(fakeCards, "oracle_text", "enters the battlefield");
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
