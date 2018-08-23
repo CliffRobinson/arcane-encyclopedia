@@ -1,4 +1,4 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
 //Small set of sample data showing a wide variety of cards.
@@ -132,7 +132,7 @@ test("canCastCardWithMana will allow you to cast bolas with WUBRG", () =>{
     expect(actual).toBeTruthy();
 });
 
-test("canCastCardWithMana will not allow you to cast bolas with WUURG", () =>{
+test("canCastCardWithMana will not allow you to cast Bolas with WUURG", () =>{
     //Arrange
     const bolas = fakeCards[7];
     const mana = {
@@ -313,3 +313,50 @@ test("customTextFilter can get name of 'the' returning garna, nicol bolas", ()=>
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
 });
+
+test("customTextFilter can get cards of type sorcery", ()=> {
+    //Arrange
+    const expected = [
+        fakeCards[1], //Die young
+        fakeCards[2], //Dusk to Dawn
+        fakeCards[8], //prepare to fight
+    ];
+    //Act
+    const actual = customTextFilter(fakeCards, "type_line", "sorcery");
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("customNumberFilter can get all cards worth over $1", () => {
+    //Arrange
+    const expected = [
+        fakeCards[0], //Arch, 1.82
+        fakeCards[5], //g chainz, 3.82
+        fakeCards[7], //nicky B, 35.97
+    ];
+    //Act
+    const actual = customNumberFilter(fakeCards, "usd", 1, "more");
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("customNumberFilter can get all cards with CMC under 3", () => {
+    //Arrange
+    const expected = [
+        fakeCards[0], //Arch: 0
+        fakeCards[1], //Die: 2
+        fakeCards[3], //Essence Scatter: 2
+        fakeCards[6], //L. Cubby: 2
+    ];
+    //Act
+    const actual = customNumberFilter(fakeCards, "cmc", 3, "less");
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+

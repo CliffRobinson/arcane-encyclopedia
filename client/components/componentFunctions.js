@@ -191,6 +191,26 @@ export function customTextFilter(cards, key, text){
     return output;
 }
 
+export function customNumberFilter(cards, key, num, comp) {
+    let output = cards;
+    const compFuncs = {
+        less: (a, b) => a < b,
+        equal: (a, b) => a == b,
+        more: (a, b) => a > b
+    };
+
+    return output.filter((card) => {
+        if(card[key] || card[key] == 0) {
+            return compFuncs[comp](card[key], num);
+        } else if (card.card_faces){
+            return compFuncs[comp](card.card_faces[0][key], num) || compFuncs[comp](card.card_faces[1][key], num);
+        } else {
+            console.log(`${card.name} does not work with this filter criteria`);
+            return false;
+        }
+    });
+}
+
 export function mapManaToProps(state){
     return {
         cards:state.cards, 

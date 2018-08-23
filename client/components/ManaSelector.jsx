@@ -38,7 +38,7 @@ function ManaSelector(props) {
             </div>
 
             <div>
-            <button onClick={ ()=> props.dispatch(addC())}> Add C</button> 
+                <button onClick={ ()=> props.dispatch(addC())}> Add C</button> 
                 <input type="text" disabled='true' value={props.mana.c} />
                 <button onClick={ ()=> props.dispatch(subC())}> Sub C</button>
             </div>
