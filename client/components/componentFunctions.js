@@ -191,6 +191,18 @@ export function customTextFilter(cards, key, text){
     return output;
 }
 
+export function numberLessFilter(cards, key, num) {
+    return customNumberFilter(cards, key, num, "less");
+}
+
+export function numberEqualFilter(cards, key, num) {
+    return customNumberFilter(cards, key, num, "equal");
+}
+
+export function numberMoreFilter(cards, key, num) {
+    return customNumberFilter(cards, key, num, "more");
+}
+
 export function customNumberFilter(cards, key, num, comp) {
     let output = cards;
     const compFuncs = {
