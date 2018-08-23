@@ -8,7 +8,7 @@ class FilterBar extends React.Component {
         super(props);
 
         this.state = {
-            num:0,
+            //num:0,
             filters:[]
         };
         this.addFilter = this.addFilter.bind(this);
@@ -24,12 +24,12 @@ class FilterBar extends React.Component {
     }
 
     modifyNum(addNotSubtract){
-        let newNum;
-        if(addNotSubtract) {
-            newNum = this.state.num+1;
-        } else {
-            newNum = this.state.num-1;
-        }
+        // let newNum;
+        // if(addNotSubtract) {
+        //     newNum = this.state.num+1;
+        // } else {
+        //     newNum = this.state.num-1;
+        // }
 
         // let newFilters = new Array(newNum).fill(null);
         // newFilters = newFilters.map((newFilter, i) => {
@@ -42,20 +42,20 @@ class FilterBar extends React.Component {
             ? [...this.state.filters, null]
             : this.state.filters.slice(0,-1);
         this.setState({
-            num: newNum,
+            //num: newNum,
             filters: newFilters
         });
     }
 
     render() {
-        const {num, filters} = this.state; 
+        const { filters} = this.state; 
         //const counter = new Array(num).fill("butts");
         console.log("Filters are", this.state.filters);
         return (
             <div className="filterBar">
-                <p>Here is the filter bar, num is {num} </p>
+                <p>Here is the filter bar, num is {filters.length} </p>
                 <button onClick={() => this.modifyNum(true)} >Add a Filter </button>
-                <button onClick={() => this.modifyNum(false)} disabled={num < 1} >Remove a Filter </button>
+                <button onClick={() => this.modifyNum(false)} disabled={filters.length < 1} >Remove a Filter </button>
                 { filters.map((e, i) => <Filter addFilter={this.addFilter}key={i} i={i} />)}
             </div>
         );
