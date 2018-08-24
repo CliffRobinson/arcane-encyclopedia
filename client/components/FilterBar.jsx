@@ -56,7 +56,6 @@ class FilterBar extends React.Component {
         //console.log("Filters are", this.state.filters);
         return (
             <div className="filterBar">
-                <p>Here is the filter bar, num is {filters.length} </p>
                 <button onClick={() => this.modifyNum(true)} >Add a Filter </button>
                 <button onClick={() => this.modifyNum(false)} disabled={filters.length < 1} >Remove a Filter </button>
                 {filters.map((e, i) => <Filter addFilter={this.addFilter} key={i} i={i} />)}
