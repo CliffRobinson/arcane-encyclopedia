@@ -8,11 +8,16 @@ import FilterBar from "./FilterBar";
 const App = () => {
     return (
         <div className="App" >
-            <SearchSelector />
+            <div className="navbar is-fixed-top">
+                <SearchSelector />
+
+            </ div>
             <FilterBar />
             <ManaSelector />
-            <Cards />
-        </ div> 
+            <div className="container">
+                <Cards />
+            </ div>
+        </ div>
     );
 };
 

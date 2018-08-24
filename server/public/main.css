@@ -10,3 +10,7 @@ body {
     color:white;
 
 }
+
+.searchSelector {
+    background-color: hsl(217, 71%, 53%);
+}

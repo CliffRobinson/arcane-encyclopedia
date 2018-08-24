@@ -26,8 +26,8 @@ class SearchSelector extends React.Component {
     render() {
         
         return (
-            <div className='searchSelector' >
-                <select onChange={this.searchHandleChange}> {/*values of options correspond to the action to dispatch*/}
+            <div className="searchSelector" >
+                <select className="select" onChange={this.searchHandleChange}> {/*values of options correspond to the action to dispatch*/}
                     <option value="standard"> Standard</option>
                     <option value="aer"> Aether Revolt Limited</option>
                     <option value="hou"> Hour of Devastation Limited</option>
@@ -35,9 +35,9 @@ class SearchSelector extends React.Component {
                     <option value="dom"> Dominaria Limited</option>
                     <option value="m19"> M19 Limited</option>
                 </select>
-                <button onClick={() => this.createQuery()/*createQuery.call(this)*/} > Get Cards </button>
+                <button className="button" onClick={() => this.createQuery()/*createQuery.call(this)*/} > Get Cards </button>
 
-                <select onChange={this.sortHandleChange}> {/*values of options correspond to the action to dispatch*/} 
+                <select className="select" onChange={this.sortHandleChange}> {/*values of options correspond to the action to dispatch*/} 
                     <option value ="sortName" > Sort by Name </option>
                     <option value ="sortColor" > Sort by Color </option>
                     <option value ="sortCMC" > Sort by CMC </option>
@@ -48,8 +48,8 @@ class SearchSelector extends React.Component {
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
 
-                <button onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
-                <button onClick={this.getFakes}> Get Fakes </button>
+                <button className="button" onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
+                <button className="button" onClick={this.getFakes}> Get Fakes </button>
             </ div>
         );
     }
