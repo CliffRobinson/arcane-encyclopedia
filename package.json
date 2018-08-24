@@ -21,8 +21,8 @@
     "setupFiles": [
       "./tests/setup.js"
     ],
-    "collectCoverage":true,
-    "verbose":true
+    "collectCoverage": true,
+    "verbose": true
   },
   "dependencies": {
     "eslint": "^5.3.0",
