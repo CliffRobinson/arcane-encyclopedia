@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Filter from "./Filter";
+import { updateFilters, clearFilters } from "../actions/customFilters";
+
 
 class FilterBar extends React.Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class FilterBar extends React.Component {
 
         this.state = {
             //num:0,
-            filters:[]
+            filters: []
         };
         this.addFilter = this.addFilter.bind(this);
         this.modifyNum = this.modifyNum.bind(this);
@@ -23,7 +25,7 @@ class FilterBar extends React.Component {
         });
     }
 
-    modifyNum(addNotSubtract){
+    modifyNum(addNotSubtract) {
         // let newNum;
         // if(addNotSubtract) {
         //     newNum = this.state.num+1;
@@ -40,7 +42,7 @@ class FilterBar extends React.Component {
 
         const newFilters = (addNotSubtract)
             ? [...this.state.filters, null]
-            : this.state.filters.slice(0,-1);
+            : this.state.filters.slice(0, -1);
         this.setState({
             //num: newNum,
             filters: newFilters
@@ -48,15 +50,18 @@ class FilterBar extends React.Component {
     }
 
     render() {
-        const { filters} = this.state; 
+        const { filters } = this.state;
+        const plural = (this.props.customFilters.length > 1) ? "filters" : "filter";
         //const counter = new Array(num).fill("butts");
-        console.log("Filters are", this.state.filters);
+        //console.log("Filters are", this.state.filters);
         return (
             <div className="filterBar">
                 <p>Here is the filter bar, num is {filters.length} </p>
                 <button onClick={() => this.modifyNum(true)} >Add a Filter </button>
                 <button onClick={() => this.modifyNum(false)} disabled={filters.length < 1} >Remove a Filter </button>
-                { filters.map((e, i) => <Filter addFilter={this.addFilter}key={i} i={i} />)}
+                {filters.map((e, i) => <Filter addFilter={this.addFilter} key={i} i={i} />)}
+                {filters.length > 0 && <button onClick={() => this.props.dispatch(updateFilters(this.state.filters))}> Apply {plural}</button>}
+                {this.props.customFilters.length > 0 && <button onClick={() => this.props.dispatch(clearFilters())}> Clear {plural} </button>}
             </div>
         );
     }

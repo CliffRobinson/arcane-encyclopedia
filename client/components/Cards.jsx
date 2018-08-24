@@ -10,7 +10,8 @@ class Cards extends React.Component {
     }
 
     render() {
-        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, this.props.onlyTricks, this.props.filterLands, sortFunctions[this.props.sort]);
+        //console.log("filters as applied to render are", this.props.customFilters);
+        const cardsToDisplay = filterAllCards(this.props.cards,this.props.mana, this.props.onlyTricks, this.props.filterLands, sortFunctions[this.props.sort], this.props.customFilters);
         return (
             <div className="cards" >
                 <p> There are {this.props.cards.length} cards in the format </p>

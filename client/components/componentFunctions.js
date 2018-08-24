@@ -1,7 +1,8 @@
 import request from "superagent";
 import {addCards, clearCards } from "../actions/cards";
 
-export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort) {
+export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, customFilters) {
+    //console.log("filtering all");
     let output = cards.filter((card) => canCastCardWithMana(card, mana));
     if (excludeLands) {
         output = filterLands(output);
@@ -9,9 +10,17 @@ export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort) {
     if (onlyTricks) {
         output = filterForTricks(output);
     }
+    if (customFilters) {
+        customFilters.map((filter) => {
+            output = filterFuncs[filter.function](output, filter.key, filter.value);
+        });
+    }
     if(sort) {
         output = output.sort(sort);
     }
+
+
+
     return output;
 }
 
@@ -183,9 +192,19 @@ export function customTextFilter(cards, key, text){
         switch (card.layout){
         case "transform":
         case "split":
+        case "flip":
             return card.card_faces[0][key].toLowerCase().includes(text.toLowerCase()) ||card.card_faces[1][key].toLowerCase().includes(text.toLowerCase());
+        case "normal":
+        case "saga":
+            if (card[key]){ //Probably means the card does not have oracle text
+                return card[key].toLowerCase().includes(text.toLowerCase());
+            } else {
+                console.log(card.name);
+                return false;
+            }
         default:
-            return card[key].toLowerCase().includes(text.toLowerCase());
+            console.log(`${card.name} is not recognized by customTextFilter`);
+            return false;
         }
     });
     return output;
@@ -223,6 +242,13 @@ export function customNumberFilter(cards, key, num, comp) {
     });
 }
 
+export const filterFuncs = {
+    customTextFilter,
+    numberLessFilter,
+    numberEqualFilter,
+    numberMoreFilter
+};
+
 export function mapManaToProps(state){
     return {
         cards:state.cards, 
@@ -237,7 +263,8 @@ export function mapManaToProps(state){
         },
         onlyTricks:state.onlyTricks,
         filterLands:state.filterLands,
-        sort: state.sort
+        sort: state.sort,
+        customFilters: state.customFilters
     };
 }
 
