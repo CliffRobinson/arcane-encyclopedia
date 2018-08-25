@@ -225,15 +225,15 @@ test("sortFunctions.CompareCMC sorts correctly", ()=> {
 test("sortFunctions.comparePrice sorts correctly", ()=> {
     //Arrange
     const expected = [
-        fakeCards[1], //Die Young, 0.03
+        fakeCards[7], //nicky B, 35.97
+        fakeCards[5], //g chainz, 3.82
+        fakeCards[0], //Arch, 1.82
+        fakeCards[2], //Dusk2Dawn, 0.99
+        fakeCards[8], //Prepare2fight, 0.16
+        fakeCards[3], //E. scat, 0.09
         fakeCards[4], //Garna, 0.08
         fakeCards[6], //L. Cubby, 0.08
-        fakeCards[3], //E. scat, 0.09
-        fakeCards[8], //Prepare2fight, 0.16
-        fakeCards[2], //Dusk2Dawn, 0.99
-        fakeCards[0], //Arch, 1.82
-        fakeCards[5], //g chainz, 3.82
-        fakeCards[7], //nicky B, 35.97
+        fakeCards[1], //Die Young, 0.03        
     ];
     //Act
     let actual = fakeCards.slice().sort(sortFunctions.comparePrice);

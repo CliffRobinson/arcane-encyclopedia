@@ -167,7 +167,7 @@ export const sortFunctions = {
         } else return diff;
     },
     comparePrice: function (cardA, cardB) {
-        let diff = cardA.usd - cardB.usd;
+        let diff = cardB.usd - cardA.usd;
         if (diff == 0){
             return compareName(cardA, cardB);
         } else return diff;
