@@ -56,11 +56,11 @@ class FilterBar extends React.Component {
         //console.log("Filters are", this.state.filters);
         return (
             <div className="filterBar">
-                <button onClick={() => this.modifyNum(true)} >Add a Filter </button>
-                <button onClick={() => this.modifyNum(false)} disabled={filters.length < 1} >Remove a Filter </button>
+                <button className="button" onClick={() => this.modifyNum(true)} >Add a Filter </button>
+                <button className="button" onClick={() => this.modifyNum(false)} disabled={filters.length < 1} >Remove a Filter </button>
                 {filters.map((e, i) => <Filter addFilter={this.addFilter} key={i} i={i} />)}
-                {filters.length > 0 && <button onClick={() => this.props.dispatch(updateFilters(this.state.filters))}> Apply {plural}</button>}
-                {this.props.customFilters.length > 0 && <button onClick={() => this.props.dispatch(clearFilters())}> Clear {plural} </button>}
+                {filters.length > 0 && <button className="button" onClick={() => this.props.dispatch(updateFilters(this.state.filters))}> Apply {plural}</button>}
+                {this.props.customFilters.length > 0 && <button className="button" onClick={() => this.props.dispatch(clearFilters())}> Clear {plural} </button>}
             </div>
         );
     }

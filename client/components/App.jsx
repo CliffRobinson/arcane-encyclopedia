@@ -8,7 +8,7 @@ import FilterBar from "./FilterBar";
 const App = () => {
     return (
         <div className="App" >
-            <div className="navbar is-fixed-top">
+            <div className="navbar is-fixed-top is-fullwidth">
                 <SearchSelector />
 
             </ div>
