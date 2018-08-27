@@ -54,13 +54,14 @@ class FilterBar extends React.Component {
         const plural = (this.props.customFilters.length > 1) ? "filters" : "filter";
         //const counter = new Array(num).fill("butts");
         //console.log("Filters are", this.state.filters);
+        const size = "is-small";
         return (
-            <div className="filterBar">
-                <button className="button" onClick={() => this.modifyNum(true)} >Add a Filter </button>
-                <button className="button" onClick={() => this.modifyNum(false)} disabled={filters.length < 1} >Remove a Filter </button>
-                {filters.map((e, i) => <Filter addFilter={this.addFilter} key={i} i={i} />)}
-                {filters.length > 0 && <button className="button" onClick={() => this.props.dispatch(updateFilters(this.state.filters))}> Apply {plural}</button>}
-                {this.props.customFilters.length > 0 && <button className="button" onClick={() => this.props.dispatch(clearFilters())}> Clear {plural} </button>}
+            <div className="filterBar "> {/*navbar-item*/}
+                <button className={`button ${size}`} onClick={() => this.modifyNum(true)} >Add a Filter </button>
+                {filters.length > 0 && <button className={`button ${size}`} onClick={() => this.modifyNum(false)}>Remove a Filter</button>}
+                {filters.map((e, i) => <Filter size={size} addFilter={this.addFilter} key={i} i={i} />)}
+                {filters.length > 0 && <button className={`button ${size}`} onClick={() => this.props.dispatch(updateFilters(this.state.filters))}> Apply {plural}</button>}
+                {this.props.customFilters.length > 0 && <button className={`button ${size}`} onClick={() => this.props.dispatch(clearFilters())}> Clear {plural} </button>}
             </div>
         );
     }

@@ -1,16 +1,21 @@
 body, html {
     height: 100%;
+    background: url(https://magic.wizards.com/sites/mtg/files/images/wallpaper/Syncopate_DAR_1920x1080_Wallpaper.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 body {
-    background: linear-gradient(to right, white, blue, black, red, green);
-    background-image:url(https://magic.wizards.com/sites/mtg/files/images/wallpaper/Syncopate_DAR_1920x1080_Wallpaper.jpg);
-    background-size:100% 100%;
-    background-attachment: fixed;
     color:white;
 
 }
 
-.searchSelector {
-    background-color: hsl(217, 71%, 53%);
+.topTwo {
+    background-color: hsla(216, 13%, 42%, 0.75);
+    position: fixed;
+    top:0;
+    width: 100%;
+}
+
+.manaSelector {
+    margin-top: 54.667px;
 }

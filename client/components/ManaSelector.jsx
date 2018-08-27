@@ -44,7 +44,7 @@ function ManaSelector(props) {
             </div>
 
             <div>
-                <button className="button" onClick={ ()=> props.dispatch(clearMana())}> Clear Mana</button>
+                <button className="button is-small" onClick={ ()=> props.dispatch(clearMana())}> Clear Mana</button>
             </div>
         </div>
     );

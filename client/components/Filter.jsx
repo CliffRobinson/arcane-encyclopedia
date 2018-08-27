@@ -38,8 +38,8 @@ class Filter extends React.Component {
     }
 
     render() {
-        return <span className="filter">
-            <select classname="select" onChange={(e) => this.handleSelectChange(e, this.props)}>
+        return <span className={"filter"}>
+            <select className={`select ${this.props.size}`} onChange={(e) => this.handleSelectChange(e, this.props)}>
                 <option value="customTextFilter--type_line"> Type Line contains </option>
                 <option value="customTextFilter--name"> Name contains</option>
                 <option value="customTextFilter--oracle_text"> Oracle Text Contains</option>
@@ -49,7 +49,7 @@ class Filter extends React.Component {
                 <option value="numberLessFilter--usd"> Price less than </option>
                 <option value="numberMoreFilter--usd"> Price more than </option>
             </select>
-            <input classname="input" type="text" onChange={(e) => this.handleInputChange(e, this.props)}>
+            <input className={`${this.props.size}`} type="text" onChange={(e) => this.handleInputChange(e, this.props)}>
     
             </input>
         </span>;
