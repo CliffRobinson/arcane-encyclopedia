@@ -19,3 +19,47 @@ body {
 .manaSelector {
     margin-top: 54.667px;
 }
+
+.manaContainer {
+    font-size: 30px;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.manaText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80%;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.manaButton {
+    
+    transform: translateY(7px);
+    height: 24px;
+    width: 24px;
+    margin:5px;
+}
+
+.manaRow {
+
+}
+
+i {
+    margin-top:-2.96px;
+    margin-bottom:2.96px;
+    vertical-align: middle
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

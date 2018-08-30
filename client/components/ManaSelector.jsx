@@ -7,39 +7,66 @@ import {mapManaToProps} from "./componentFunctions";
 function ManaSelector(props) {
     return (
         <div className="manaSelector">
-            <div>
-                <button onClick={ ()=> props.dispatch(addW())}> Add W</button>
-                <input type="text" disabled='true' value={props.mana.w} />
-                <button onClick={ ()=> props.dispatch(subW())}> Sub W</button>
+            <div className="manaRow">
+                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ ()=> props.dispatch(addW())} />
+                <span  className="manaContainer">
+                    <i className="ms ms-w ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.w}</span> 
+                </span>
+                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subW())} />
             </div>
 
+            <div className="manaRow">
+                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ ()=> props.dispatch(addU())} />
+                <span  className="manaContainer">
+                    <i className="ms ms-u ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.u}</span> 
+                </span>
+                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subU())} />
+            </div>
+            <p>/////////</p>
             <div>
                 <button onClick={ ()=> props.dispatch(addU())}> Add U</button> 
-                <input type="text" disabled='true' value={props.mana.u} />
+                <span  className="manaContainer">
+                    <i className="ms ms-u ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.u}</span> 
+                </span>
                 <button onClick={ ()=> props.dispatch(subU())}> Sub U</button>
             </div>
 
             <div>
                 <button onClick={ ()=> props.dispatch(addB())}> Add B</button> 
-                <input type="text" disabled='true' value={props.mana.b} />
+                <span  className="manaContainer">
+                    <i className="ms ms-b ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.b}</span> 
+                </span>
                 <button onClick={ ()=> props.dispatch(subB())}> Sub B</button>
             </div>
 
             <div>
                 <button onClick={ ()=> props.dispatch(addR())}> Add R</button> 
-                <input type="text" disabled='true' value={props.mana.r} />
+                <span  className="manaContainer">
+                    <i className="ms ms-r ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.r}</span> 
+                </span>
                 <button onClick={ ()=> props.dispatch(subR())}> Sub R</button>
             </div>
 
             <div>
                 <button onClick={ ()=> props.dispatch(addG())}> Add G</button> 
-                <input type="text" disabled='true' value={props.mana.g} />
+                <span  className="manaContainer">
+                    <i className="ms ms-g ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.g}</span> 
+                </span>
                 <button onClick={ ()=> props.dispatch(subG())}> Sub G</button>
             </div>
 
             <div>
                 <button onClick={ ()=> props.dispatch(addC())}> Add C</button> 
-                <input type="text" disabled='true' value={props.mana.c} />
+                <span  className="manaContainer">
+                    <i className="ms ms-c ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.c}</span> 
+                </span>
                 <button onClick={ ()=> props.dispatch(subC())}> Sub C</button>
             </div>
 
