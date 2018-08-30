@@ -24,6 +24,42 @@ function ManaSelector(props) {
                 </span>
                 <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subU())} />
             </div>
+
+            <div className="manaRow">
+                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ ()=> props.dispatch(addB())} />
+                <span  className="manaContainer">
+                    <i className="ms ms-b ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.b}</span> 
+                </span>
+                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subB())} />
+            </div>
+
+            <div className="manaRow">
+                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ ()=> props.dispatch(addR())} />
+                <span  className="manaContainer">
+                    <i className="ms ms-r ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.r}</span> 
+                </span>
+                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subR())} />
+            </div>
+
+            <div className="manaRow">
+                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ ()=> props.dispatch(addG())} />
+                <span  className="manaContainer">
+                    <i className="ms ms-g ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.g}</span> 
+                </span>
+                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subG())} />
+            </div>
+
+            <div className="manaRow">
+                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ ()=> props.dispatch(addC())} />
+                <span  className="manaContainer">
+                    <i className="ms ms-c ms-cost ms-shadow"></i>
+                    <span className="manaText">{props.mana.c}</span> 
+                </span>
+                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ ()=> props.dispatch(subC())} />
+            </div>
             <p>/////////</p>
             <div>
                 <button onClick={ ()=> props.dispatch(addU())}> Add U</button> 
