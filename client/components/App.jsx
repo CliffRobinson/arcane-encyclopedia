@@ -9,13 +9,18 @@ const App = () => {
     return (
         <div className="App" >
             <div className="topTwo">
-                    <SearchSelector />
-                    <FilterBar />                
+                <SearchSelector />
+                <FilterBar />
             </ div>
 
-            <ManaSelector />
-            <div className="container">
-                <Cards />
+            <div className="flexContain">
+                <div className="main">
+                    <Cards />
+                </ div>
+                <div classname="sidebar">
+                    <ManaSelector />
+                </ div>
+                
             </ div>
         </ div>
     );

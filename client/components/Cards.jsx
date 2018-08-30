@@ -17,6 +17,7 @@ class Cards extends React.Component {
                 <p> There are {this.props.cards.length} cards in the format </p>
                 <p> Displaying {cardsToDisplay.length} cards </p>
                 {this.props.cards.length && cardsToDisplay.map( (card, i) => <Card key={i} card={card} />)}
+                {"welcometolengthyscrollytimestown".split("").map((c) => <p>{c}</p>)}
             </div >
         );
     }

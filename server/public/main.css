@@ -16,8 +16,15 @@ body {
     width: 100%;
 }
 
-.manaSelector {
-    margin-top: 54.667px;
+.manaSelector  {
+    position: fixed;
+    top: 0;
+    margin-top: 65px;
+    
+}
+
+.main {
+    margin-top: 60px;
 }
 
 .manaContainer {
@@ -63,3 +70,15 @@ i {
     height: 100%;
     vertical-align: middle;
 }
+
+.sidebar {
+
+    min-width: 106px;
+    max-width: 106px;
+  }
+
+  .flexContain {
+      display:grid;
+      grid-template-columns: 1fr 106px;
+
+  }
