@@ -17,7 +17,7 @@ const App = () => {
                 <div className="main">
                     <Cards />
                 </ div>
-                <div classname="sidebar">
+                <div >
                     <ManaSelector />
                 </ div>
                 

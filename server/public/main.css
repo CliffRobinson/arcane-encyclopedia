@@ -55,14 +55,10 @@ body {
     margin:5px;
 }
 
-.manaRow {
-
-}
-
 i {
     margin-top:-2.96px;
     margin-bottom:2.96px;
-    vertical-align: middle
+    
 }
 
 .helper {
@@ -70,12 +66,6 @@ i {
     height: 100%;
     vertical-align: middle;
 }
-
-.sidebar {
-
-    min-width: 106px;
-    max-width: 106px;
-  }
 
   .flexContain {
       display:grid;
