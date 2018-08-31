@@ -14,7 +14,7 @@ You can select the format using the dropdown menu at the top left:
 
 ![format selector](/server/public/images/format.png)
 
-Click on your preferred format (at the moment I have those formats supported by the MTG:Arena computer game), and click 'select format' to load the cards into the app. The cards are obtained from the API at https://scryfall.com, and its servers provide the cards in batches of 175 at a time, so they won't all load straight away. The app takes all cars avaiable in an entire format and then all processing is done client-side, so once the cards have loaded up, everything else loads pretty quickly. As soon as any cards are loaded, the screen will display how many it has. 
+Click on your preferred format (at the moment I have those formats supported by the MTG:Arena computer game), and click 'Get Cards' to load the cards into the app. The cards are obtained from the API at https://scryfall.com, and its servers provide the cards in batches of 175 at a time, so they won't all load straight away. The app takes all cars available in an entire format and then all processing is done client-side, so once the cards have loaded up, everything else loads pretty quickly. As soon as any cards are loaded, the screen will display how many it has. 
 
 If you select a new format and click 'Get Cards', the existing cards will be cleared before loading the new ones. You can clear all cards by clicking 'Clear Cards'. 
 
@@ -48,11 +48,11 @@ This was a tricky one. In trying to solve it, I came up with a way of filtering 
 
 To see what spells can be cast when your opponent has lots of type of mana available, just put it all in, so if they have a white and blue dual, a black and blue dual and a black and white dual, add two mana each of white, blue and black to the mana selector. Then add a filter and choose 'CMC less than' and put 4 in the text field. This will show every card of three mana or less castable in those combinations of colors. 
 
-You can use the filters for other things as well. If you're playing against a tribal deck you could put the type into a filter for 'type line contains' to see what creatures they might cast, or 'oracle text contains' if you want to see what spells and creatures care about that type. You can add as many filters as you like, although they will start to clog the screen if you add too many. The filters combine additively, not alternatively: putting in two type line filters for 'artifact' and 'creature' will only return cards which are both artifacts and creatures. 
+You can use the filters for other things as well. If you're playing against a tribal deck you could put the type into a filter for 'type line contains' to see what creatures they might cast, or 'oracle text contains' if you want to see what spells and creatures care about that type. If you want to know what board wipes your opponent can cast, try an oracle text search for 'all creatures'. You can add as many filters as you like, although they will start to clog the screen if you add too many. The filters combine additively, not alternatively: putting in two type line filters for 'artifact' and 'creature' will only return cards which are both artifacts and creatures. 
 
 ## What's next?
 
-I'm pretty happy with the app as is, but behind the scenes I want to refactor some of the functions and write some more tests. As well as this, I want to add a selector for mana of any colour, and support for cards with hybrid mana costs, in time for the upcoming Ravnica set. 
+I'm pretty happy with the app as is, but behind the scenes I want to refactor some of the functions and write some more tests. As well as this, I want to add a selector for mana of any colour, a sort for rarity, and support for cards with hybrid mana costs, in time for the upcoming Ravnica set. 
 
 ## Who else contributed to this?
 
