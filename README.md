@@ -1,4 +1,4 @@
-##### Welcome to Arcane Encyclopedia
+# Welcome to Arcane Encyclopedia
 
 This is a tool for people playing Magic: the Gathering, a collectable card game. There are tens of thousands of Magic cards, although generally players agree to play against each other only using a subset of all the cards, referred to as a 'format'. Formats can be pretty big though, with Standard, the most popular format, currently containing 1,880 cards. 
 
@@ -30,7 +30,7 @@ The grey circles are buttons, click to add or remove mana, which comes in five c
 
 Once your opponent gets a reasonable amount of mana, there are still a lot of cards they might play. Fortunately, we can sort them to get a better idea of what they are likely to. To the right of the format selector is a sort selector. Cards are sorted alphabetically by default, but we can sort them other ways.  
 
-![sort selector](/server/public/images/sort.png)
+![sort selector](/server/public/images/sorts.png)
 
 For Standard (or any Constructed format), sorting by price gives a pretty good idea of the likelihood your opponent will use it against you (the more played cards are in higher demand and thus people pay higher prices for them). For Limited formats, the number of cards is pretty small, but CMC sort will give you an idea of the cheap cards available to your opponent, and if you filter for instant speed tricks the number becomes pretty manageable.
 
