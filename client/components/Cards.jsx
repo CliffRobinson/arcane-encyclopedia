@@ -26,6 +26,7 @@ class Cards extends React.Component {
                 <p> To use the app, start by choosing a format in the selector at the top left.</p>
                 <p> Use the buttons on the right to select how much mana is available to your opponent. </p>
                 <p> The cards they can play with that mana will be shown here. </p>
+                <p> If you want to see only instant-speed cards, check the box marked 'Only show tricks' </p>
             </ div>;
         }
     }
