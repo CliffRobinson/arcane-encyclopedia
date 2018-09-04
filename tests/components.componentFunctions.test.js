@@ -373,3 +373,24 @@ test("customTextFilter can get cards of the exact rarity common", ()=> {
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
 });
+
+test("sortFunctions.compareRarity sorts correctly", ()=>{
+    //Arrange
+    const expected = [
+        fakeCards[1], //Die young, common
+        fakeCards[3], //Escat, common
+        fakeCards[4], //Garna, uncommon
+        fakeCards[6], //l cubby, uncommon
+        fakeCards[0], //arch, rare
+        fakeCards[2], //D2D, rare        
+        fakeCards[5], //g Chainz, rare
+        fakeCards[8], //prep2fight, gold
+        fakeCards[7], //nicky, mythic
+    ];
+    //Act
+    let actual = fakeCards.slice().sort(sortFunctions.compareRarity);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});

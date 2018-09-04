@@ -159,8 +159,7 @@ function getColorSortIndex(card) {
 }
 
 export function getRaritySortIndex(card) {
-    const rarity = {card};
-    switch (rarity) {
+    switch (card.rarity) {
     case "common":
         return 1;
     case "uncommon":
