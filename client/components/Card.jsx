@@ -9,12 +9,17 @@ const Card = (props) => {
     case "normal":
     case "saga":
     case "split":
-        return (<Tooltip
-            trigger='mouseenter'
-            html={<img src={props.card.image_uris[hoverCardSize]}></img>}
-        >
-            <img src={props.card.image_uris[cardSize]}></img>
-        </Tooltip>
+        return (
+            <React.Fragment> 
+                <Tooltip
+                    trigger='mouseenter'
+                    html={<img src={props.card.image_uris[hoverCardSize]}></img>}
+                >   
+                    
+                    <img src={props.card.image_uris[cardSize]}></img>
+                    <button onClick={()=> console.log(props.card)}> Log this card </button>
+                </Tooltip>
+            </React.Fragment>
         );
 
     case "transform":
@@ -25,16 +30,19 @@ const Card = (props) => {
                         trigger='mousenter'
                         html = {<img src={face.image_uris[hoverCardSize]}></img>}
                     >
+                        
                         <img src={face.image_uris[cardSize]}></img>
                     </Tooltip>
-
+                    <button onClick={()=> console.log(props.card)}> Log this card </button>
                 </React.Fragment>
             );            
         });
     default:
         return (
             <div style={{maxWidth:"146 px", border:"1px solid black"}}>
+                
                 The card {props.card.name} has a weird format and we can't display it. 
+                <button onClick={()=> console.log(props.card)}> Log this card </button>
             </div>
         );
         
