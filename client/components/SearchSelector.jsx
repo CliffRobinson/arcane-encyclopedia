@@ -50,7 +50,7 @@ class SearchSelector extends React.Component {
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
 
-                <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button>
+                {/* <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button> */}
             </ div>
         );
     }

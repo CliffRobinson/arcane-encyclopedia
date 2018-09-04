@@ -17,7 +17,7 @@ const Card = (props) => {
                 >   
                     
                     <img src={props.card.image_uris[cardSize]}></img>
-                    <button onClick={()=> console.log(props.card)}> Log this card </button>
+                    
                 </Tooltip>
             </React.Fragment>
         );
@@ -33,7 +33,7 @@ const Card = (props) => {
                         
                         <img src={face.image_uris[cardSize]}></img>
                     </Tooltip>
-                    <button onClick={()=> console.log(props.card)}> Log this card </button>
+                    
                 </React.Fragment>
             );            
         });
@@ -42,7 +42,7 @@ const Card = (props) => {
             <div style={{maxWidth:"146 px", border:"1px solid black"}}>
                 
                 The card {props.card.name} has a weird format and we can't display it. 
-                <button onClick={()=> console.log(props.card)}> Log this card </button>
+                
             </div>
         );
         
