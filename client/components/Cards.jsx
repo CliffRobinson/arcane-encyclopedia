@@ -16,7 +16,7 @@ class Cards extends React.Component {
                 <div className="cards" >
                     <p> There are {this.props.cards.length} cards in the format </p>
                     <p> Displaying {cardsToDisplay.length} cards </p>
-                    {this.props.cards.length && cardsToDisplay.map((card, i) => <Card key={i} card={card} />)}
+                    {this.props.cards.length && cardsToDisplay.map((card, i) => <Card key={i} card={card} index={i}/>)}
                 </div >
             );
         } else {

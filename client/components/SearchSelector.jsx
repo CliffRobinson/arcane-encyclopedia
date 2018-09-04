@@ -44,12 +44,13 @@ class SearchSelector extends React.Component {
                     <option value ="sortCMC" > Sort by CMC </option>
                     <option value ="sortPrice" > Sort by Price </option>
                     <option value ="sortCollector" > Sort by Collector </option>
+                    <option value="sortRarity"> Sort by Rarity </option>
                 </select>
 
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
 
-                {/* <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button> */}
+                <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button>
             </ div>
         );
     }
