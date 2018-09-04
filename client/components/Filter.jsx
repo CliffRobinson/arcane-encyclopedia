@@ -7,7 +7,8 @@ class Filter extends React.Component {
         this.state = {
             function:"customTextFilter",
             key:"type_line",
-            value:""
+            value:"",
+            exact:false,
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -19,7 +20,8 @@ class Filter extends React.Component {
         const obj = {
             function:funcKey[0],
             key:funcKey[1],
-            value:this.state.value
+            value:this.state.value,
+            exact:(false || funcKey[2])
         };
         this.setState(obj);
         props.addFilter(obj, props.i);
@@ -31,7 +33,8 @@ class Filter extends React.Component {
         const objNixilis = {
             function:this.state.function,
             key:this.state.key,
-            value:value
+            value:value,
+            exact:this.state.exact
         };
         this.setState(objNixilis);
         props.addFilter(objNixilis, props.i);
@@ -43,6 +46,7 @@ class Filter extends React.Component {
                 <option value="customTextFilter--type_line"> Type Line contains </option>
                 <option value="customTextFilter--name"> Name contains</option>
                 <option value="customTextFilter--oracle_text"> Oracle Text Contains</option>
+                <option value="customTextFilter--rarity--true"> Rarity is</option>
                 <option value="numberLessFilter--cmc"> CMC less than </option>
                 <option value="numberEqualsFilter--cmc"> CMC equals </option>
                 <option value="numberMoreFilter--cmc"> CMC more than </option>

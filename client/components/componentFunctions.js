@@ -12,7 +12,7 @@ export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, cust
     }
     if (customFilters) {
         customFilters.map((filter) => {
-            output = filterFuncs[filter.function](output, filter.key, filter.value);
+            output = filterFuncs[filter.function](output, filter.key, filter.value, filter.exact);
         });
     }
     if(sort) {
@@ -158,6 +158,23 @@ function getColorSortIndex(card) {
     }
 }
 
+export function getRaritySortIndex(card) {
+    const rarity = {card};
+    switch (rarity) {
+    case "common":
+        return 1;
+    case "uncommon":
+        return 2;
+    case "rare":
+        return 3;
+    case "mythic":
+        return 4;
+    default:
+        console.log(`${card.name} has invalid rarity.`);
+        return 5;
+    }
+}
+
 export const sortFunctions = {
     compareName: compareName,
     compareCMC: function (cardA, cardB) {
@@ -183,29 +200,40 @@ export const sortFunctions = {
         if (diff == 0){
             return compareName(cardA, cardB);
         } else return diff;
+    },
+    compareRarity: function (cardA, cardB) {
+        let diff = getRaritySortIndex(cardA) - getRaritySortIndex(cardB);
+        if (diff == 0){
+            return compareName(cardA, cardB);
+        } else return diff;
     }
 };
 
-export function customTextFilter(cards, key, text){
+export function customTextFilter(cards, key, text, exact){
     let output = cards;
     output = output.filter((card) => {
-        switch (card.layout){
-        case "transform":
-        case "split":
-        case "flip":
-            return card.card_faces[0][key].toLowerCase().includes(text.toLowerCase()) ||card.card_faces[1][key].toLowerCase().includes(text.toLowerCase());
-        case "normal":
-        case "saga":
-            if (card[key]){ //Probably means the card does not have oracle text
-                return card[key].toLowerCase().includes(text.toLowerCase());
+
+        if (exact) {
+            if(card[key] || card[key] == 0) {
+                return card[key].toLowerCase() == (text.toLowerCase());
+            } else if (card.card_faces){
+                return card.card_faces[0][key].toLowerCase() == (text.toLowerCase()) || card.card_faces[1][key].toLowerCase() == (text.toLowerCase());
             } else {
-                console.log(card.name);
                 return false;
             }
-        default:
-            console.log(`${card.name} is not recognized by customTextFilter`);
-            return false;
+        } else {
+            if(card[key] || card[key] == 0) {
+                return card[key].toLowerCase().includes(text.toLowerCase());
+            } else if (card.card_faces){
+                return card.card_faces[0][key].toLowerCase().includes(text.toLowerCase()) ||card.card_faces[1][key].toLowerCase().includes(text.toLowerCase());
+            } else {
+                console.log(`${card.name} has no oracle text or does not work with this filter criteria`);
+                return false;
+            }
         }
+
+
+
     });
     return output;
 }
