@@ -17,7 +17,7 @@ const Card = (props) => {
                 >   
                     
                     <img src={props.card.image_uris[cardSize]}></img>
-                    
+                 
                 </Tooltip>
             </React.Fragment>
         );
@@ -33,16 +33,14 @@ const Card = (props) => {
                         
                         <img src={face.image_uris[cardSize]}></img>
                     </Tooltip>
-                    
+                 
                 </React.Fragment>
             );            
         });
     default:
         return (
             <div style={{maxWidth:"146 px", border:"1px solid black"}}>
-                
-                The card {props.card.name} has a weird format and we can't display it. 
-                
+                The card {props.card.name} has a weird format and we can't display it.                
             </div>
         );
         
