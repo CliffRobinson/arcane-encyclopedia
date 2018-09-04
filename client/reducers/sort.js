@@ -1,4 +1,4 @@
-import { SORT_CMC, SORT_COLOR, SORT_NAME, SORT_PRICE, SORT_COLLECTOR} from "../actions/sort";
+import { SORT_CMC, SORT_COLOR, SORT_NAME, SORT_PRICE, SORT_COLLECTOR, SORT_RARITY} from "../actions/sort";
 
 function sort(state = null, action) {
     switch (action.type) {
@@ -12,6 +12,8 @@ function sort(state = null, action) {
         return "comparePrice";
     case SORT_COLLECTOR:
         return "compareCollector";
+    case SORT_RARITY:
+        return "compareRarity";
     default:
         return state;
     }

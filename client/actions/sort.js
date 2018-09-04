@@ -3,6 +3,7 @@ export const SORT_CMC = "SORT_CMC";         //sense to spell colour in american 
 export const SORT_PRICE = "SORT_PRICE";     //the project.
 export const SORT_NAME = "SORT_NAME";
 export const SORT_COLLECTOR = "SORT_COLLECTOR";
+export const SORT_RARITY = "SORT_RARITY";
 
 
 export function sortColor() {
@@ -32,5 +33,11 @@ export function sortName(){
 export function sortCollector(){
     return {
         type: SORT_COLLECTOR
+    };
+}
+
+export function sortRarity() {
+    return {
+        type: SORT_RARITY
     };
 }
