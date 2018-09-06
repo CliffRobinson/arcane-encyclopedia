@@ -4,7 +4,7 @@ import { addW, addU, addB, addR, addG, addC} from "../actions/mana";
 import { subW, subU, subB, subR, subG, subC, clearMana} from "../actions/mana";
 import {mapManaToProps} from "./componentFunctions";
 
-function ManaSelector(props) {
+export function ManaSelector(props) {
     return (
         <div className="manaSelector">
             <div className="manaRow">
