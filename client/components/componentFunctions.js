@@ -293,14 +293,16 @@ export function mapManaToProps(state){
     //     sort: state.sort,
     //     customFilters: state.customFilters
     // };
-    const mana = ["w", "u", "b", "r", "g", "c"];
-    let props = Object.assign(state);
+    let props = {};
+    Object.keys(state).map(key => {
+        props[key] = state[key];
+    });
     props.mana = {total:0};
-
-    mana.map((color) => {
+    const colors = ["w", "u", "b", "r", "g", "c"];
+    colors.map((color) => {
         props.mana[color] = state[color];
         props.mana.total += state[color];
-        //delete props[color];
+        delete props[color];
     });
     return props;
 }

@@ -360,6 +360,23 @@ test("customNumberFilter can get all cards with CMC under 3", () => {
     expect(actualNames).toEqual(expectedNames);
 });
 
+test("customNumberFilter can get all cards with power over 2", () => {
+    //Arrange
+    const expected = [
+        fakeCards[4], //Garna, 3
+        fakeCards[5], //g chainz, 3
+        fakeCards[7], //nicky B, 4
+    ];
+    //Act
+    const actual = customNumberFilter(fakeCards, "power", 2, "more");
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+
+
 test("customTextFilter can get cards of the exact rarity common", ()=> {
     //Arrange
     const expected = [
