@@ -1,5 +1,5 @@
 import sort from "../client/reducers/sort";
-import {SORT_CMC, SORT_COLOR, SORT_NAME, SORT_PRICE, SORT_RARITY, } from "../client/actions/sort";
+import {SORT_CMC, SORT_COLOR, SORT_NAME, SORT_PRICE, SORT_RARITY, SORT_COLLECTOR} from "../client/actions/sort";
 
 test("Initial state of reducer", () => {
     //Arrange
@@ -65,6 +65,18 @@ test("Test sort Rarity case", () => {
     const expected = "compareRarity";
     const action = {
         type: SORT_RARITY
+    };
+    //Act
+    const actual = sort(undefined, action);
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("Test sort Collector case", () => {
+    //Arrange
+    const expected = "compareCollector";
+    const action = {
+        type: SORT_COLLECTOR
     };
     //Act
     const actual = sort(undefined, action);

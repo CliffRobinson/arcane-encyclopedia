@@ -1,4 +1,4 @@
-import { SORT_CMC, SORT_COLOR, SORT_NAME, SORT_PRICE, SORT_RARITY, sortCMC, sortColor, sortName, sortPrice, sortRarity } from "../client/actions/sort";
+import { SORT_CMC, SORT_COLOR, SORT_NAME, SORT_PRICE, SORT_RARITY, SORT_COLLECTOR, sortCMC, sortColor, sortName, sortPrice, sortRarity, sortCollector } from "../client/actions/sort";
 
 // test("funcname returns correct type.", () => {
 //     //Arrange
@@ -62,6 +62,17 @@ test("sortRarity returns correct type.", () => {
     };
     //Act
     const actual = sortRarity();
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("sortCollector returns correct type.", () => {
+    //Arrange
+    const expected = {
+        type: SORT_COLLECTOR
+    };
+    //Act
+    const actual = sortCollector();
     //Assert
     expect(actual).toEqual(expected);
 });

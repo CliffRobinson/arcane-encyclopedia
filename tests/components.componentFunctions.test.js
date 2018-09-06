@@ -1,4 +1,4 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, mapManaToProps } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
 //Small set of sample data showing a wide variety of cards.
@@ -393,4 +393,31 @@ test("sortFunctions.compareRarity sorts correctly", ()=>{
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
+});
+
+test("mapManaToProps adds mana up correctly", ()=> {
+    //Arrange 
+    const expected = {
+        mana: {
+            w:1,
+            u:1,
+            b:1,
+            r:1,
+            g:1,
+            c:1,
+            total:6
+        }
+    };
+    const state = {  
+        w:1,
+        u:1,
+        b:1,
+        r:1,
+        g:1,
+        c:1,
+    };
+    //Act
+    const actual = mapManaToProps(state);
+    //Assert
+    expect(actual).toEqual(expected);
 });

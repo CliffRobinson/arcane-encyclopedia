@@ -4,7 +4,8 @@ import {    ADD_W, addW, SUB_W, subW,
     ADD_U, addU, SUB_U, subU, 
     ADD_B, addB, SUB_B, subB,
     ADD_R, addR, SUB_R, subR,
-    ADD_G, addG, SUB_G, subG, 
+    ADD_G, addG, SUB_G, subG,
+    ADD_C, addC, SUB_C, subC, 
     clearMana, CLEAR_MANA,
 } from "../client/actions/mana";
 
@@ -116,6 +117,28 @@ test("subG returns correct type", ()=> {
     };
     //Act
     const actual = subG();
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("addC returns correct type", ()=> {
+    //Arrange
+    const expected = {
+        type: ADD_C
+    };
+    //Act
+    const actual = addC();
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("subC returns correct type", ()=> {
+    //Arrange
+    const expected = {
+        type: SUB_C
+    };
+    //Act
+    const actual = subC();
     //Assert
     expect(actual).toEqual(expected);
 });

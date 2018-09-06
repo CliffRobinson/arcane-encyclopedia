@@ -9,7 +9,7 @@ import {addCards, clearCards} from "../actions/cards";
 import {tricksToggle} from "../actions/onlyTricks";
 import {landsToggle} from "../actions/filterLands";
 
-import fakeCards from "../../tests/testData.json";
+import {data as fakeCards} from "../../tests/testData.json";
 
 class SearchSelector extends React.Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class SearchSelector extends React.Component {
                     <option value="dom"> Dominaria Limited</option>
                     <option value="m19"> M19 Limited</option>
                 </select>
-                <button className={`button ${size}`} onClick={() => this.createQuery()/*createQuery.call(this)*/} > Get Cards </button>
+                <button className={`button ${size}`} onClick={() => this.createQuery()} > Get Cards </button>
                 <button className={`button ${size}`} onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
 
                 <select className={`select ${size}`} onChange={this.sortHandleChange}> {/*values of options correspond to the action to dispatch*/} 
@@ -50,15 +50,14 @@ class SearchSelector extends React.Component {
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
 
-                {/* <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button> */}
+                <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button>
             </ div>
         );
     }
 
     getFakes() {
         this.props.dispatch(clearCards());
-        let fakes = fakeCards.data;
-        this.props.dispatch(addCards(fakes));
+        this.props.dispatch(addCards(fakeCards));
     }
 
     createQuery(){

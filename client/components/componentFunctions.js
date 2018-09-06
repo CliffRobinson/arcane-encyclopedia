@@ -277,21 +277,31 @@ export const filterFuncs = {
 };
 
 export function mapManaToProps(state){
-    return {
-        cards:state.cards, 
-        mana:{
-            w: state.w,
-            u: state.u,
-            b: state.b,
-            r: state.r,
-            g: state.g,
-            c: state.c,
-            total: (state.w+state.u+state.b+state.r+state.g+state.c) 
-        },
-        onlyTricks:state.onlyTricks,
-        filterLands:state.filterLands,
-        sort: state.sort,
-        customFilters: state.customFilters
-    };
+    // return {
+    //     cards:state.cards, 
+    //     mana:{
+    //         w: state.w,
+    //         u: state.u,
+    //         b: state.b,
+    //         r: state.r,
+    //         g: state.g,
+    //         c: state.c,
+    //         total: (state.w+state.u+state.b+state.r+state.g+state.c) 
+    //     },
+    //     onlyTricks:state.onlyTricks,
+    //     filterLands:state.filterLands,
+    //     sort: state.sort,
+    //     customFilters: state.customFilters
+    // };
+    const mana = ["w", "u", "b", "r", "g", "c"];
+    let props = Object.assign(state);
+    props.mana = {total:0};
+
+    mana.map((color) => {
+        props.mana[color] = state[color];
+        props.mana.total += state[color];
+        //delete props[color];
+    });
+    return props;
 }
 
