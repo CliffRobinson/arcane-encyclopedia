@@ -17,19 +17,21 @@ const mockMana = {
     c:0
 };
 
+const snapshot = "<div class=\"manaSelector\"><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-w ms-cost ms-shadow\"></i><span class=\"manaText\">5</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-u ms-cost ms-shadow\"></i><span class=\"manaText\">4</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-b ms-cost ms-shadow\"></i><span class=\"manaText\">3</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-r ms-cost ms-shadow\"></i><span class=\"manaText\">2</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-g ms-cost ms-shadow\"></i><span class=\"manaText\">1</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-c ms-cost ms-shadow\"></i><span class=\"manaText\">0</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div><button class=\"button is-small\"> Clear Mana</button></div></div>";
+
 beforeAll(() => {
     wrapper = shallow(<ManaSelector mana={mockMana} />);
 });
 
-test("ManaSelector displays plus buttons", ()=> {
+
+
+test("ManaSelector displays default html", ()=> {
     //Arrange
-    const expected = "src=\"/images/mtga-button-transparent.png\"";
+    const expected = snapshot;
     //Act
-    const actual = wrapper.find("img");
+    const actual = wrapper.html();
     //Assert
-    for (let i = 0; i < actual.length; i+=2) {
-        expect(actual.at(i).html()).toContain(expected);
-    }
+    expect(actual).toEqual(expected);
 });
 
 test("ManaSelector displays minus buttons", ()=> {
