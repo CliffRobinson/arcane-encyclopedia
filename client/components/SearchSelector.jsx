@@ -27,7 +27,8 @@ export class SearchSelector extends React.Component {
         const size = "is-small";
         return (
             <div className="searchSelector" > {/*navbar-item*/}
-                <select className= {`select ${size}`} onChange={this.searchHandleChange}> {/*values of options correspond to the action to dispatch*/}
+                <select className= {`select ${size}`} onChange={this.searchHandleChange}> 
+                    {/*values of options correspond to the action to dispatch*/}
                     <option value="standard"> Standard</option>
                     <option value="aer"> Aether Revolt Limited</option>
                     <option value="hou"> Hour of Devastation Limited</option>
@@ -38,7 +39,8 @@ export class SearchSelector extends React.Component {
                 <button className={`button ${size}`} onClick={() => this.createQuery()} > Get Cards </button>
                 <button className={`button ${size}`} onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
 
-                <select className={`select ${size}`} onChange={this.sortHandleChange}> {/*values of options correspond to the action to dispatch*/} 
+                <select className={`select ${size}`} onChange={this.sortHandleChange}> 
+                    {/*values of options correspond to the action to dispatch*/} 
                     <option value ="sortName" > Sort by Name </option>
                     <option value ="sortColor" > Sort by Color </option>
                     <option value ="sortCMC" > Sort by CMC </option>
@@ -51,7 +53,7 @@ export class SearchSelector extends React.Component {
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
 
                 <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button>
-            </ div>
+            </div>
         );
     }
 
@@ -66,12 +68,14 @@ export class SearchSelector extends React.Component {
         this.getCardsFromScryfall(queryString);
     }
 
-    getCardsFromScryfall(queryString) {
+    getCardsFromScryfall(queryString, callback) {
         
         request.get(queryString)
             .then( (res) =>{
                 this.props.dispatch(addCards(res.body.data));
-
+                if (callback) {
+                    callback(res);
+                }
                 if (res.body.has_more)  {
                     this.getCardsFromScryfall(res.body.next_page);
                 }
