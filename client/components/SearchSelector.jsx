@@ -11,7 +11,7 @@ import {landsToggle} from "../actions/filterLands";
 
 import {data as fakeCards} from "../../tests/testData.json";
 
-class SearchSelector extends React.Component {
+export class SearchSelector extends React.Component {
     constructor(props) {
         super(props);
         this.searchHandleChange = this.searchHandleChange.bind(this);
