@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`searchSelector matches snapshot 1`] = `
+<div
+  className="searchSelector"
+>
+   
+  <select
+    className="select is-small"
+    onChange={[Function]}
+  >
+    <option
+      value="standard"
+    >
+       Standard
+    </option>
+    <option
+      value="aer"
+    >
+       Aether Revolt Limited
+    </option>
+    <option
+      value="hou"
+    >
+       Hour of Devastation Limited
+    </option>
+    <option
+      value="rix"
+    >
+       Rivals of Ixalan Limited 
+    </option>
+    <option
+      value="dom"
+    >
+       Dominaria Limited
+    </option>
+    <option
+      value="m19"
+    >
+       M19 Limited
+    </option>
+  </select>
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+     Get Cards 
+  </button>
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+     Clear Cards 
+  </button>
+  <select
+    className="select is-small"
+    onChange={[Function]}
+  >
+    <option
+      value="sortName"
+    >
+       Sort by Name 
+    </option>
+    <option
+      value="sortColor"
+    >
+       Sort by Color 
+    </option>
+    <option
+      value="sortCMC"
+    >
+       Sort by CMC 
+    </option>
+    <option
+      value="sortPrice"
+    >
+       Sort by Price 
+    </option>
+    <option
+      value="sortCollector"
+    >
+       Sort by Collector 
+    </option>
+    <option
+      value="sortRarity"
+    >
+       Sort by Rarity 
+    </option>
+  </select>
+  <input
+    onClick={[Function]}
+    type="checkbox"
+  />
+   Only show tricks
+  <input
+    defaultChecked={true}
+    onChange={[Function]}
+    type="checkbox"
+  />
+   Exclude Lands
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+     Get Fakes 
+  </button>
+</div>
+`;
