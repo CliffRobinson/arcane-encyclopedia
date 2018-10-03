@@ -73,11 +73,11 @@ export class SearchSelector extends React.Component {
         request.get(queryString)
             .then( (res) =>{
                 this.props.dispatch(addCards(res.body.data));
-                if (callback) {
-                    callback(res);
-                }
                 if (res.body.has_more)  {
-                    this.getCardsFromScryfall(res.body.next_page);
+                    this.getCardsFromScryfall(res.body.next_page, callback);
+                } else if (callback) {
+                    callback(res); 
+                    //Will only execute the callback once ALL data has been resquested and dispatched.
                 }
             });
     }

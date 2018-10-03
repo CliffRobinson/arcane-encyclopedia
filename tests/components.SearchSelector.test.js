@@ -1,5 +1,5 @@
-import request from 'superagent';
-import nock from 'nock';
+import request from "superagent";
+import nock from "nock";
 
 import {SearchSelector} from "../client/components/SearchSelector";
 import {clearCards, addCards} from "../client/actions/cards";
@@ -37,31 +37,65 @@ test("createQuery dispatches correct actions", ()=> {
     expect(mockGCFS.mock.calls[0][0]).toEqual(`https://api.scryfall.com/cards/search?q=${formatString}`);
 });
 
-test("getCardsFromScryfall dispatches res.body.data when res.body.has_more == false", (done)=> {
-    //Arrange
-    const expected = fakeCards.slice();
-    const expectedNames = expected.map(card => card.name);
+// test("getCardsFromScryfall dispatches correct data when search has one page of results", (done)=> {
+//     //Arrange
+//     const scope = nock("https://api.scryfall.com")
+//         .get("/cards/search")
+//         .reply(200, testData);
+//     const mockDispatch = jest.fn();
+//     const testSelector = new SearchSelector({
+//         dispatch:mockDispatch,
+//     });
+//     const testQuery = "https://api.scryfall.com/cards/search";
+//     const testCallback = (res) => {
+//         //Assert
+//         expect(testSelector.props.dispatch.mock.calls.length).toBe(1);
+//         expect(testSelector.props.dispatch.mock.calls[0][0]).toEqual(addCards(fakeCards));
+//         scope.done();
+//         done();
+//     };
+//     //Act
+//     testSelector.getCardsFromScryfall(testQuery, testCallback);   
+// });
 
+test("getCardsFromScryfall dispatches correct data when search has multiple result pages", (done) => {
+    //Arrange
+    const testQuery = "https://api.scryfall.com/cards/search";
+    let fakeMultiPageResult = {
+        name:'fakey multi boi',
+        has_more: true,
+        data: fakeCards,
+        next_page: testQuery
+    };
+
+    let fakeSinglePageResult = {
+        name:'fakey single boi',
+        has_more: false,
+        data: fakeCards,
+    };
 
     const scope = nock("https://api.scryfall.com")
         .get("/cards/search")
-        .reply(200, testData);
+        .times(1)
+        .reply(200, fakeMultiPageResult)
+        .get("/cards/search")
+        .times(1)
+        .reply(200, fakeSinglePageResult)
+        ;
+
     const mockDispatch = jest.fn();
     const testSelector = new SearchSelector({
         dispatch:mockDispatch,
     });
-    const testQuery = "https://api.scryfall.com/cards/search";
-    const testCallback = (res, dispatch) => {
-        const actual = res.body.data;
-        const actualNames = actual.map(card => card.name);
-        expect(actualNames).toEqual(expectedNames);
-        expect(dispatch.mock.calls.length).toBe(1);
+    
+    const testCallback = (res) => {
+        //Assert
+        expect(testSelector.props.dispatch.mock.calls.length).toBe(2);
+        expect(testSelector.props.dispatch.mock.calls[0][0]).toEqual(addCards(fakeCards));
+        expect(testSelector.props.dispatch.mock.calls[1][0]).toEqual(addCards(fakeCards));
         scope.done();
         done();
     };
     //Act
-    testSelector.getCardsFromScryfall(testQuery, testCallback);
-    //Assert
-    //expect(mockDispatch.mock.calls.length).toBe(1);
-    
+    testSelector.getCardsFromScryfall(testQuery, testCallback);   
 });
