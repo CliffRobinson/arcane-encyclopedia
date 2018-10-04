@@ -360,6 +360,21 @@ test("customNumberFilter can get all cards with CMC under 3", () => {
     expect(actualNames).toEqual(expectedNames);
 });
 
+test("customNumberFilter can get all cards with CMC equal to 2", () => {
+    //Arrange
+    const expected = [
+        fakeCards[1], //Die: 2
+        fakeCards[3], //Essence Scatter: 2
+        fakeCards[6], //L. Cubby: 2
+    ];
+    //Act
+    const actual = customNumberFilter(fakeCards, "cmc", 2, "equal");
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
 test("customNumberFilter can get all cards with power over 2", () => {
     //Arrange
     const expected = [
