@@ -33,14 +33,15 @@ test("createQuery dispatches correct actions", ()=> {
         dispatch:mockDispatch,
         format: formatString
     });
-    const mockGCFS = jest.fn();
-    testSelector.getCardsFromScryfall = mockGCFS;
+    //const mockGCFS = jest.fn();
+    //testSelector.getCardsFromScryfall = mockGCFS;
+    jest.spyOn(testSelector, "getCardsFromScryfall").mockImplementation(() => true);
     //Act
     testSelector.createQuery();
     //Assert
     expect(mockDispatch.mock.calls.length).toBe(1);
     expect(mockDispatch.mock.calls[0][0]).toEqual(clearCards());
-    expect(mockGCFS.mock.calls[0][0]).toEqual(`https://api.scryfall.com/cards/search?q=${formatString}`);
+    expect(testSelector.getCardsFromScryfall.mock.calls[0][0]).toEqual(`https://api.scryfall.com/cards/search?q=${formatString}`);
 });
 
 test("getCardsFromScryfall dispatches correct data when search has one page of results", (done)=> {
@@ -104,6 +105,30 @@ test("getCardsFromScryfall dispatches correct data when search has multiple resu
     //Act
     testSelector.getCardsFromScryfall(testQuery, testCallback);   
 });
+
+// test("getCardsFromScryfall calls its callback correctly", (done)=> {
+//     //Arrange
+//     const testQuery = "https://api.scryfall.com/cards/search";
+//     const scope = nock("https://api.scryfall.com")
+//         .get("/cards/search")
+//         .reply(200, testData)
+//     ;
+
+//     const mockDispatch = jest.fn();
+//     const testSelector = new SearchSelector({
+//         dispatch:mockDispatch,
+//     });
+//     const callback = jest.fn(()=> {
+//         //Assert
+//         expect(callback).toBeCalled();
+//         scope.done();
+//         done();
+//     });
+//     //Act
+//     testSelector.getCardsFromScryfall(testQuery, callback);
+
+
+// });
 
 test("searchHandleChange dispatches correct action", ()=> {
     //Arrange

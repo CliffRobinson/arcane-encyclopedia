@@ -69,7 +69,6 @@ export class SearchSelector extends React.Component {
     }
 
     getCardsFromScryfall(queryString, callback) {
-        
         request.get(queryString)
             .then( (res) =>{
                 this.props.dispatch(addCards(res.body.data));
