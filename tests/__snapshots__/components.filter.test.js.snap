@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filter matches snapshot 1`] = `
+<span
+  className="filter"
+>
+  <select
+    className="select undefined"
+    onChange={[Function]}
+  >
+    <option
+      value="customTextFilter--type_line"
+    >
+       Type Line contains 
+    </option>
+    <option
+      value="customTextFilter--name"
+    >
+       Name contains
+    </option>
+    <option
+      value="customTextFilter--oracle_text"
+    >
+       Oracle Text Contains
+    </option>
+    <option
+      value="customTextFilter--rarity--true"
+    >
+       Rarity is
+    </option>
+    <option
+      value="numberLessFilter--cmc"
+    >
+       CMC less than 
+    </option>
+    <option
+      value="numberEqualsFilter--cmc"
+    >
+       CMC equals 
+    </option>
+    <option
+      value="numberMoreFilter--cmc"
+    >
+       CMC more than 
+    </option>
+    <option
+      value="numberLessFilter--usd"
+    >
+       Price less than 
+    </option>
+    <option
+      value="numberMoreFilter--usd"
+    >
+       Price more than 
+    </option>
+  </select>
+  <input
+    className="undefined"
+    onChange={[Function]}
+    type="text"
+  />
+</span>
+`;

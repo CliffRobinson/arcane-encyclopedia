@@ -60,26 +60,4 @@ class Filter extends React.Component {
     }
 }
 
-// function handleSelectChange(e, props){
-//     //console.log("Adding", e.target.value, "to filter", props.i);
-//     let funcKey = e.target.value.split("--");
-//     let obj = {
-//         function:funcKey[0],
-//         key:funcKey[1],
-//         value:this.state.value
-//     };
-//     props.addFilter(obj, props.i);
-// }
-
-// function handleInputChange(e, props){
-//     //console.log("Adding", e.target.value, "to filter", props.i);
-    
-//     let obj = {
-//         function: this.state.function,
-//         key: this.state.key,
-//         value:e.target.value
-//     };
-//     props.addFilter(obj, props.i);
-// }
-
 export default Filter;
