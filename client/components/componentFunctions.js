@@ -115,7 +115,7 @@ export function callbackToFilterForTricks(card) {
 //         });
 // }
 
-function compareName (cardA, cardiB) {
+export function compareName (cardA, cardiB) {
     if (cardA.name < cardiB.name){
         return -1;
     } else if (cardA.name > cardiB.name) {
@@ -126,7 +126,7 @@ function compareName (cardA, cardiB) {
     }
 } //Cards are alpha sorted by default, so this function is only used as a tiebreaker, as no two differnt cards should have the same name.
 
-function getColorSortIndex(card) {
+export function getColorSortIndex(card) {
     let cardColors;
 
     switch (card.layout){
@@ -137,7 +137,7 @@ function getColorSortIndex(card) {
         cardColors = card.colors;
     }
 
-    if (cardColors.length == 0){
+    if (!cardColors){
         return 7;
     } else if (cardColors.length > 1) {
         return 6;

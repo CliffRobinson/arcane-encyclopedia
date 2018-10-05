@@ -1,4 +1,4 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, mapManaToProps } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
 //Small set of sample data showing a wide variety of cards.
@@ -273,7 +273,7 @@ test("sortFunctions.compareCollector sorts correctly", ()=>{
         fakeCards[6], //l cubby, 161
         fakeCards[0], //arch, 185
         fakeCards[4], //Garna, 194
-        fakeCards[2], //D2D, 218
+        fakeCards[2], //D2D, 210
         fakeCards[7], //nicky, 218
         fakeCards[8], //prep2fight, 220
     ];
@@ -283,6 +283,49 @@ test("sortFunctions.compareCollector sorts correctly", ()=>{
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
+});
+
+test("sortFunctions.compareRarity sorts correctly", ()=>{
+    //Arrange
+    const expected = [
+        fakeCards[1], //Die young, common
+        fakeCards[3], //Escat, common
+        fakeCards[4], //Garna, uncommon
+        fakeCards[6], //l cubby, uncommon
+        fakeCards[0], //arch, rare
+        fakeCards[2], //D2D, rare        
+        fakeCards[5], //g Chainz, rare
+        fakeCards[8], //prep2fight, gold
+        fakeCards[7], //nicky, mythic
+    ];
+    //Act
+    let actual = fakeCards.slice().sort(sortFunctions.compareRarity);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+});
+
+test("getRaritySortIndex returns '5' for invalid cards", ()=> {
+    const badCard = {
+        name: "not a card"
+    };
+    const expected = 5;
+    const actual = getRaritySortIndex(badCard);
+    expect(actual).toEqual(expected);
+});
+
+test("getColorSortIndex returns '7' for invalid cards", ()=> {
+    const badCard = {
+        name: "not a card"
+    };
+    const expected = 7;
+    const actual = getColorSortIndex(badCard);
+    expect(actual).toEqual(expected);
+});
+
+test("compareName returns 0 for the same card", ()=> {
+    expect(compareName(fakeCards[0], fakeCards[0])).toBe(0);
 });
 
 test("customTextFilter can get oracle text of 'enters the battlefield' returning garna, gobbo and nicol bolas", ()=> {
@@ -314,6 +357,20 @@ test("customTextFilter can get name of 'the' returning garna, nicol bolas", ()=>
     expect(actualNames).toEqual(expectedNames);
 });
 
+test("customTextFilter can get the cards with the exact criteria belonging to one face", () => {
+    //Arrange
+    const expected = [
+        fakeCards[7]
+    ];
+    //Act
+    const actual = customTextFilter(fakeCards, "illustration_id","54fcf679-5332-4614-999d-7e0dbafbd116", true);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+    
+});
+
 test("customTextFilter can get cards of type sorcery", ()=> {
     //Arrange
     const expected = [
@@ -329,7 +386,7 @@ test("customTextFilter can get cards of type sorcery", ()=> {
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("customNumberFilter can get all cards worth over $1", () => {
+test("numberMoreFilter can get all cards worth over $1", () => {
     //Arrange
     const expected = [
         fakeCards[0], //Arch, 1.82
@@ -337,14 +394,14 @@ test("customNumberFilter can get all cards worth over $1", () => {
         fakeCards[7], //nicky B, 35.97
     ];
     //Act
-    const actual = customNumberFilter(fakeCards, "usd", 1, "more");
+    const actual = numberMoreFilter(fakeCards, "usd", 1, "more");
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("customNumberFilter can get all cards with CMC under 3", () => {
+test("NumberLessFilter can get all cards with CMC under 3", () => {
     //Arrange
     const expected = [
         fakeCards[0], //Arch: 0
@@ -353,14 +410,14 @@ test("customNumberFilter can get all cards with CMC under 3", () => {
         fakeCards[6], //L. Cubby: 2
     ];
     //Act
-    const actual = customNumberFilter(fakeCards, "cmc", 3, "less");
+    const actual = numberLessFilter(fakeCards, "cmc", 3, "less");
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("customNumberFilter can get all cards with CMC equal to 2", () => {
+test("numberEqualFilter can get all cards with CMC equal to 2", () => {
     //Arrange
     const expected = [
         fakeCards[1], //Die: 2
@@ -368,7 +425,7 @@ test("customNumberFilter can get all cards with CMC equal to 2", () => {
         fakeCards[6], //L. Cubby: 2
     ];
     //Act
-    const actual = customNumberFilter(fakeCards, "cmc", 2, "equal");
+    const actual = numberEqualFilter(fakeCards, "cmc", 2, "equal");
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
@@ -390,8 +447,6 @@ test("customNumberFilter can get all cards with power over 2", () => {
     expect(actualNames).toEqual(expectedNames);
 });
 
-
-
 test("customTextFilter can get cards of the exact rarity common", ()=> {
     //Arrange
     const expected = [
@@ -406,26 +461,21 @@ test("customTextFilter can get cards of the exact rarity common", ()=> {
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("sortFunctions.compareRarity sorts correctly", ()=>{
+test("customTextFilter does not return cards which do not have the filter criteria", () => {
     //Arrange
-    const expected = [
-        fakeCards[1], //Die young, common
-        fakeCards[3], //Escat, common
-        fakeCards[4], //Garna, uncommon
-        fakeCards[6], //l cubby, uncommon
-        fakeCards[0], //arch, rare
-        fakeCards[2], //D2D, rare        
-        fakeCards[5], //g Chainz, rare
-        fakeCards[8], //prep2fight, gold
-        fakeCards[7], //nicky, mythic
-    ];
+    const badCard = {
+        name:"not a card",
+    };
+    const expected = [];
     //Act
-    let actual = fakeCards.slice().sort(sortFunctions.compareRarity);
+    let actual = customTextFilter([badCard], "oracle_text", "the", true);
     //Assert
-    const expectedNames = expected.map(card => card.name);
-    const actualNames = actual.map(card => card.name);
-    expect(actualNames).toEqual(expectedNames);
+    expect(actual).toEqual(expected);
+    actual = customTextFilter([badCard], "oracle_text", "the", false);
+    expect(actual).toEqual(expected);
 });
+
+
 
 test("mapManaToProps adds mana up correctly", ()=> {
     //Arrange 
