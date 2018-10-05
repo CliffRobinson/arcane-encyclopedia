@@ -475,8 +475,6 @@ test("customTextFilter does not return cards which do not have the filter criter
     expect(actual).toEqual(expected);
 });
 
-
-
 test("mapManaToProps adds mana up correctly", ()=> {
     //Arrange 
     const expected = {
@@ -502,4 +500,31 @@ test("mapManaToProps adds mana up correctly", ()=> {
     const actual = mapManaToProps(state);
     //Assert
     expect(actual).toEqual(expected);
+});
+
+test("filterAllCards filters multiple conditions correctly", ()=> {
+    const expected = [
+        fakeCards[8], //Prep2fight
+        fakeCards[3], //Essence Scatter
+        
+    ];
+    const filters = [{
+        function:"customTextFilter",
+        key: "type_line",
+        value:"instant",
+        exact:false
+    }];
+    const mana = {
+        w:1,
+        u:1,
+        b:1,
+        r:1,
+        g:1,
+        c:1
+    };
+    const actual = filterAllCards(fakeCards, mana ,true, true, sortFunctions.comparePrice ,filters);
+
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
 });
