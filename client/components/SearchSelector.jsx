@@ -11,6 +11,8 @@ import {landsToggle} from "../actions/filterLands";
 
 import {data as fakeCards} from "../../tests/testData.json";
 
+export const defaultCallback = () => true;
+
 export class SearchSelector extends React.Component {
     constructor(props) {
         super(props);
@@ -65,7 +67,7 @@ export class SearchSelector extends React.Component {
     createQuery(){
         this.props.dispatch(clearCards());
         let queryString = `https://api.scryfall.com/cards/search?q=${this.props.format}`;
-        this.getCardsFromScryfall(queryString);
+        this.getCardsFromScryfall(queryString, defaultCallback);
     }
 
     getCardsFromScryfall(queryString, callback) {
@@ -74,10 +76,10 @@ export class SearchSelector extends React.Component {
                 this.props.dispatch(addCards(res.body.data));
                 if (res.body.has_more)  {
                     this.getCardsFromScryfall(res.body.next_page, callback);
-                } else if (callback) {
+                } else {
                     callback(res); 
-                    //Will only execute the callback once ALL data has been resquested and dispatched.
-                }
+                    //Will only execute the callback once ALL data has been requested and dispatched.
+                } 
             });
     }
 
@@ -91,6 +93,6 @@ export class SearchSelector extends React.Component {
 
 }
 
-const mapStateToProps = (state) => state;
+export const mapStateToProps = (state) => state;
 
 export default connect(mapStateToProps)(SearchSelector);

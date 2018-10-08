@@ -3,7 +3,7 @@ import nock from "nock";
 import {shallow} from "enzyme";
 import React from "react";
 
-import {SearchSelector} from "../client/components/SearchSelector";
+import {SearchSelector, defaultCallback, mapStateToProps} from "../client/components/SearchSelector";
 import {clearCards, addCards} from "../client/actions/cards";
 import testData, {data as fakeCards}  from "./testData.json";
 import * as formatActions from "../client/actions/format";
@@ -106,29 +106,14 @@ test("getCardsFromScryfall dispatches correct data when search has multiple resu
     testSelector.getCardsFromScryfall(testQuery, testCallback);   
 });
 
-// test("getCardsFromScryfall calls its callback correctly", (done)=> {
-//     //Arrange
-//     const testQuery = "https://api.scryfall.com/cards/search";
-//     const scope = nock("https://api.scryfall.com")
-//         .get("/cards/search")
-//         .reply(200, testData)
-//     ;
+test("defaultCallback, lol", ()=> {
+    expect(defaultCallback("butts")).toBe(true);
+});
 
-//     const mockDispatch = jest.fn();
-//     const testSelector = new SearchSelector({
-//         dispatch:mockDispatch,
-//     });
-//     const callback = jest.fn(()=> {
-//         //Assert
-//         expect(callback).toBeCalled();
-//         scope.done();
-//         done();
-//     });
-//     //Act
-//     testSelector.getCardsFromScryfall(testQuery, callback);
+test("mapStateToProps, lol", () => {
+    expect(mapStateToProps("butts")).toBe("butts");
+});
 
-
-// });
 
 test("searchHandleChange dispatches correct action", ()=> {
     //Arrange
