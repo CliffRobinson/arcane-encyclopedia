@@ -99,7 +99,7 @@ test("filterLands does not miss any lands - no lands should be left over.", () =
 //Specific Test
 test("translateMana gets Nicol Bolas right", () => {
     //Arrange 
-    const bolas = fakeCards[7];
+    const bolas = fakeCards[7].card_faces[0];
     const expected = {
         w:0,
         u:1,
@@ -107,6 +107,8 @@ test("translateMana gets Nicol Bolas right", () => {
         r:1,
         g:0,
         c:0,
+        generic:1,
+        total:4
     };
     //Act
     const actual = translateMana(bolas);
@@ -201,21 +203,45 @@ test("sortFunctions.CompareName sorts correctly", ()=> {
     //This pattern is equivalent to expect(actual).toEqual(expected), but it's much easier to read the test output if it's failed. 
 });
 
-test("sortFunctions.CompareCMC sorts correctly", ()=> {
+// test("OLD: sortFunctions.CompareCMC sorts correctly", ()=> {
+//     //Arrange
+//     const expected = [
+//         fakeCards[0], //Arch: 0
+//         fakeCards[1], //Die: 2
+//         fakeCards[3], //Essence Scatter: 2
+//         fakeCards[6], //L. Cubby: 2
+//         fakeCards[5], //G. Chainwhirler: 3
+//         fakeCards[7], //Nicky B: 4
+//         fakeCards[4], //Garna: 5
+//         fakeCards[8], //Prepare2Fight: 6
+//         fakeCards[2], //Dusk2Dawn: 9
+//     ];
+//     //Act
+//     let actual = fakeCards.slice()/*.reverse()*/.sort(sortFunctions.compareCMC);
+//     //Assert
+//     const expectedNames = expected.map(card => card.name);
+//     const actualNames = actual.map(card => card.name);
+//     expect(actualNames).toEqual(expectedNames);
+// });
+// Test is based on total CMC, not CMC of individual faces.
+
+
+test("NEW: sortFunctions.CompareCMC sorts based on cost of front half of transform cards, and cheapest face of split cards", ()=> {
     //Arrange
     const expected = [
         fakeCards[0], //Arch: 0
         fakeCards[1], //Die: 2
-        fakeCards[3], //Essence Scatter: 2
+        fakeCards[3], //Essence Scatter: 2,
         fakeCards[6], //L. Cubby: 2
+        fakeCards[8], //Prepare2Fight: 2/4 = 6
         fakeCards[5], //G. Chainwhirler: 3
+        fakeCards[2], //Dusk2Dawn: 4/5 = 9
         fakeCards[7], //Nicky B: 4
         fakeCards[4], //Garna: 5
-        fakeCards[8], //Prepare2Fight: 6
-        fakeCards[2], //Dusk2Dawn: 9
+
     ];
     //Act
-    let actual = fakeCards.slice()/*.reverse()*/.sort(sortFunctions.compareCMC);
+    let actual = fakeCards.slice().reverse().sort(sortFunctions.compareCMC);
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);

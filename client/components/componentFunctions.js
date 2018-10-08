@@ -1,5 +1,5 @@
-import request from "superagent";
-import {addCards, clearCards } from "../actions/cards";
+// import request from "superagent";
+// import {addCards, clearCards } from "../actions/cards";
 
 export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, customFilters) {
     //console.log("filtering all");
@@ -18,25 +18,34 @@ export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, cust
     if(sort) {
         output = output.sort(sort);
     }
-
-
-
     return output;
 }
 
 export function canCastCardWithMana(card, mana) {
-    if (card.cmc > mana.total) {
+    
+    switch(card.layout) {
+    case "split":
+        return castFaceWithMana(card.card_faces[0], mana) || castFaceWithMana(card.card_faces[1], mana);
+    case "transform":
+        return castFaceWithMana(card.card_faces[0], mana);
+    default: 
+        return castFaceWithMana(card, mana);
+    }
+}
+
+function castFaceWithMana(face, mana) {
+    const manaCost = translateMana(face);
+    if (manaCost.total > mana.total) {
         return false;
     } else {
-        let cardCost = translateMana(card);
-        for (let colour in cardCost) {
-            if (cardCost[colour] > mana[colour]) return false;
+        for (let colour in manaCost) {
+            if (manaCost[colour] > mana[colour]) return false;
         }
         return true;
     }
 }
 
-export function translateMana(card) {
+export function translateMana(card) { //Now altered to take an individual face
     let manaCost = {
         w: 0,
         u: 0,
@@ -44,22 +53,21 @@ export function translateMana(card) {
         r: 0,
         g: 0,
         c: 0,
+        generic: 0
     };
-    let stringMana;
-    if (card.card_faces) {
-        stringMana = card.card_faces[0].mana_cost;
-    } else {
-        stringMana = card.mana_cost;
-    }
-    const arrayMana = stringMana.split("");
-    arrayMana.map((letter) => {
-        if (letter == "W") manaCost.w++;
-        if (letter == "U") manaCost.u++;
-        if (letter == "B") manaCost.b++;
-        if (letter == "R") manaCost.r++;
-        if (letter == "G") manaCost.g++;
-        if (letter == "C") manaCost.c++;
+    let stringMana = card.mana_cost;
+    
+    const arrayMana = stringMana.slice(1,-1).split("}{");
+    arrayMana.map((symbol) => {
+        if (symbol == "W") manaCost.w++;
+        if (symbol == "U") manaCost.u++;
+        if (symbol == "B") manaCost.b++;
+        if (symbol == "R") manaCost.r++;
+        if (symbol == "G") manaCost.g++;
+        if (symbol == "C") manaCost.c++;
+        if (Number(symbol)) manaCost.generic += Number(symbol);
     });
+    manaCost.total = manaCost.w + manaCost.u + manaCost.b + manaCost.r + manaCost.g + manaCost.c + manaCost.generic;
     return manaCost;
 }
 
@@ -96,24 +104,6 @@ export function callbackToFilterForTricks(card) {
         return (card.type_line.includes("Instant") || oText.includes("flash"));
     }
 }
-
-// export function createQuery(){
-//     this.props.dispatch(clearCards());
-//     let queryString = `https://api.scryfall.com/cards/search?q=${this.props.format}`;
-//     getCardsFromScryfall.call(this,queryString);
-// }
-
-// export function getCardsFromScryfall(queryString) {
-    
-//     request.get(queryString)
-//         .then( (res) =>{
-//             this.props.dispatch(  addCards(res.body.data)  );
-
-//             if (res.body.has_more)  {
-//                 getCardsFromScryfall(res.body.next_page);
-//             }
-//         });
-// }
 
 export function compareName (cardA, cardiB) {
     if (cardA.name < cardiB.name){
@@ -174,14 +164,27 @@ export function getRaritySortIndex(card) {
     }
 }
 
+export function getMinCMC(card) {
+    if (card.layout == "split") {
+        return Math.min(translateMana(card.card_faces[0]).total, translateMana(card.card_faces[1]).total);
+    } else {
+        return card.cmc;
+    }
+}
+
+function compareCMC(cardA, cardB) {
+    const cardACmc  = getMinCMC(cardA);
+    const cardBCmc  = getMinCMC(cardB);
+    
+    let diff = cardACmc - cardBCmc;
+    if (diff == 0){
+        return compareName(cardA, cardB);
+    } else return diff;
+}
+
 export const sortFunctions = {
     compareName: compareName,
-    compareCMC: function (cardA, cardB) {
-        let diff = cardA.cmc - cardB.cmc;
-        if (diff == 0){
-            return compareName(cardA, cardB);
-        } else return diff;
-    },
+    compareCMC: compareCMC,
     comparePrice: function (cardA, cardB) {
         let diff = cardB.usd - cardA.usd;
         if (diff == 0){
