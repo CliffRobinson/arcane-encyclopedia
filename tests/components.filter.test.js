@@ -21,7 +21,7 @@ test("handleSelectChange behaves correctly", ()=> {
         addFilter:fakeAddFilter,
         i:1
     };
-    const testFilter = mount(<Filter props={props}/>);
+    const testFilter = mount(<Filter />);
     const expectedState = {
         function:"customTextFilter",
         key: "rarity",
@@ -49,7 +49,7 @@ test("handleInputChange behaves correctly for text", ()=> {
         addFilter:fakeAddFilter,
         i:1
     };
-    const testFilter = mount(<Filter props={props}/>);
+    const testFilter = mount(<Filter />);
     const expectedState = {
         function:"customTextFilter",
         key: "type_line",
@@ -77,7 +77,7 @@ test("handleInputChange behaves correctly for numerics", ()=> {
         addFilter:fakeAddFilter,
         i:1
     };
-    const testFilter = mount(<Filter props={props}/>);
+    const testFilter = mount(<Filter />);
     const expectedState = {
         function:"customNumberFilter",
         key: "usd",
@@ -97,9 +97,8 @@ test("handleInputChange behaves correctly for numerics", ()=> {
 
 test("changing the select calls handleSelectChange", ()=> {
     //Arrange
-    const fakeProps = {size:1};
     const fakeEvent = {target:{}};
-    const testFilter = shallow(<Filter props={fakeProps}/>);
+    const testFilter = shallow(<Filter />);
     const spy = jest.spyOn(testFilter.instance(), "handleSelectChange").mockImplementation(() => true);
     //Act
     testFilter.find("select").at(0).props().onChange(fakeEvent);
@@ -109,9 +108,8 @@ test("changing the select calls handleSelectChange", ()=> {
 
 test("changing the input calls handleSelectChange", ()=> {
     //Arrange
-    const fakeProps = {size:1};
     const fakeEvent = {target:{}};
-    const testFilter = shallow(<Filter props={fakeProps}/>);
+    const testFilter = shallow(<Filter />);
     const spy = jest.spyOn(testFilter.instance(), "handleInputChange").mockImplementation(() => true);
     //Act
     testFilter.find("input").at(0).props().onChange(fakeEvent);

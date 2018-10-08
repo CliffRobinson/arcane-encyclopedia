@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filterbar matches snapshot when filters are present 1`] = `
+<div
+  className="filterBar "
+>
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+    Add a Filter 
+  </button>
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+     Clear 
+    filters
+     
+  </button>
+</div>
+`;
+
+exports[`Filterbar matches snapshot when no filters are present 1`] = `
+<div
+  className="filterBar "
+>
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+    Add a Filter 
+  </button>
+</div>
+`;

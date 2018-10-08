@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Card from "./Card";
 import { filterAllCards, sortFunctions, mapManaToProps } from "./componentFunctions";
 
-class Cards extends React.Component {
+export class Cards extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -17,7 +17,7 @@ class Cards extends React.Component {
                     <p> There are {this.props.cards.length} cards in the format </p>
                     <p> Displaying {cardsToDisplay.length} cards </p>
                     {this.props.cards.length && cardsToDisplay.map((card, i) => <Card key={i} card={card} index={i}/>)}
-                </div >
+                </div>
             );
         } else {
             return <div className="cards" >
@@ -27,7 +27,7 @@ class Cards extends React.Component {
                 <p> Use the buttons on the right to select how much mana is available to your opponent. </p>
                 <p> The cards they can play with that mana will be shown here. </p>
                 <p> If you want to see only instant-speed cards, check the box marked 'Only show tricks' </p>
-            </ div>;
+            </div>;
         }
     }
 

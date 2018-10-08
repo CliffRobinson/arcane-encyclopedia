@@ -29,7 +29,7 @@ class Filter extends React.Component {
     
     handleInputChange(e, props){
         //console.log("Adding", e.target.value, "to filter", props.i);
-        const value = this.state.function.includes("number") ? parseFloat(e.target.value) : e.target.value;
+        const value = this.state.function.includes("Number") ? parseFloat(e.target.value) : e.target.value;
         const objNixilis = {
             function:this.state.function,
             key:this.state.key,
