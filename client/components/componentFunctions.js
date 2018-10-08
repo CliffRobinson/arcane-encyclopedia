@@ -91,18 +91,18 @@ export function filterForTricks(cards) {
 
 export function callbackToFilterForTricks(card) {
     let oText = "";
-    switch (card.layout) {
-    case "transform":
-        if (card.card_faces[0].oracle_text) {
-            oText = card.card_faces[0].oracle_text.toLowerCase();
-        }
-        return (card.card_faces[0].type_line.includes("Instant") || oText.includes("flash"));
-    default:
+
+    if (card.card_faces) {
+        oText = card.card_faces[0].oracle_text;
+        const oText1 = card.card_faces[1].oracle_text;
+        return (card.type_line.includes("Instant") || card.card_faces[0].type_line.includes("Instant") || card.card_faces[1].type_line.includes("Instant") || oText.includes("flash") || oText1.includes("flash"));
+    } else {
         if (card.oracle_text) {
             oText = card.oracle_text.toLowerCase();
         }
         return (card.type_line.includes("Instant") || oText.includes("flash"));
     }
+
 }
 
 export function compareName (cardA, cardiB) {
@@ -198,7 +198,7 @@ export const sortFunctions = {
         } else return diff;
     },
     compareCollector: function (cardA, cardB) {        
-        let diff = cardA.collector_number - cardB.collector_number;
+        let diff = parseInt(cardA.collector_number) - parseInt(cardB.collector_number);
         if (diff == 0){
             return compareName(cardA, cardB);
         } else return diff;

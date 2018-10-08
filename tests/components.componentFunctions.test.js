@@ -1,16 +1,22 @@
 import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
+import {data as fakeGrnCards} from "./testGrnData.json";
+import {data as fakeExtraCards} from "./testExtraData.json";
 //Small set of sample data showing a wide variety of cards.
 
 //Specific Test
 test("filterForTricks on fakeCards only shows essence scatter, garna and prepare", () => {
     //Arrange
-    const expected = fakeCards.filter((card) => {
-        return (card.name == "Essence Scatter" || card.name == "Garna, the Bloodflame" || card.name == "Prepare // Fight");
-    });
+    const expected = [
+        fakeCards[3], //Escat, common
+        fakeCards[4], //Garna, uncommon
+        fakeCards[8], //prep2fight, gold
+    ];
     //Act
-    const actual = filterForTricks(fakeCards);
+    const actual = filterForTricks(
+        [...fakeCards, fakeExtraCards[0]] //Adding a vanilla card to test vanilla case. 
+    );
     //Assert
     expect(actual).toEqual(expected);
 });
@@ -112,6 +118,25 @@ test("translateMana gets Nicol Bolas right", () => {
     };
     //Act
     const actual = translateMana(bolas);
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("translateMana gets Thought-Knot Seer right", () => {
+    //Arrange 
+    const tks = fakeExtraCards[1];
+    const expected = {
+        w:0,
+        u:0,
+        b:0,
+        r:0,
+        g:0,
+        c:1,
+        generic:3,
+        total:4
+    };
+    //Act
+    const actual = translateMana(tks);
     //Assert
     expect(actual).toEqual(expected);
 });
@@ -311,6 +336,30 @@ test("sortFunctions.compareCollector sorts correctly", ()=>{
     expect(actualNames).toEqual(expectedNames);
 });
 
+test("sortFunctions.compareCollector sorts correctly for equal collector numbers", ()=> {
+    //Arrange
+    const expected = [
+        fakeCards[3], //Escat, 54
+        fakeCards[1], //Die young, 76
+        fakeGrnCards[3], //Generous Stray, 129
+        fakeCards[5], //Goblin chainwhirler, 129
+    ];
+    //Act
+    const actual = [
+        fakeCards[3], //Escat, 54
+        fakeCards[1], //Die young, 76
+        fakeCards[5], //Goblin chainwhirler, 129
+        fakeGrnCards[3], //Generous Stray, 129
+    ].sort(sortFunctions.compareCollector);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => {
+        console.log(`${card.name}:${card.collector_number}`);
+        return card.name;
+    });
+    expect(actualNames).toEqual(expectedNames);
+});
+
 test("sortFunctions.compareRarity sorts correctly", ()=>{
     //Arrange
     const expected = [
@@ -389,7 +438,23 @@ test("customTextFilter can get the cards with the exact criteria belonging to on
         fakeCards[7]
     ];
     //Act
-    const actual = customTextFilter(fakeCards, "illustration_id","54fcf679-5332-4614-999d-7e0dbafbd116", true);
+    const f1ot = "Flying\nWhen Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card.\n{4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.";
+    const actual = customTextFilter(fakeCards, "oracle_text",f1ot, true);
+    //Assert
+    const expectedNames = expected.map(card => card.name);
+    const actualNames = actual.map(card => card.name);
+    expect(actualNames).toEqual(expectedNames);
+    
+});
+
+test("customTextFilter can get the cards with the exact criteria belonging to one face", () => {
+    //Arrange
+    const expected = [
+        fakeCards[7]
+    ];
+    //Act
+    const f2ot = "+2: Draw two cards.\n−3: Nicol Bolas, the Arisen deals 10 damage to target creature or planeswalker.\n−4: Put target creature or planeswalker card from a graveyard onto the battlefield under your control.\n−12: Exile all but the bottom card of target player's library.";
+    const actual = customTextFilter(fakeCards, "oracle_text",f2ot, true);
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
