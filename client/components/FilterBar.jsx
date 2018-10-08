@@ -51,6 +51,6 @@ export class FilterBar extends React.Component {
 
 }
 
-const mapCateToProps = (state) => state;
+export const mapCateToProps = (state) => state;
 
 export default connect(mapCateToProps)(FilterBar);

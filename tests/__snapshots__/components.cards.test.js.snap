@@ -1029,35 +1029,3 @@ exports[`Cards component matches snapshot with no cards 1`] = `
   </p>
 </div>
 `;
-
-exports[`Cards component matches snapshot with no props 1`] = `
-<div
-  className="cards"
->
-  <p
-    className="title"
-    style={
-      Object {
-        "color": "white",
-      }
-    }
-  >
-     Welcome to the Arcane Encyclopedia! 
-  </p>
-  <p>
-     This is a tool for seeing what cards your opponent might play against you in Magic: the Gathering. 
-  </p>
-  <p>
-     To use the app, start by choosing a format in the selector at the top left.
-  </p>
-  <p>
-     Use the buttons on the right to select how much mana is available to your opponent. 
-  </p>
-  <p>
-     The cards they can play with that mana will be shown here. 
-  </p>
-  <p>
-     If you want to see only instant-speed cards, check the box marked 'Only show tricks' 
-  </p>
-</div>
-`;

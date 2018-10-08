@@ -1,54 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`card matches snapshot 1`] = `
-<React.Fragment>
-  <Tooltip
-    animateFill={true}
-    animation="shift"
-    arrow={false}
-    arrowSize="regular"
-    className=""
-    delay={0}
-    disabled={false}
-    distance={10}
-    duration={375}
-    followCursor={false}
-    hideDelay={0}
-    hideDuration={375}
-    hideOnClick={true}
-    html={
-      <img
-        src="https://img.scryfall.com/cards/normal/en/rix/185.jpg?1524752669"
-      />
-    }
-    inertia={false}
-    interactive={false}
-    interactiveBorder={2}
-    multiple={false}
-    offset={0}
-    onHidden={[Function]}
-    onHide={[Function]}
-    onRequestClose={[Function]}
-    onShow={[Function]}
-    onShown={[Function]}
-    popperOptions={Object {}}
-    position="top"
-    size="regular"
-    sticky={false}
-    stickyDuration={200}
-    style={Object {}}
-    theme="dark"
-    touchHold={false}
-    trigger="mouseenter"
-    unmountHTMLWhenHide={false}
-  >
-    <img
-      src="https://img.scryfall.com/cards/small/en/rix/185.jpg?1524752669"
-    />
-  </Tooltip>
-</React.Fragment>
-`;
-
 exports[`not a card matches snapshot 1`] = `
 <div
   style={

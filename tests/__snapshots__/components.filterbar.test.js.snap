@@ -14,6 +14,31 @@ exports[`Filterbar matches snapshot when filters are present 1`] = `
     className="button is-small"
     onClick={[Function]}
   >
+    Remove a Filter
+  </button>
+  <Filter
+    addFilter={[Function]}
+    i={0}
+    key="0"
+    size="is-small"
+  />
+  <Filter
+    addFilter={[Function]}
+    i={1}
+    key="1"
+    size="is-small"
+  />
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
+     Apply 
+    filters
+  </button>
+  <button
+    className="button is-small"
+    onClick={[Function]}
+  >
      Clear 
     filters
      
