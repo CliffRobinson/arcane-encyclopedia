@@ -32,11 +32,12 @@ export class SearchSelector extends React.Component {
                 <select className= {`select ${size}`} onChange={this.searchHandleChange}> 
                     {/*values of options correspond to the action to dispatch*/}
                     <option value="standard"> Standard</option>
-                    <option value="aer"> Aether Revolt Limited</option>
-                    <option value="hou"> Hour of Devastation Limited</option>
-                    <option value="rix"> Rivals of Ixalan Limited </option>
-                    <option value="dom"> Dominaria Limited</option>
+                    <option value="grn"> Guilds of Ravnica Limited</option>
                     <option value="m19"> M19 Limited</option>
+                    <option value="dom"> Dominaria Limited</option>
+                    <option value="rix"> Rivals of Ixalan Limited </option>
+                    <option value="hou"> OLD: Hour of Devastation Limited</option>
+                    <option value="aer"> OLD: Aether Revolt Limited</option>
                 </select>
                 <button className={`button ${size}`} onClick={() => this.createQuery()} > Get Cards </button>
                 <button className={`button ${size}`} onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>

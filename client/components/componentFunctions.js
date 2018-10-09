@@ -70,9 +70,9 @@ export function translateMana(face) { //Now altered to take an individual face
         generic: 0
     };
     let stringMana = face.mana_cost;
-    console.log("Mana in scryfall is: ", stringMana);
+    //console.log("Mana in scryfall is: ", stringMana);
     const arrayMana = stringMana.slice(1,-1).split("}{");
-    console.log("ArrayMana is", arrayMana);
+    //console.log("ArrayMana is", arrayMana);
     arrayMana.map((symbol) => {
         if (symbol == "W") manaCost.w++;
         if (symbol == "U") manaCost.u++;
@@ -93,7 +93,11 @@ export function translateMana(face) { //Now altered to take an individual face
         }
     });
     manaCost.total = manaCost.w + manaCost.u + manaCost.b + manaCost.r + manaCost.g + manaCost.c + manaCost.generic;
-    //console.log("Mana of face is: ", manaCost);
+    if (manaCost.hybrid) {
+        for (let colorpair in manaCost.hybrid) {
+            manaCost.total += manaCost.hybrid[colorpair];
+        }
+    }
     return manaCost;
 }
 
