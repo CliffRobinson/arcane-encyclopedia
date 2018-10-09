@@ -5,6 +5,8 @@ import {data as fakeGrnCards} from "./testGrnData.json";
 import {data as fakeExtraCards} from "./testExtraData.json";
 //Small set of sample data showing a wide variety of cards.
 
+
+
 //Specific Test
 test("filterForTricks on fakeCards only shows essence scatter, garna and prepare", () => {
     //Arrange
@@ -151,6 +153,7 @@ test("canCastCardWithMana will allow you to cast bolas with WUBRG", () =>{
         b:1,
         r:1,
         g:1,
+        c:0,
         total:5
     };
     //Act
@@ -167,13 +170,97 @@ test("canCastCardWithMana will not allow you to cast Bolas with WUURG", () =>{
         u:1,
         b:2,
         r:0,
-        g:1, 
+        g:1,
+        c:0, 
         total:5
     };
     //Act
     const actual = canCastCardWithMana(bolas, mana);
     //Assert
     expect(actual).toBeFalsy();
+});
+
+test("canCastCardWithMana lets you cast Fresh-faced recruit with either 1W or 1R", ()=> {
+    //Arrange
+    const oneW = {
+        w:1,
+        u:0,
+        b:0,
+        r:0,
+        g:0,
+        c:1,
+        total:2
+    };
+    const oneR = {
+        w:0,
+        u:0,
+        b:0,
+        r:1,
+        g:0,
+        c:1,
+        total:2
+    };
+    const oneU = {
+        w:0,
+        u:1,
+        b:0,
+        r:0,
+        g:0,
+        c:1,
+        total:2
+    };
+    const lovelySweetFreshFacedBoy = fakeGrnCards[2]; 
+    //Assert
+    expect(canCastCardWithMana(lovelySweetFreshFacedBoy, oneW)).toBeTruthy();
+    expect(canCastCardWithMana(lovelySweetFreshFacedBoy, oneR)).toBeTruthy();
+    expect(canCastCardWithMana(lovelySweetFreshFacedBoy, oneU)).toBeFalsy();
+});
+
+test("canCastCardWithMana will let you cast Response // Resurgence with WW or RR", ()=>{
+    //Arrange
+    const res = fakeGrnCards[6];
+    const WW = {
+        w:2,u:0, b:0, r:0, g:0,c:0,
+        generic:0,
+        total:2
+    };
+    const RR = {
+        w:0,u:0, b:0, r:2, g:0,c:0,
+        generic:0,
+        total:2
+    };
+    const WR = {
+        w:1,u:0, b:0, r:1, g:0,c:0,
+        generic:0,
+        total:2
+    };
+    const control = {
+        w:1,u:1, b:0, r:0, g:0,c:0,
+        generic:0,
+        total:2 
+    };
+    
+    //Assert
+    expect(canCastCardWithMana(res, WW)).toBe(true);
+    expect(canCastCardWithMana(res, RR)).toBe(true);
+    expect(canCastCardWithMana(res, WR)).toBe(true);
+    expect(canCastCardWithMana(res, control)).toBe(false);    
+});
+
+test("canCastCardWithMana tests against a hypothetical card with shared colored mana and hybrid costs", ()=> {
+    const hypotheticalCard = {
+        name:"hypothetical card",
+        mana_cost:"{1}{W}{W/U}{U}"
+    };
+    const UWW = {   w:2, u:1, b:0, r:0, g:0, generic:0, total:3 };
+    const UUW = {   w:1, u:2, b:0, r:0, g:0, generic:0, total:3 };
+    const UUU = {   w:0, u:3, b:0, r:0, g:0, generic:0, total:3 };
+    const WWW = {   w:3, u:0, b:0, r:0, g:0, generic:0, total:3 };
+
+    expect(canCastCardWithMana(hypotheticalCard, UWW)).toBeTruthy();
+    expect(canCastCardWithMana(hypotheticalCard, UUW)).toBeTruthy();
+    expect(canCastCardWithMana(hypotheticalCard, UUU)).toBeFalsy();
+    expect(canCastCardWithMana(hypotheticalCard, WWW)).toBeFalsy();
 });
 
 //Specific Tests
@@ -354,7 +441,7 @@ test("sortFunctions.compareCollector sorts correctly for equal collector numbers
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => {
-        console.log(`${card.name}:${card.collector_number}`);
+        //console.log(`${card.name}:${card.collector_number}`);
         return card.name;
     });
     expect(actualNames).toEqual(expectedNames);

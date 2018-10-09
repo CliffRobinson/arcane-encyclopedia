@@ -1,5 +1,4 @@
-// import request from "superagent";
-// import {addCards, clearCards } from "../actions/cards";
+const colors = ["w", "u", "b", "r", "g", "c"];
 
 export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, customFilters) {
     //console.log("filtering all");
@@ -22,7 +21,7 @@ export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, cust
 }
 
 export function canCastCardWithMana(card, mana) {
-    
+    //console.log(card);
     switch(card.layout) {
     case "split":
         return castFaceWithMana(card.card_faces[0], mana) || castFaceWithMana(card.card_faces[1], mana);
@@ -34,18 +33,33 @@ export function canCastCardWithMana(card, mana) {
 }
 
 function castFaceWithMana(face, mana) {
-    const manaCost = translateMana(face);
-    if (manaCost.total > mana.total) {
+    const cardCost = translateMana(face);
+    if (cardCost.total > mana.total) {      //If the card costs more mana than you have, return false
         return false;
-    } else {
-        for (let colour in manaCost) {
-            if (manaCost[colour] > mana[colour]) return false;
+    } else {                                
+        for (let i = 0; i < colors.length; i++) {   //Then check if there is more of each colored mana than the specific color requirements
+            const bool = mana[colors[i]] < cardCost[colors[i]];
+            //console.log(`Color is: ${colors[i]}, comparing Mana: ${mana[colors[i]]} to CardCost: ${cardCost[colors[i]]}, result is ${bool}`);
+            if (bool ) {
+                return false;
+            }
         }
-        return true;
+
+        if (cardCost.hybrid) {              //Then, if the card has a hybrid component
+            for (let hybridCost in cardCost.hybrid) {
+                const parts = hybridCost.toLowerCase().split("/");
+                //console.log("Hybrid cost parts are:", parts);
+                const leftOverMana = (mana[parts[0]] - cardCost[parts[0]]) + (mana[parts[1]] - cardCost[parts[1]]);
+                //Subtract the non-hybrid color requirement from the total mana in both colors
+                if (leftOverMana < cardCost.hybrid[hybridCost]) return false;
+                //Then check if the left over mana is enough to cover the hybrid component. 
+            }
+        }
     }
+    return true;
 }
 
-export function translateMana(card) { //Now altered to take an individual face
+export function translateMana(face) { //Now altered to take an individual face
     let manaCost = {
         w: 0,
         u: 0,
@@ -55,9 +69,10 @@ export function translateMana(card) { //Now altered to take an individual face
         c: 0,
         generic: 0
     };
-    let stringMana = card.mana_cost;
-    
+    let stringMana = face.mana_cost;
+    console.log("Mana in scryfall is: ", stringMana);
     const arrayMana = stringMana.slice(1,-1).split("}{");
+    console.log("ArrayMana is", arrayMana);
     arrayMana.map((symbol) => {
         if (symbol == "W") manaCost.w++;
         if (symbol == "U") manaCost.u++;
@@ -66,8 +81,19 @@ export function translateMana(card) { //Now altered to take an individual face
         if (symbol == "G") manaCost.g++;
         if (symbol == "C") manaCost.c++;
         if (Number(symbol)) manaCost.generic += Number(symbol);
+        if (symbol.includes("/")) {
+            if (manaCost.hybrid == undefined) {
+                manaCost.hybrid = {};
+            }
+            if(manaCost.hybrid[symbol]) {
+                manaCost.hybrid[symbol]++;
+            } else {
+                manaCost.hybrid[symbol] = 1;
+            }
+        }
     });
     manaCost.total = manaCost.w + manaCost.u + manaCost.b + manaCost.r + manaCost.g + manaCost.c + manaCost.generic;
+    //console.log("Mana of face is: ", manaCost);
     return manaCost;
 }
 
@@ -280,28 +306,11 @@ export const filterFuncs = {
 };
 
 export function mapManaToProps(state){
-    // return {
-    //     cards:state.cards, 
-    //     mana:{
-    //         w: state.w,
-    //         u: state.u,
-    //         b: state.b,
-    //         r: state.r,
-    //         g: state.g,
-    //         c: state.c,
-    //         total: (state.w+state.u+state.b+state.r+state.g+state.c) 
-    //     },
-    //     onlyTricks:state.onlyTricks,
-    //     filterLands:state.filterLands,
-    //     sort: state.sort,
-    //     customFilters: state.customFilters
-    // };
     let props = {};
     Object.keys(state).map(key => {
         props[key] = state[key];
     });
     props.mana = {total:0};
-    const colors = ["w", "u", "b", "r", "g", "c"];
     colors.map((color) => {
         props.mana[color] = state[color];
         props.mana.total += state[color];
