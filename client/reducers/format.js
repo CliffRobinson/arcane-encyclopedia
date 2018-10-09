@@ -1,7 +1,7 @@
 import {
     STANDARD, M19, DOM,
     RIX, XLN, HOU, AKH,
-    AER, KLD,
+    AER, KLD, GRN
 } from "../actions/format";
 
 export const searchStrings = {
@@ -13,7 +13,8 @@ export const searchStrings = {
     hou: "%28e%3Ahou+or+e%3Aakh%29",
     akh: "e%3aakh",
     aer: "%28e%3Aaer+or+e%3Akld%29",    
-    kld: "e%3akld"
+    kld: "e%3akld",
+    grn: "e%3agrn"
 };
 
 function format(state = searchStrings.standard, action) {
@@ -36,6 +37,8 @@ function format(state = searchStrings.standard, action) {
         return searchStrings.aer;
     case KLD:
         return searchStrings.kld;
+    case GRN:
+        return searchStrings.grn;
     default:
         return state;
     }

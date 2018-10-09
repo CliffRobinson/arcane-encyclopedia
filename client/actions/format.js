@@ -7,6 +7,7 @@ export const HOU = "HOU";
 export const AKH = "AKH";
 export const AER = "AER";
 export const KLD = "KLD";
+export const GRN = "GRN";
 
 export function standard(){
     return {
@@ -59,5 +60,11 @@ export function aer(){
 export function kld(){
     return {
         type: KLD
+    };
+}
+
+export function grn(){
+    return {
+        type: GRN
     };
 }

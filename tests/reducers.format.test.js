@@ -3,7 +3,7 @@
 import {
     STANDARD, M19, DOM,
     RIX, XLN, HOU, AKH,
-    AER, KLD,
+    AER, KLD, GRN
 } from "../client/actions/format";
 
 import format, {searchStrings} from "../client/reducers/format";
@@ -130,6 +130,18 @@ test("Test kld case", ()=>{
     const expected = searchStrings.kld;
     const action = {
         type: KLD
+    };
+    //Act
+    const actual = format(undefined, action);
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("Test grn case", ()=>{
+    //Arrange
+    const expected = searchStrings.grn;
+    const action = {
+        type: GRN
     };
     //Act
     const actual = format(undefined, action);
