@@ -9,6 +9,8 @@ import {    ADD_W, addW, SUB_W, subW,
     clearMana, CLEAR_MANA,
 } from "../client/actions/mana";
 
+import * as guildStuff  from "../client/actions/mana";
+
 
 
 test("addW returns correct type", ()=> {
@@ -153,3 +155,39 @@ test("clearMana returns correct type", ()=>{
     //Assert
     expect(actual).toEqual(expected);
 });
+
+function testGuildActions(guildName) {
+    const upperCase = guildName.toUpperCase();
+    test(`add${guildName} returns correct type`, ()=> {
+        //Arrange
+        const expected = {
+            type: guildStuff[`ADD_${upperCase}`]
+        };
+        //Act
+        const actual = guildStuff[`add${guildName}`]();
+        //Assert
+        expect(actual).toEqual(expected);
+    });
+
+    test(`sub${guildName} returns correct type`, ()=> {
+        //Arrange
+        const expected = {
+            type: guildStuff[`SUB_${upperCase}`]
+        };
+        //Act
+        const actual = guildStuff[`sub${guildName}`]();
+        //Assert
+        expect(actual).toEqual(expected);
+    });    
+}
+
+testGuildActions("Azorius");
+testGuildActions("Orzhov");
+testGuildActions("Dimir");
+testGuildActions("Izzet");
+testGuildActions("Rakdos");
+testGuildActions("Golgari");
+testGuildActions("Gruul");
+testGuildActions("Boros");
+testGuildActions("Selesnya");
+testGuildActions("Simic");
