@@ -98,6 +98,7 @@ export function translateMana(face) { //Now altered to take an individual face
             manaCost.total += manaCost.hybrid[colorpair];
         }
     }
+    //console.log(manaCost);
     return manaCost;
 }
 

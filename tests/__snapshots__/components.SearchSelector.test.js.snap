@@ -15,19 +15,14 @@ exports[`searchSelector matches snapshot 1`] = `
        Standard
     </option>
     <option
-      value="aer"
+      value="grn"
     >
-       Aether Revolt Limited
+       Guilds of Ravnica Limited
     </option>
     <option
-      value="hou"
+      value="m19"
     >
-       Hour of Devastation Limited
-    </option>
-    <option
-      value="rix"
-    >
-       Rivals of Ixalan Limited 
+       M19 Limited
     </option>
     <option
       value="dom"
@@ -35,9 +30,19 @@ exports[`searchSelector matches snapshot 1`] = `
        Dominaria Limited
     </option>
     <option
-      value="m19"
+      value="rix"
     >
-       M19 Limited
+       Rivals of Ixalan Limited 
+    </option>
+    <option
+      value="hou"
+    >
+       OLD: Hour of Devastation Limited
+    </option>
+    <option
+      value="aer"
+    >
+       OLD: Aether Revolt Limited
     </option>
   </select>
   <button

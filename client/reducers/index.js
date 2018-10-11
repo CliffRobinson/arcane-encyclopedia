@@ -8,6 +8,7 @@ import b from "./mana/b";
 import r from "./mana/r";
 import g from "./mana/g";
 import c from "./mana/c";
+import gold from "./mana/gold";
 
 
 import onlyTricks from "./onlyTricks";
@@ -20,6 +21,7 @@ export default combineReducers({
     format,
     cards,
     w, u, b, r, g, c,
+    gold,
     onlyTricks,
     filterLands,
     sort, 

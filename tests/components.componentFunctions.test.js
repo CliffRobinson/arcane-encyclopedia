@@ -250,7 +250,7 @@ test("canCastCardWithMana will let you cast Response // Resurgence with WW or RR
 test("canCastCardWithMana tests against a hypothetical card with shared colored mana and hybrid costs", ()=> {
     const hypotheticalCard = {
         name:"hypothetical card",
-        mana_cost:"{1}{W}{W/U}{U}"
+        mana_cost:"{W}{W/U}{U}"
     };
     const UWW = {   w:2, u:1, b:0, r:0, g:0, generic:0, total:3 };
     const UUW = {   w:1, u:2, b:0, r:0, g:0, generic:0, total:3 };
