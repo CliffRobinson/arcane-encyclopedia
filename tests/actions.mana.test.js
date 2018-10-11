@@ -191,3 +191,4 @@ testGuildActions("Gruul");
 testGuildActions("Boros");
 testGuildActions("Selesnya");
 testGuildActions("Simic");
+testGuildActions("Gold");

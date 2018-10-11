@@ -34,6 +34,9 @@ export const SUB_BOROS = "SUB_BOROS";
 export const SUB_SELESNYA = "SUB_SELESNYA";
 export const SUB_SIMIC = "SUB_SIMIC";
 
+export const ADD_GOLD = "ADD_GOLD";
+export const SUB_GOLD = "SUB_GOLD";
+
 export const CLEAR_MANA = "CLEAR_MANA";
 
 export function addW(){
@@ -244,5 +247,17 @@ export function addSimic(){
 export function subSimic(){
     return {
         type: SUB_SIMIC
+    };
+}
+
+export function addGold(){
+    return {
+        type: ADD_GOLD
+    };
+}
+
+export function subGold(){
+    return {
+        type: SUB_GOLD
     };
 }
