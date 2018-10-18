@@ -57,15 +57,7 @@ function testAddConstants(constant) {
         const action = {
             type:constant
         };
-        const existingState = {
-            w:2,
-            u:1,
-            b:3,
-            r:7,
-            g:1,
-            c:1,
-            total:15
-        };
+        const existingState = 15;
         const expected = 16;
         //Act
         const actual = total(existingState, action);
@@ -99,15 +91,7 @@ function testSubConstants(constant) {
         const action = {
             type:constant
         };
-        const existingState = {
-            w:2,
-            u:1,
-            b:3,
-            r:7,
-            g:1,
-            c:1,
-            total:15
-        };
+        const existingState = 15;
         const expected = 14;
         //Act
         const actual = total(existingState, action);

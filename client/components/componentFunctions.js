@@ -315,10 +315,10 @@ export function mapManaToProps(state){
     Object.keys(state).map(key => {
         props[key] = state[key];
     });
-    props.mana = {total:0};
-    colors.map((color) => {
+    props.mana = {};
+    [...colors, "total"].map((color) => {
         props.mana[color] = state[color];
-        props.mana.total += state[color];
+        //props.mana.total += state[color];
         delete props[color];
     });
     return props;

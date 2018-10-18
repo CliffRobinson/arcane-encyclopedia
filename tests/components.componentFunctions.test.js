@@ -673,6 +673,7 @@ test("mapManaToProps adds mana up correctly", ()=> {
         r:1,
         g:1,
         c:1,
+        total:6
     };
     //Act
     const actual = mapManaToProps(state);

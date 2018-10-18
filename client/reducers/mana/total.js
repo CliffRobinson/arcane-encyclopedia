@@ -11,7 +11,50 @@ import {
 } from "../../actions/mana";
 
 function total(state = 0, action ) {
-
+    switch (action.type) {
+    case ADD_W: 
+    case ADD_U: 
+    case ADD_B: 
+    case ADD_R:
+    case ADD_G:
+    case ADD_C:
+    case ADD_GOLD:
+    case ADD_AZORIUS:
+    case ADD_BOROS:
+    case ADD_DIMIR:
+    case ADD_GOLGARI:
+    case ADD_GRUUL:
+    case ADD_IZZET:
+    case ADD_ORZHOV:
+    case ADD_RAKDOS:
+    case ADD_SELESNYA:
+    case ADD_SIMIC:
+        return state+1;
+    case SUB_W:
+    case SUB_U:
+    case SUB_B:
+    case SUB_R:
+    case SUB_G:
+    case SUB_C:
+    case SUB_GOLD:
+    case SUB_AZORIUS:
+    case SUB_BOROS:
+    case SUB_DIMIR:
+    case SUB_GOLGARI:
+    case SUB_GRUUL:
+    case SUB_IZZET:
+    case SUB_ORZHOV:
+    case SUB_RAKDOS:
+    case SUB_SELESNYA:
+    case SUB_SIMIC:
+        if (state == 0) {
+            return state;
+        } else return state-1;
+    case CLEAR_MANA:
+        return 0;
+    default:
+        return state;
+    }
 }
 
 export default total;
