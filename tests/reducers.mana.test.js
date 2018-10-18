@@ -89,3 +89,98 @@ function testMana(mana, name) {
     });
 }
 
+const reducerObj = {
+    w,u,b,r,g,
+};
+
+function testGuildMana(guildName, mana1, mana2) {
+    test(`ADD_${guildName} adds ${mana1} and ${mana2} to empty mana.`, ()=> {
+        //Arrange
+        const action = {
+            type:`ADD_${guildName}`
+        };
+        //Act
+        let actual = {};
+        actual[mana1] = reducerObj[mana1](undefined, action);
+        actual[mana2] = reducerObj[mana2](undefined, action);
+        //Assert
+        expect(actual[mana1]).toBe(1);
+        expect(actual[mana2]).toBe(1);
+    });
+
+    test(`ADD_${guildName} adds ${mana1} and ${mana2} to existing mana.`, ()=> {
+        //Arrange
+        const action = {
+            type:`ADD_${guildName}`
+        };
+        //Act
+        let actual = {};
+        actual[mana1] = reducerObj[mana1](3, action);
+        actual[mana2] = reducerObj[mana2](2, action);
+        //Assert
+        expect(actual[mana1]).toBe(4);
+        expect(actual[mana2]).toBe(3);
+    });
+
+    test(`SUB_${guildName} subtracts ${mana1} and ${mana2} from existing mana.`, ()=> {
+        //Arrange
+        const action = {
+            type:`SUB_${guildName}`
+        };
+        //Act
+        let actual = {};
+        actual[mana1] = reducerObj[mana1](3, action);
+        actual[mana2] = reducerObj[mana2](2, action);
+        //Assert
+        expect(actual[mana1]).toBe(2);
+        expect(actual[mana2]).toBe(1);
+    });
+
+    test(`SUB_${guildName} does not subtract ${mana1} and ${mana2} from existing mana if both equal zero.`, ()=> {
+        //Arrange
+        const action = {
+            type:`SUB_${guildName}`
+        };
+        //Act
+        let actual = {};
+        actual[mana1] = reducerObj[mana1](0, action);
+        actual[mana2] = reducerObj[mana2](0, action);
+        //Assert
+        expect(actual[mana1]).toBe(0);
+        expect(actual[mana2]).toBe(0);
+    });
+
+    test(`SUB_${guildName} does not subtract ${mana1} and ${mana2} from existing mana if the first equals zero.`, ()=> {
+        //Arrange
+        const action = {
+            type:`SUB_${guildName}`
+        };
+        //Act
+        let actual = {};
+        actual[mana1] = reducerObj[mana1](0, action);
+        actual[mana2] = reducerObj[mana2](1, action);
+        //Assert
+        expect(actual[mana1]).toBe(0);
+        expect(actual[mana2]).toBe(0);
+    });
+
+    test(`SUB_${guildName} does not subtract ${mana1} and ${mana2} from existing mana if the second equals zero.`, ()=> {
+        //Arrange
+        const action = {
+            type:`SUB_${guildName}`
+        };
+        let existingState = {};
+        existingState[mana1] = 1;
+        existingState[mana2] = 0;
+        //Act
+        let actual = {};
+        actual[mana1] = reducerObj[mana1](1, action);
+        actual[mana2] = reducerObj[mana2](0, action);
+        //Assert
+        expect(actual[mana1]).toBe(0);
+        expect(actual[mana2]).toBe(0);
+    });
+
+}
+
+testGuildMana("DIMIR", "u", "b");
