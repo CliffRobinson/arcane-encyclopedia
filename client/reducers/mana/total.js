@@ -8,7 +8,7 @@ import {
     SUB_IZZET, SUB_ORZHOV, SUB_RAKDOS, SUB_SELESNYA, SUB_SIMIC,
 
     CLEAR_MANA
-} from "../client/actions/mana";
+} from "../../actions/mana";
 
 function total(state = 0, action ) {
 
