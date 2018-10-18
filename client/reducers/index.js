@@ -8,7 +8,7 @@ import b from "./mana/b";
 import r from "./mana/r";
 import g from "./mana/g";
 import c from "./mana/c";
-import gold from "./mana/gold";
+//import gold from "./mana/gold";
 import total from "./mana/total";
 
 
@@ -22,7 +22,7 @@ export default combineReducers({
     format,
     cards,
     w, u, b, r, g, c,
-    gold, total,
+    /*gold,*/ total,
     onlyTricks,
     filterLands,
     sort, 
