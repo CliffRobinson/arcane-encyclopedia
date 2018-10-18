@@ -183,4 +183,13 @@ function testGuildMana(guildName, mana1, mana2) {
 
 }
 
+testGuildMana("AZORIUS", "w", "u");
+testGuildMana("BOROS", "w", "r");
 testGuildMana("DIMIR", "u", "b");
+testGuildMana("GOLGARI", "b", "g");
+testGuildMana("GRUUL", "r", "g");
+testGuildMana("IZZET", "u", "r");
+testGuildMana("ORZHOV", "w", "b");
+testGuildMana("RAKDOS", "b", "r");
+testGuildMana("SELESNYA", "w", "g");
+testGuildMana("SIMIC", "u", "g");
