@@ -57,16 +57,16 @@ test("ManaSelector matches snapshot", ()=> {
 // });
 
 
-test("ManaSelector renders mana amounts correctly", ()=>{
-    //Arrange
-    const expected = ["5","4", "3","2","1","0"];
-    //Act
-    const actual = wrapper.find(".manaText");
-    //Assert
-    actual.forEach((node,i) => {
-        expect(node.text()).toEqual(expected[i]);
-    });
-});
+// test("ManaSelector renders mana amounts correctly", ()=>{
+//     //Arrange
+//     const expected = ["5","4", "3","2","1","0"];
+//     //Act
+//     const actual = wrapper.find(".manaText");
+//     //Assert
+//     actual.forEach((node,i) => {
+//         expect(node.text()).toEqual(expected[i]);
+//     });
+// });
 
 test("clear mana button dispatches correct action", () => {
     const buttons = wrapper.find("button");
@@ -74,84 +74,84 @@ test("clear mana button dispatches correct action", () => {
     expect(mockDispatch.mock.calls[0][0]).toEqual(clearMana());
 });
 
-test("Add W button dispatches correct action", ()=> {
-    images.at(0).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(addW());
-});
+// test("Add W button dispatches correct action", ()=> {
+//     images.at(0).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(addW());
+// });
 
-test("Sub W button dispatches correct action", ()=> {
-    images.at(1).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        subW()
-    );
-});
+// test("Sub W button dispatches correct action", ()=> {
+//     images.at(1).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         subW()
+//     );
+// });
 
-test("Add U button dispatches correct action", ()=> {
-    images.at(2).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        addU()
-    );
-});
+// test("Add U button dispatches correct action", ()=> {
+//     images.at(2).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         addU()
+//     );
+// });
 
-test("Sub U button dispatches correct action", ()=> {
-    images.at(3).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        subU()
-    );
-});
+// test("Sub U button dispatches correct action", ()=> {
+//     images.at(3).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         subU()
+//     );
+// });
 
-test("Add B button dispatches correct action", ()=> {
-    images.at(4).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        addB()
-    );
-});
+// test("Add B button dispatches correct action", ()=> {
+//     images.at(4).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         addB()
+//     );
+// });
 
-test("Sub B button dispatches correct action", ()=> {
-    images.at(5).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        subB()
-    );
-});
+// test("Sub B button dispatches correct action", ()=> {
+//     images.at(5).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         subB()
+//     );
+// });
 
-test("Add R button dispatches correct action", ()=> {
-    images.at(6).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        addR()
-    );
-});
+// test("Add R button dispatches correct action", ()=> {
+//     images.at(6).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         addR()
+//     );
+// });
 
-test("Sub R button dispatches correct action", ()=> {
-    images.at(7).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        subR()
-    );
-});
+// test("Sub R button dispatches correct action", ()=> {
+//     images.at(7).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         subR()
+//     );
+// });
 
-test("Add G button dispatches correct action", ()=> {
-    images.at(8).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        addG()
-    );
-});
+// test("Add G button dispatches correct action", ()=> {
+//     images.at(8).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         addG()
+//     );
+// });
 
-test("Sub G button dispatches correct action", ()=> {
-    images.at(9).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        subG()
-    );
-});
+// test("Sub G button dispatches correct action", ()=> {
+//     images.at(9).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         subG()
+//     );
+// });
 
-test("Add C button dispatches correct action", ()=> {
-    images.at(10).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        addC()
-    );
-});
+// test("Add C button dispatches correct action", ()=> {
+//     images.at(10).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         addC()
+//     );
+// });
 
-test("Sub C button dispatches correct action", ()=> {
-    images.at(11).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(
-        subC()
-    );
-});
+// test("Sub C button dispatches correct action", ()=> {
+//     images.at(11).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(
+//         subC()
+//     );
+// });
