@@ -2,7 +2,21 @@ import React from "react";
 import { connect } from "react-redux";
 import { addW, addU, addB, addR, addG, addC} from "../actions/mana";
 import { subW, subU, subB, subR, subG, subC, clearMana} from "../actions/mana";
+
+import {    
+    addAzorius, subAzorius, 
+    addBoros, subBoros, 
+    addDimir, subDimir,
+    addGolgari, subGolgari,
+    addGruul, subGruul,
+    addIzzet, subIzzet, 
+    addOrzhov, subOrzhov,
+    addRakdos, subRakdos,
+    addSelesnya, subSelesnya,
+    addSimic, subSimic,
+} from "../actions/mana";
 import {mapManaToProps} from "./componentFunctions";
+import {ManaRow} from "./manaRow";
 
 export function ManaSelector(props) {
     return (
@@ -63,6 +77,13 @@ export function ManaSelector(props) {
             <div>
                 <button className="button is-small" onClick={ ()=> props.dispatch(clearMana())}> Clear Mana</button>
             </div>
+            <ManaRow icon="ms ms-rw ms-cost ms-shadow" 
+                add = {
+                    () => props.dispatch(addBoros())
+                } sub ={
+                    () => props.dispatch(subBoros())
+                }/>
+            
         </div>
     );
 

@@ -1,4 +1,4 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualsFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName } from "../client/components/componentFunctions";
 
 import {data as fakeCards}  from "./testData.json";
 import {data as fakeGrnCards} from "./testGrnData.json";
@@ -603,7 +603,7 @@ test("numberEqualFilter can get all cards with CMC equal to 2", () => {
         fakeCards[6], //L. Cubby: 2
     ];
     //Act
-    const actual = numberEqualFilter(fakeCards, "cmc", 2, "equal");
+    const actual = numberEqualsFilter(fakeCards, "cmc", 2, "equal");
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);

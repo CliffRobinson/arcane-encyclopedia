@@ -275,7 +275,7 @@ export function numberLessFilter(cards, key, num) {
     return customNumberFilter(cards, key, num, "less");
 }
 
-export function numberEqualFilter(cards, key, num) {
+export function numberEqualsFilter(cards, key, num) {
     return customNumberFilter(cards, key, num, "equal");
 }
 
@@ -306,7 +306,7 @@ export function customNumberFilter(cards, key, num, comp) {
 export const filterFuncs = {
     customTextFilter,
     numberLessFilter,
-    numberEqualFilter,
+    numberEqualsFilter,
     numberMoreFilter
 };
 
