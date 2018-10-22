@@ -6,23 +6,28 @@ export class ManaRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            num:0
+            num:0, 
         };
         this.add = this.add.bind(this);
         this.sub = this.sub.bind(this);
     }
 
     render() {
-        return (
-            <div className="manaRow">
-                <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ this.add } />
-                <span  className="manaContainer">
-                    <i className={this.props.icon}></i>
-                    <span className="manaText">{this.state.num != 0 && this.state.num }</span> 
-                </span>
-                <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ this.sub } />
-            </div>
-        );
+
+        if(this.props.showHybrid || this.state.num != 0){        
+            return (
+                <div className="manaRow">
+                    <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ this.add } />
+                    <span  className="manaContainer">
+                        <i className={this.props.icon}></i>
+                        <span className="manaText">{this.state.num != 0 && this.state.num }</span> 
+                    </span>
+                    <img className="manaButton" src="/images/mtga-button-minus.png" onClick={ this.sub } />
+                </div>
+            );
+        } else {
+            return null;
+        }
     }
 
     add() {
