@@ -20,9 +20,6 @@ const mockMana = {
 };
 let images;
 
-
-//const snapshot = "<div class=\"manaSelector\"><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-w ms-cost ms-shadow\"></i><span class=\"manaText\">5</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-u ms-cost ms-shadow\"></i><span class=\"manaText\">4</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-b ms-cost ms-shadow\"></i><span class=\"manaText\">3</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-r ms-cost ms-shadow\"></i><span class=\"manaText\">2</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-g ms-cost ms-shadow\"></i><span class=\"manaText\">1</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div class=\"manaRow\"><img class=\"manaButton\" src=\"/images/mtga-button-transparent.png\"/><span class=\"manaContainer\"><i class=\"ms ms-c ms-cost ms-shadow\"></i><span class=\"manaText\">0</span></span><img class=\"manaButton\" src=\"/images/mtga-button-minus.png\"/></div><div><button class=\"button is-small\"> Clear Mana</button></div></div>";
-
 beforeEach(() => {
     
     mockDispatch = jest.fn();
@@ -68,11 +65,11 @@ test("ManaSelector matches snapshot", ()=> {
 //     });
 // });
 
-test("clear mana button dispatches correct action", () => {
-    const buttons = wrapper.find("button");
-    buttons.at(0).props().onClick();
-    expect(mockDispatch.mock.calls[0][0]).toEqual(clearMana());
-});
+// test("clear mana button dispatches correct action", () => {
+//     const buttons = wrapper.find("button");
+//     buttons.at(0).props().onClick();
+//     expect(mockDispatch.mock.calls[0][0]).toEqual(clearMana());
+// });
 
 // test("Add W button dispatches correct action", ()=> {
 //     images.at(0).props().onClick();
