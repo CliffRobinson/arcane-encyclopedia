@@ -19,7 +19,7 @@ export class ClearButton extends React.Component {
     render() {
         return (
             <div>
-                <button className="button is-small" onClick={ this.handleClick }> Clear Mana (component)</button>
+                <button className="button is-small" onClick={ this.handleClick }> Clear Mana</button>
             </div>);
     }
 }

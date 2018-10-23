@@ -6,7 +6,7 @@ exports[`ClearButton matches snapshot 1`] = `
     className="button is-small"
     onClick={[Function]}
   >
-     Clear Mana (component)
+     Clear Mana
   </button>
 </div>
 `;
