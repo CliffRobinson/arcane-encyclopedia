@@ -3,58 +3,51 @@ import {shallow, mount} from "enzyme";
 
 import { ManaRow } from "../client/components/ManaRow";
 
-test("manaRow matches snapshot", ()=> {
+test("manaRow matches snapshot with no mana and display set to true (should display)", ()=> {
     expect(
-        toJson(shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow"/>))
-    );
+        toJson(shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" showHybrid={true}/>))
+    ).toMatchSnapshot();
 });
+
+test("manaRow matches snapshot with no mana and display set to false (should not display)", ()=> {
+    expect(
+        toJson(shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" num={0} showHybrid={false}/>))
+    ).toMatchSnapshot();
+});
+
+test("manaRow matches snapshot when there is mana but display is set to false (should display)", ()=> {
+    expect(
+        toJson(shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" num={2} showHybrid={false}/>))
+    ).toMatchSnapshot();
+});
+
 
 test("add button functionality", ()=> {
     //Arrange
-    const fakeAdd = jest.fn();
-    const testRow = shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" add={fakeAdd} />);
+    const fakeAdd = jest.fn().mockImplementation(() => "I am a fake add function");
+    const fakeDispatch = jest.fn();
+    const fakeChange = jest.fn();
+    const testRow = shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" manaName="boros" add={fakeAdd} showHybrid={true} num={0} changeMana={fakeChange} dispatch={fakeDispatch}/>);
     const buttons = testRow.find("img");
-    const expectedState = {
-        num:1
-    };
     //Act
     buttons.at(0).props().onClick();
     //Assert
-    expect(testRow.instance().state).toEqual(expectedState);
+    expect(fakeChange).toBeCalledWith("boros", 1);
+    expect(fakeDispatch).toBeCalledWith("I am a fake add function");
     expect(fakeAdd).toBeCalled();
 });
 
-test("sub button when mana is 0", ()=> {
+test("sub button", ()=> {
     //Arrange
-    const fakeAdd = jest.fn();
-    const fakeSub = jest.fn();
-    const testRow = shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" add={fakeAdd} sub={fakeSub}/>);
+    const fakeSub = jest.fn().mockImplementation(() => "I am a fake sub function");
+    const fakeDispatch = jest.fn();
+    const fakeChange = jest.fn();
+    const testRow = shallow(<ManaRow icon="ms ms-rw ms-cost ms-shadow" manaName="boros" sub={fakeSub} showHybrid={true} num={0} changeMana={fakeChange} dispatch={fakeDispatch}/>);
     const buttons = testRow.find("img");
-    const expectedState = {
-        num:0
-    };
     //Act
     buttons.at(1).props().onClick();
     //Assert
-    expect(testRow.instance().state).toEqual(expectedState);
-    expect(fakeSub).not.toBeCalled();   
-});
-
-test("sub button when mana is 1", ()=> {
-    //Arrange
-    const fakeAdd = jest.fn();
-    const fakeSub = jest.fn();
-    const testRow = mount(<ManaRow icon="ms ms-rw ms-cost ms-shadow" add={fakeAdd} sub={fakeSub}/>);
-    testRow.setState({
-        num:2
-    });
-    const buttons = testRow.find("img");
-    const expectedState = {
-        num:1
-    };
-    //Act
-    buttons.at(1).props().onClick();
-    //Assert
-    expect(testRow.instance().state).toEqual(expectedState);
-    expect(fakeSub).toBeCalled();   
+    expect(fakeSub).toBeCalled();
+    expect(fakeChange).toHaveBeenCalledWith("boros", -1);
+    expect(fakeDispatch).toBeCalledWith("I am a fake sub function");   
 });

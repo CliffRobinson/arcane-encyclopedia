@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`manaRow matches snapshot when there is mana but display is set to false (should display) 1`] = `
+<div
+  className="manaRow"
+>
+  <img
+    className="manaButton"
+    onClick={[Function]}
+    src="/images/mtga-button-transparent.png"
+  />
+  <span
+    className="manaContainer"
+  >
+    <i
+      className="ms ms-rw ms-cost ms-shadow"
+    />
+    <span
+      className="manaText"
+    >
+      2
+    </span>
+  </span>
+  <img
+    className="manaButton"
+    onClick={[Function]}
+    src="/images/mtga-button-minus.png"
+  />
+</div>
+`;
+
+exports[`manaRow matches snapshot with no mana and display set to false (should not display) 1`] = `""`;
+
+exports[`manaRow matches snapshot with no mana and display set to true (should display) 1`] = `
+<div
+  className="manaRow"
+>
+  <img
+    className="manaButton"
+    onClick={[Function]}
+    src="/images/mtga-button-transparent.png"
+  />
+  <span
+    className="manaContainer"
+  >
+    <i
+      className="ms ms-rw ms-cost ms-shadow"
+    />
+    <span
+      className="manaText"
+    />
+  </span>
+  <img
+    className="manaButton"
+    onClick={[Function]}
+    src="/images/mtga-button-minus.png"
+  />
+</div>
+`;

@@ -5,16 +5,12 @@ import { mapManaToProps } from "./componentFunctions";
 export class ManaRow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            num:0, 
-        };
         this.add = this.add.bind(this);
         this.sub = this.sub.bind(this);
     }
 
     render() {
-
-        if(this.props.showHybrid || this.state.num != 0){        
+        if(this.props.showHybrid || this.props.num != 0){        
             return (
                 <div className="manaRow">
                     <img className="manaButton" src="/images/mtga-button-transparent.png" onClick={ this.add } />
@@ -31,13 +27,13 @@ export class ManaRow extends React.Component {
     }
 
     add() {
-        this.props.changeMana(this.props.mana, this.props.num+1);
-        this.props.add();
+        this.props.changeMana(this.props.manaName, this.props.num+1);
+        this.props.dispatch(this.props.add());
     }
 
     sub() {
-        this.props.changeMana(this.props.mana, this.props.num-1);
-        this.props.sub();
+        this.props.changeMana(this.props.manaName, this.props.num-1);
+        this.props.dispatch(this.props.sub());
     }
 
 

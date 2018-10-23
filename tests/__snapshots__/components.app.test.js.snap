@@ -19,7 +19,7 @@ exports[`App matches snapshot 1`] = `
       <Connect(Cards) />
     </div>
     <div>
-      <Connect(ManaSelector) />
+      <ManaSelector />
     </div>
   </div>
 </div>
