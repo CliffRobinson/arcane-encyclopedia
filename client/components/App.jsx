@@ -11,18 +11,18 @@ const App = () => {
             <div className="topTwo">
                 <SearchSelector />
                 <FilterBar />
-            </ div>
+            </div>
 
             <div className="flexContain">
                 <div className="main">
                     <Cards />
-                </ div>
-                <div >
+                </div>
+                <div className="sideColumn">
                     <ManaSelector />
-                </ div>
+                </div>
                 
-            </ div>
-        </ div>
+            </div>
+        </div>
     );
 };
 
