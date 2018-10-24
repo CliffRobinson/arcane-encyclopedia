@@ -24,7 +24,6 @@ export class ManaSelector extends React.Component {
 
         this.state = {
             extend: false,
-            //showHybrid:false,
             w:0,
             u:0,
             b:0,
@@ -43,7 +42,6 @@ export class ManaSelector extends React.Component {
             simic:      0
         };
         this.toggleExtend = this.toggleExtend.bind(this);
-        this.toggleHybrid = this.toggleHybrid.bind(this);
         this.changeMana = this.changeMana.bind(this);
         this.clearSelectorMana = this.clearSelectorMana.bind(this);
     }
@@ -53,12 +51,6 @@ export class ManaSelector extends React.Component {
             extend: !this.state.extend
         });
     }
-
-    // toggleHybrid() {
-    //     this.setState({
-    //         showHybrid: !this.state.showHybrid
-    //     });
-    // }
 
     changeMana(mana, num) {
         let stateObj = {};
@@ -176,7 +168,6 @@ export class ManaSelector extends React.Component {
             </div>
         </div>);
     }
-
 }
 
 
