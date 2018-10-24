@@ -24,7 +24,7 @@ export class ManaSelector extends React.Component {
 
         this.state = {
             extend: false,
-            showHybrid:false,
+            //showHybrid:false,
             w:0,
             u:0,
             b:0,
@@ -54,11 +54,11 @@ export class ManaSelector extends React.Component {
         });
     }
 
-    toggleHybrid() {
-        this.setState({
-            showHybrid: !this.state.showHybrid
-        });
-    }
+    // toggleHybrid() {
+    //     this.setState({
+    //         showHybrid: !this.state.showHybrid
+    //     });
+    // }
 
     changeMana(mana, num) {
         let stateObj = {};
@@ -144,25 +144,25 @@ export class ManaSelector extends React.Component {
     
                         <ManaRow icon="ms ms-g ms-cost ms-shadow" num = {this.state.g} manaName="g" add = {addG} sub ={subG} showHybrid={true} changeMana={this.changeMana}/>
         
-                        <ManaRow icon="ms ms-wu ms-cost ms-shadow" num = {this.state.azorius}   manaName="azorius"     add = {addAzorius}   sub ={subAzorius} showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-wu ms-cost ms-shadow" num = {this.state.azorius}   manaName="azorius"     add = {addAzorius}   sub ={subAzorius} showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-wb ms-cost ms-shadow" num = {this.state.orzhov}    manaName="orzhov"      add = {addOrzhov}    sub ={subOrzhov}  showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-wb ms-cost ms-shadow" num = {this.state.orzhov}    manaName="orzhov"      add = {addOrzhov}    sub ={subOrzhov}  showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-ub ms-cost ms-shadow" num = {this.state.dimir}     manaName="dimir"       add = {addDimir}     sub ={subDimir}   showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-ub ms-cost ms-shadow" num = {this.state.dimir}     manaName="dimir"       add = {addDimir}     sub ={subDimir}   showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-ur ms-cost ms-shadow" num = {this.state.izzet}     manaName="izzet"       add = {addIzzet}     sub ={subIzzet}   showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-ur ms-cost ms-shadow" num = {this.state.izzet}     manaName="izzet"       add = {addIzzet}     sub ={subIzzet}   showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-br ms-cost ms-shadow" num = {this.state.rakdos}    manaName="rakdos"      add = {addRakdos}    sub ={subRakdos}  showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-br ms-cost ms-shadow" num = {this.state.rakdos}    manaName="rakdos"      add = {addRakdos}    sub ={subRakdos}  showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-bg ms-cost ms-shadow" num = {this.state.golgari}   manaName="golgari"     add = {addGolgari}   sub ={subGolgari} showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-bg ms-cost ms-shadow" num = {this.state.golgari}   manaName="golgari"     add = {addGolgari}   sub ={subGolgari} showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-rg ms-cost ms-shadow" num = {this.state.gruul}     manaName="gruul"       add = {addGruul}     sub ={subGruul}   showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-rg ms-cost ms-shadow" num = {this.state.gruul}     manaName="gruul"       add = {addGruul}     sub ={subGruul}   showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-rw ms-cost ms-shadow" num = {this.state.boros}     manaName="boros"       add = {addBoros}     sub ={subBoros}   showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-rw ms-cost ms-shadow" num = {this.state.boros}     manaName="boros"       add = {addBoros}     sub ={subBoros}   showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-gw ms-cost ms-shadow" num = {this.state.selesnya}  manaName="selesnya"    add = {addSelesnya}  sub ={subSelesnya}    showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-gw ms-cost ms-shadow" num = {this.state.selesnya}  manaName="selesnya"    add = {addSelesnya}  sub ={subSelesnya}    showHybrid={false} changeMana={this.changeMana}/>
     
-                        <ManaRow icon="ms ms-gu ms-cost ms-shadow" num = {this.state.simic}     manaName="simic"       add = {addSimic}     sub ={subSimic}   showHybrid={this.state.showHybrid} changeMana={this.changeMana}/>
+                        <ManaRow icon="ms ms-gu ms-cost ms-shadow" num = {this.state.simic}     manaName="simic"       add = {addSimic}     sub ={subSimic}   showHybrid={false} changeMana={this.changeMana}/>
                 
                     </div>
                 )}
