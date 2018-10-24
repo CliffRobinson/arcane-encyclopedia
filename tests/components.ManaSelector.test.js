@@ -8,34 +8,67 @@ import {ManaSelector} from "../client/components/ManaSelector";
 import {clearMana, addW, subW, addU, subU, addB, subB, addR, subR, addG, subG, addC, subC} from "../client/actions/mana";
 
 
-let wrapper;
-let mockDispatch;
-const mockMana = {
-    w:5,
-    u:4,
-    b:3,
-    r:2,
-    g:1,
-    c:0
-};
-let images;
+// let wrapper;
+// let mockDispatch;
+// const mockMana = {
+//     w:5,
+//     u:4,
+//     b:3,
+//     r:2,
+//     g:1,
+//     c:0
+// };
+// let images;
 
-beforeEach(() => {
+// beforeEach(() => {
     
-    mockDispatch = jest.fn();
-    wrapper = shallow(<ManaSelector mana={mockMana} dispatch={mockDispatch}/>);
-    images = wrapper.find("img");
-});
+//     mockDispatch = jest.fn();
+//     wrapper = shallow(<ManaSelector mana={mockMana} dispatch={mockDispatch}/>);
+//     images = wrapper.find("img");
+// });
 
 test("ManaSelector matches snapshot", ()=> {
     expect(
-        toJson(wrapper)
+        toJson(shallow(<ManaSelector />))
     ).toMatchSnapshot();
 });
 
 test("clearSelectorMana sets all mana values to zero", () => {
     //Arrange
     const testSelector = shallow(<ManaSelector />);
+    const expectedState = {
+        extend: false,
+        w:0,
+        u:0,
+        b:0,
+        r:0,
+        g:0,
+        c:0,
+        azorius:    0,
+        orzhov:     0,
+        dimir:      0,
+        izzet:      0,
+        rakdos:     0,
+        golgari:    0,
+        gruul:      0,
+        boros:      0,
+        selesnya:   0,
+        simic:      0
+    };
+    //Act
+    testSelector.instance().clearSelectorMana();
+    //Assert
+    expect(testSelector.state()).toEqual(expectedState);
+});
+
+test("clearSelectorMana sets all mana values to zero where state has been altered.", () => {
+    //Arrange
+    const testSelector = shallow(<ManaSelector />);
+    testSelector.setState({
+        w:1,
+        r:1,
+        boros:1
+    });
     const expectedState = {
         extend: false,
         w:0,

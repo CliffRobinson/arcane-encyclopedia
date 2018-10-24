@@ -59,7 +59,6 @@ export class ManaSelector extends React.Component {
         } else {
             stateObj[mana] = num;
         }
-        
         this.setState(stateObj);
     }
 

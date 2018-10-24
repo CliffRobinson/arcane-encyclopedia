@@ -1,3 +1,168 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ManaSelector matches snapshot 1`] = `undefined`;
+exports[`ManaSelector matches snapshot 1`] = `
+<div
+  className="selector-wrapper"
+>
+  <div
+    className="manaSelector"
+  >
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-w ms-cost ms-shadow"
+      manaName="w"
+      num={0}
+      showHybrid={true}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-u ms-cost ms-shadow"
+      manaName="u"
+      num={0}
+      showHybrid={true}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-b ms-cost ms-shadow"
+      manaName="b"
+      num={0}
+      showHybrid={true}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-r ms-cost ms-shadow"
+      manaName="r"
+      num={0}
+      showHybrid={true}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-g ms-cost ms-shadow"
+      manaName="g"
+      num={0}
+      showHybrid={true}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-wu ms-cost ms-shadow"
+      manaName="azorius"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-wb ms-cost ms-shadow"
+      manaName="orzhov"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-ub ms-cost ms-shadow"
+      manaName="dimir"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-ur ms-cost ms-shadow"
+      manaName="izzet"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-br ms-cost ms-shadow"
+      manaName="rakdos"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-bg ms-cost ms-shadow"
+      manaName="golgari"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-rg ms-cost ms-shadow"
+      manaName="gruul"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-rw ms-cost ms-shadow"
+      manaName="boros"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-gw ms-cost ms-shadow"
+      manaName="selesnya"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-gu ms-cost ms-shadow"
+      manaName="simic"
+      num={0}
+      showHybrid={false}
+      sub={[Function]}
+    />
+  </div>
+  <div
+    className="selector-bottom"
+  >
+    <Connect(ManaRow)
+      add={[Function]}
+      changeMana={[Function]}
+      icon="ms ms-c ms-cost ms-shadow"
+      manaName="c"
+      num={0}
+      showHybrid={true}
+      sub={[Function]}
+    />
+    <Connect(ClearButton)
+      clearSelectorMana={[Function]}
+    />
+    <button
+      onClick={[Function]}
+    >
+      Toggle Extend
+    </button>
+  </div>
+</div>
+`;
