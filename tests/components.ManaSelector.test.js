@@ -33,6 +33,34 @@ test("ManaSelector matches snapshot", ()=> {
     ).toMatchSnapshot();
 });
 
+test("clearSelectorMana sets all mana values to zero", () => {
+    //Arrange
+    const testSelector = shallow(<ManaSelector />);
+    const expectedState = {
+        extend: false,
+        w:0,
+        u:0,
+        b:0,
+        r:0,
+        g:0,
+        c:0,
+        azorius:    0,
+        orzhov:     0,
+        dimir:      0,
+        izzet:      0,
+        rakdos:     0,
+        golgari:    0,
+        gruul:      0,
+        boros:      0,
+        selesnya:   0,
+        simic:      0
+    };
+    //Act
+    testSelector.instance().clearSelectorMana();
+    //Assert
+    expect(testSelector.state()).toEqual(expectedState);
+});
+
 // test("ManaSelector displays default html", ()=> {
 //     //Arrange
 //     const expected = snapshot;

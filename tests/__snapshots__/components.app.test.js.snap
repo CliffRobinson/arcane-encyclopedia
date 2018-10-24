@@ -18,7 +18,9 @@ exports[`App matches snapshot 1`] = `
     >
       <Connect(Cards) />
     </div>
-    <div>
+    <div
+      className="sideColumn"
+    >
       <ManaSelector />
     </div>
   </div>
