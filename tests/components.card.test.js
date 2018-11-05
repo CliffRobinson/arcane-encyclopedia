@@ -21,3 +21,9 @@ test("not a card matches snapshot", ()=>{
         toJson(shallow(<Card card={{}} />))
     ).toMatchSnapshot();
 });
+
+test("split card matches snapshot", ()=> {
+    expect(
+        toJson(shallow(<Card card={fakeCards[8]} />))
+    ).toMatchSnapshot();
+});

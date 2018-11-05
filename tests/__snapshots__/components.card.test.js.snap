@@ -32,6 +32,7 @@ exports[`regular card matches snapshot 1`] = `
     hideOnClick={true}
     html={
       <img
+        className="tooltip-img"
         src="https://img.scryfall.com/cards/normal/en/rix/185.jpg?1524752669"
       />
     }
@@ -46,7 +47,7 @@ exports[`regular card matches snapshot 1`] = `
     onShow={[Function]}
     onShown={[Function]}
     popperOptions={Object {}}
-    position="top"
+    position="right"
     size="regular"
     sticky={false}
     stickyDuration={200}
@@ -63,9 +64,147 @@ exports[`regular card matches snapshot 1`] = `
 </React.Fragment>
 `;
 
+exports[`split card matches snapshot 1`] = `
+<React.Fragment>
+  <Tooltip
+    animateFill={true}
+    animation="shift"
+    arrow={false}
+    arrowSize="regular"
+    className=""
+    delay={0}
+    disabled={false}
+    distance={10}
+    duration={375}
+    followCursor={false}
+    hideDelay={0}
+    hideDuration={375}
+    hideOnClick={true}
+    html={
+      <img
+        className="tooltip-img tooltip-split"
+        src="https://img.scryfall.com/cards/normal/en/akh/220a.jpg?1517813031"
+      />
+    }
+    inertia={false}
+    interactive={false}
+    interactiveBorder={2}
+    multiple={false}
+    offset={0}
+    onHidden={[Function]}
+    onHide={[Function]}
+    onRequestClose={[Function]}
+    onShow={[Function]}
+    onShown={[Function]}
+    popperOptions={Object {}}
+    position="right"
+    size="regular"
+    sticky={false}
+    stickyDuration={200}
+    style={Object {}}
+    theme="dark"
+    touchHold={false}
+    trigger="mouseenter"
+    unmountHTMLWhenHide={false}
+  >
+    <img
+      src="https://img.scryfall.com/cards/small/en/akh/220a.jpg?1517813031"
+    />
+  </Tooltip>
+</React.Fragment>
+`;
+
 exports[`transform card matches snapshot 1`] = `
-Array [
-  <React.Fragment />,
-  <React.Fragment />,
-]
+<React.Fragment>
+  <Tooltip
+    animateFill={true}
+    animation="shift"
+    arrow={false}
+    arrowSize="regular"
+    className=""
+    delay={0}
+    disabled={false}
+    distance={10}
+    duration={375}
+    followCursor={false}
+    hideDelay={0}
+    hideDuration={375}
+    hideOnClick={true}
+    html={
+      <img
+        className="tooltip-img"
+        src="https://img.scryfall.com/cards/normal/en/m19/218a.jpg?1531451175"
+      />
+    }
+    inertia={false}
+    interactive={false}
+    interactiveBorder={2}
+    multiple={false}
+    offset={0}
+    onHidden={[Function]}
+    onHide={[Function]}
+    onRequestClose={[Function]}
+    onShow={[Function]}
+    onShown={[Function]}
+    popperOptions={Object {}}
+    position="right"
+    size="regular"
+    sticky={false}
+    stickyDuration={200}
+    style={Object {}}
+    theme="dark"
+    touchHold={false}
+    trigger="mouseenter"
+    unmountHTMLWhenHide={false}
+  >
+    <img
+      src="https://img.scryfall.com/cards/small/en/m19/218a.jpg?1531451175"
+    />
+  </Tooltip>
+  <Tooltip
+    animateFill={true}
+    animation="shift"
+    arrow={false}
+    arrowSize="regular"
+    className=""
+    delay={0}
+    disabled={false}
+    distance={10}
+    duration={375}
+    followCursor={false}
+    hideDelay={0}
+    hideDuration={375}
+    hideOnClick={true}
+    html={
+      <img
+        className="tooltip-img"
+        src="https://img.scryfall.com/cards/normal/en/m19/218b.jpg?1531451175"
+      />
+    }
+    inertia={false}
+    interactive={false}
+    interactiveBorder={2}
+    multiple={false}
+    offset={0}
+    onHidden={[Function]}
+    onHide={[Function]}
+    onRequestClose={[Function]}
+    onShow={[Function]}
+    onShown={[Function]}
+    popperOptions={Object {}}
+    position="right"
+    size="regular"
+    sticky={false}
+    stickyDuration={200}
+    style={Object {}}
+    theme="dark"
+    touchHold={false}
+    trigger="mouseenter"
+    unmountHTMLWhenHide={false}
+  >
+    <img
+      src="https://img.scryfall.com/cards/small/en/m19/218b.jpg?1531451175"
+    />
+  </Tooltip>
+</React.Fragment>
 `;

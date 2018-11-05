@@ -85,8 +85,16 @@ i {
     vertical-align: middle;
 }
 
-  .flexContain {
-      display:grid;
-      grid-template-columns: 1fr 106px;
+.flexContain {
+    display:grid;
+    grid-template-columns: 1fr 106px;
+    
+}
 
-  }
+.tooltip-img {
+    width:350px;
+}
+
+.tooltip-split{
+    transform:rotate(90deg)
+}

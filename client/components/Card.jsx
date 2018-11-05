@@ -6,14 +6,28 @@ const Card = (props) => {
     let hoverCardSize = "normal";
 
     switch (props.card.layout) {
-    case "normal":
-    case "saga":
     case "split":
         return (
             <React.Fragment> 
                 <Tooltip
                     trigger='mouseenter'
-                    html={<img src={props.card.image_uris[hoverCardSize]}></img>}
+                    position='right'
+                    html={<img className = "tooltip-img tooltip-split" src={props.card.image_uris[hoverCardSize]}></img>}
+                >   
+                
+                    <img src={props.card.image_uris[cardSize]}></img>
+             
+                </Tooltip>
+            </React.Fragment>
+        );
+    case "normal":
+    case "saga":
+        return (
+            <React.Fragment> 
+                <Tooltip
+                    trigger='mouseenter'
+                    position='right'
+                    html={<img className = "tooltip-img" src={props.card.image_uris[hoverCardSize]}></img>}
                 >   
                     
                     <img src={props.card.image_uris[cardSize]}></img>
@@ -23,20 +37,24 @@ const Card = (props) => {
         );
 
     case "transform":
-        return props.card.card_faces.map((face, i) => {
-            return (
-                <React.Fragment>
-                    <Tooltip
-                        trigger='mousenter'
-                        html = {<img src={face.image_uris[hoverCardSize]}></img>}
-                    >
-                        
-                        <img src={face.image_uris[cardSize]}></img>
-                    </Tooltip>
-                 
-                </React.Fragment>
-            );            
-        });
+        
+        return (
+            <React.Fragment>
+                {props.card.card_faces.map(
+                    (face) => 
+                        (<Tooltip
+                            trigger='mouseenter'
+                            position='right'
+                            html = {
+                                <img className = "tooltip-img" src={face.image_uris[hoverCardSize]}></img>
+                            }
+                        >
+                            <img src={face.image_uris[cardSize]}></img>
+                        </Tooltip>)
+                )}
+            </React.Fragment>
+        );            
+       
     default:
         return (
             <div style={{maxWidth:"146 px", border:"1px solid black"}}>
