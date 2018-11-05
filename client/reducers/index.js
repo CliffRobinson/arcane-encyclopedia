@@ -17,7 +17,7 @@ import format from "./format";
 import filterLands from "./filterLands";
 import sort from "./sort";
 import customFilters from "./customFilters";
-import
+import list from "./list";
 
 export default combineReducers({
     format,
@@ -27,5 +27,6 @@ export default combineReducers({
     onlyTricks,
     filterLands,
     sort, 
-    customFilters
+    customFilters,
+    list
 });
