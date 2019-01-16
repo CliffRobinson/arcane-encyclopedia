@@ -163,7 +163,7 @@ export class ManaSelector extends React.Component {
 
                 <ClearButton clearSelectorMana={this.clearSelectorMana}/>
 
-                <button onClick = {this.toggleExtend}>Toggle Extend</button>
+                <button className="button is-small" onClick = {this.toggleExtend}>Toggle Hybrid</button>
             </div>
         </div>);
     }
