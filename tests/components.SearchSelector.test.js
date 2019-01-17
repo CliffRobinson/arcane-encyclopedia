@@ -106,12 +106,12 @@ test("getCardsFromScryfall dispatches correct data when search has multiple resu
     testSelector.getCardsFromScryfall(testQuery, testCallback);   
 });
 
-test("defaultCallback, lol", ()=> {
-    expect(defaultCallback("butts")).toBe(true);
+test("defaultCallback returns true", ()=> {
+    expect(defaultCallback("test")).toBe(true);
 });
 
-test("mapStateToProps, lol", () => {
-    expect(mapStateToProps("butts")).toBe("butts");
+test("mapStateToProps returns its arguments.", () => {
+    expect(mapStateToProps("test")).toBe("test");
 });
 
 
