@@ -3,7 +3,7 @@
 import {
     STANDARD, M19, DOM,
     RIX, XLN, HOU, AKH,
-    AER, KLD, GRN
+    AER, KLD, GRN, RNA
 } from "../client/actions/format";
 
 import format, {searchStrings} from "../client/reducers/format";
@@ -145,6 +145,18 @@ test("Test grn case", ()=>{
     };
     //Act
     const actual = format(undefined, action);
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("Test rna case", ()=>{
+    //Arrange
+    const expected = searchStrings.rna;
+    const action = {
+        type: RNA
+    };
+    //Act
+    const actual = format(undefined, action)
     //Assert
     expect(actual).toEqual(expected);
 });
