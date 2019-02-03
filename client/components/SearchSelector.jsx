@@ -32,6 +32,7 @@ export class SearchSelector extends React.Component {
                 <select className= {`select ${size}`} onChange={this.searchHandleChange}> 
                     {/*values of options correspond to the action to dispatch*/}
                     <option value="standard"> Standard</option>
+                    <option value="rna"> Ravnica Allegiance Limited</option>
                     <option value="grn"> Guilds of Ravnica Limited</option>
                     <option value="m19"> M19 Limited</option>
                     <option value="dom"> Dominaria Limited</option>

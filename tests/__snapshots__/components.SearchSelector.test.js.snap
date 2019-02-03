@@ -15,6 +15,11 @@ exports[`searchSelector matches snapshot 1`] = `
        Standard
     </option>
     <option
+      value="rna"
+    >
+       Ravnica Allegiance Limited
+    </option>
+    <option
       value="grn"
     >
        Guilds of Ravnica Limited
