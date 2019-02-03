@@ -18,7 +18,7 @@ test("clicking the button calls functions correctly", ()=> {
     //Act
     testButton.find('button').at(0).props().onClick();
     //Assert
-    console.log(fakeClear.mock.calls);
+    //console.log(fakeClear.mock.calls);
     expect(fakeDispatch).toBeCalledWith(clearMana());
     expect(fakeClear).toBeCalled();
 });
