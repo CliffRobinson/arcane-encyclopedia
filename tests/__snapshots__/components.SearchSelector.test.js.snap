@@ -103,11 +103,5 @@ exports[`searchSelector matches snapshot 1`] = `
     type="checkbox"
   />
    Exclude Lands
-  <button
-    className="button is-small"
-    onClick={[Function]}
-  >
-     Get Fakes 
-  </button>
 </div>
 `;

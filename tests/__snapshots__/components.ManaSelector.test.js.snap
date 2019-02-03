@@ -159,9 +159,10 @@ exports[`ManaSelector matches snapshot 1`] = `
       clearSelectorMana={[Function]}
     />
     <button
+      className="button is-small"
       onClick={[Function]}
     >
-      Toggle Extend
+      Toggle Hybrid
     </button>
   </div>
 </div>

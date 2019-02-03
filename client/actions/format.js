@@ -8,6 +8,7 @@ export const AKH = "AKH";
 export const AER = "AER";
 export const KLD = "KLD";
 export const GRN = "GRN";
+export const RNA = "RNA";
 
 export function standard(){
     return {
@@ -66,5 +67,11 @@ export function kld(){
 export function grn(){
     return {
         type: GRN
+    };
+}
+
+export function rna(){
+    return {
+        type:RNA
     };
 }

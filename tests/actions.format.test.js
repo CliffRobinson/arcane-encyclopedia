@@ -1,13 +1,13 @@
 import {
     STANDARD, M19, DOM, 
     RIX, XLN, HOU, AKH,
-    AER, KLD, GRN
+    AER, KLD, GRN, RNA
 } from "../client/actions/format";
 
 import {
     standard, m19, dom,
     rix, xln, hou, akh,
-    aer, kld, grn
+    aer, kld, grn, rna
 } from "../client/actions/format";
 
 test("standard returns correct type.", ()=> {
@@ -116,6 +116,17 @@ test("grn returns correct type.", ()=> {
     };
     //Act
     const actual = grn();
+    //Assert
+    expect(actual).toEqual(expected);
+});
+
+test("rna returns correct type.", ()=> {
+    //Arrange
+    const expected = {
+        type: RNA,
+    };
+    //Act
+    const actual = rna();
     //Assert
     expect(actual).toEqual(expected);
 });
