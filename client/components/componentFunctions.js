@@ -217,7 +217,7 @@ export const sortFunctions = {
     compareName: compareName,
     compareCMC: compareCMC,
     comparePrice: function (cardA, cardB) {
-        let diff = cardB.usd - cardA.usd;
+        let diff = cardB.prices.usd - cardA.prices.usd;
         if (diff == 0){
             return compareName(cardA, cardB);
         } else return diff;

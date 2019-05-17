@@ -9,6 +9,7 @@ export const AER = "AER";
 export const KLD = "KLD";
 export const GRN = "GRN";
 export const RNA = "RNA";
+export const WAR = "WAR"
 
 export function standard(){
     return {
@@ -73,5 +74,11 @@ export function grn(){
 export function rna(){
     return {
         type:RNA
+    };
+}
+
+export function war(){
+    return {
+        type:WAR
     };
 }

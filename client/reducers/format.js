@@ -1,7 +1,9 @@
 import {
     STANDARD, M19, DOM,
-    RIX, XLN, HOU, AKH,
-    AER, KLD, GRN, RNA
+    RIX, XLN, 
+    HOU, AKH,
+    AER, KLD, 
+    GRN, RNA, WAR
 } from "../actions/format";
 
 export const searchStrings = {
@@ -15,7 +17,8 @@ export const searchStrings = {
     aer: "%28e%3Aaer+or+e%3Akld%29",    
     kld: "e%3akld",
     grn: "e%3agrn",
-    rna: "e%3arna"
+    rna: "e%3arna",
+    war:"e%3awar"
 };
 
 function format(state = searchStrings.standard, action) {
@@ -42,6 +45,8 @@ function format(state = searchStrings.standard, action) {
         return searchStrings.grn;
     case RNA:
         return searchStrings.rna;
+    case WAR:
+        return searchStrings.war;
     default:
         return state;
     }
