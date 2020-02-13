@@ -15,7 +15,7 @@ exports[`not a card matches snapshot 1`] = `
 `;
 
 exports[`regular card matches snapshot 1`] = `
-<React.Fragment>
+<Fragment>
   <Tooltip
     animateFill={true}
     animation="shift"
@@ -33,7 +33,7 @@ exports[`regular card matches snapshot 1`] = `
     html={
       <img
         className="tooltip-img"
-        src="https://img.scryfall.com/cards/normal/en/rix/185.jpg?1524752669"
+        src="https://img.scryfall.com/cards/normal/front/c/6/c6d47162-749b-47d5-9589-8f1dbf60b9f3.jpg?1555041067"
       />
     }
     inertia={false}
@@ -56,16 +56,17 @@ exports[`regular card matches snapshot 1`] = `
     touchHold={false}
     trigger="mouseenter"
     unmountHTMLWhenHide={false}
+    zIndex={9999}
   >
     <img
-      src="https://img.scryfall.com/cards/small/en/rix/185.jpg?1524752669"
+      src="https://img.scryfall.com/cards/small/front/c/6/c6d47162-749b-47d5-9589-8f1dbf60b9f3.jpg?1555041067"
     />
   </Tooltip>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`split card matches snapshot 1`] = `
-<React.Fragment>
+<Fragment>
   <Tooltip
     animateFill={true}
     animation="shift"
@@ -83,7 +84,7 @@ exports[`split card matches snapshot 1`] = `
     html={
       <img
         className="tooltip-img tooltip-split"
-        src="https://img.scryfall.com/cards/normal/en/akh/220a.jpg?1517813031"
+        src="https://img.scryfall.com/cards/normal/front/f/5/f59ea6f6-2dff-4e58-9166-57cac03f1d0a.jpg?1549941875"
       />
     }
     inertia={false}
@@ -106,16 +107,17 @@ exports[`split card matches snapshot 1`] = `
     touchHold={false}
     trigger="mouseenter"
     unmountHTMLWhenHide={false}
+    zIndex={9999}
   >
     <img
-      src="https://img.scryfall.com/cards/small/en/akh/220a.jpg?1517813031"
+      src="https://img.scryfall.com/cards/small/front/f/5/f59ea6f6-2dff-4e58-9166-57cac03f1d0a.jpg?1549941875"
     />
   </Tooltip>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`transform card matches snapshot 1`] = `
-<React.Fragment>
+<Fragment>
   <Tooltip
     animateFill={true}
     animation="shift"
@@ -133,7 +135,7 @@ exports[`transform card matches snapshot 1`] = `
     html={
       <img
         className="tooltip-img"
-        src="https://img.scryfall.com/cards/normal/en/m19/218a.jpg?1531451175"
+        src="https://img.scryfall.com/cards/normal/front/7/b/7b215968-93a6-4278-ac61-4e3e8c3c3943.jpg?1566971561"
       />
     }
     inertia={false}
@@ -156,9 +158,10 @@ exports[`transform card matches snapshot 1`] = `
     touchHold={false}
     trigger="mouseenter"
     unmountHTMLWhenHide={false}
+    zIndex={9999}
   >
     <img
-      src="https://img.scryfall.com/cards/small/en/m19/218a.jpg?1531451175"
+      src="https://img.scryfall.com/cards/small/front/7/b/7b215968-93a6-4278-ac61-4e3e8c3c3943.jpg?1566971561"
     />
   </Tooltip>
   <Tooltip
@@ -178,7 +181,7 @@ exports[`transform card matches snapshot 1`] = `
     html={
       <img
         className="tooltip-img"
-        src="https://img.scryfall.com/cards/normal/en/m19/218b.jpg?1531451175"
+        src="https://img.scryfall.com/cards/normal/back/7/b/7b215968-93a6-4278-ac61-4e3e8c3c3943.jpg?1566971561"
       />
     }
     inertia={false}
@@ -201,10 +204,11 @@ exports[`transform card matches snapshot 1`] = `
     touchHold={false}
     trigger="mouseenter"
     unmountHTMLWhenHide={false}
+    zIndex={9999}
   >
     <img
-      src="https://img.scryfall.com/cards/small/en/m19/218b.jpg?1531451175"
+      src="https://img.scryfall.com/cards/small/back/7/b/7b215968-93a6-4278-ac61-4e3e8c3c3943.jpg?1566971561"
     />
   </Tooltip>
-</React.Fragment>
+</Fragment>
 `;

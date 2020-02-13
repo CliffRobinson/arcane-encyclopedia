@@ -1,84 +1,103 @@
-export const STANDARD ="STANDARD";
-export const M19 = "M19";
-export const DOM = "DOM";
-export const RIX = "RIX";
-export const XLN = "XLN";
-export const HOU = "HOU";
-export const AKH = "AKH";
-export const AER = "AER";
-export const KLD = "KLD";
-export const GRN = "GRN";
-export const RNA = "RNA";
-export const WAR = "WAR"
+import * as constants from "./format-constants";
 
-export function standard(){
+export function standard() {
     return {
-        type: STANDARD
+        type: constants.STANDARD
     };
 }
 
-export function m19(){
+export function m19() {
     return {
-        type: M19
+        type: constants.M19
     };
 }
 
-export function dom(){
+export function dom() {
     return {
-        type: DOM
+        type: constants.DOM
     };
 }
 
-export function rix(){
+export function rix() {
     return {
-        type: RIX
+        type: constants.RIX
     };
 }
 
-export function xln(){
+export function xln() {
     return {
-        type: XLN
+        type: constants.XLN
     };
 }
 
-export function hou(){
+export function hou() {
     return {
-        type: HOU
+        type: constants.HOU
     };
 }
 
-export function akh(){
+export function akh() {
     return {
-        type: AKH
+        type: constants.AKH
     };
 }
 
-export function aer(){
+export function aer() {
     return {
-        type: AER
+        type: constants.AER
     };
 }
 
-export function kld(){
+export function kld() {
     return {
-        type: KLD
+        type: constants.KLD
     };
 }
 
-export function grn(){
+export function grn() {
     return {
-        type: GRN
+        type: constants.GRN
     };
 }
 
-export function rna(){
+export function rna() {
     return {
-        type:RNA
+        type: constants.RNA
     };
 }
 
-export function war(){
+export function war() {
     return {
-        type:WAR
+        type: constants.WAR
+    };
+}
+
+export function m20() {
+    return {
+        type: constants.M20
+    };
+}
+
+export function eld() {
+    return {
+        type: constants.ELD
+    };
+}
+
+export function thb() {
+    return {
+        type: constants.THB
+    };
+}
+
+export function ikr() {
+    return {
+        type: constants.IKR
+    };
+}
+
+export function zkr() {
+    return {
+        type: constants.ZKR
     };
 }

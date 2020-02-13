@@ -1,0 +1,17 @@
+export const STANDARD = "STANDARD";
+export const M19 = "M19";
+export const DOM = "DOM";
+export const RIX = "RIX";
+export const XLN = "XLN";
+export const HOU = "HOU";
+export const AKH = "AKH";
+export const AER = "AER";
+export const KLD = "KLD";
+export const GRN = "GRN";
+export const RNA = "RNA";
+export const WAR = "WAR";
+export const M20 = "M20";
+export const ELD = "ELD";
+export const THB = "THB";
+export const IKR = "IKR"; //best guess for Ikoria set code
+export const ZKR = "ZKR"; //best guess for Zendikar Rising set code

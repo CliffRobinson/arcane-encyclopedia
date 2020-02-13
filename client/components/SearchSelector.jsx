@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import request from "superagent";
 //import {createQuery, getCardsFromScryfall} from "./componentFunctions";
 
+import * as formatConstants from '../actions/format-constants'
 import * as formatActions from "../actions/format";
 import * as sortActions from "../actions/sort";
 import {addCards, clearCards} from "../actions/cards";
@@ -31,7 +32,7 @@ export class SearchSelector extends React.Component {
             <div className="searchSelector" > {/*navbar-item*/}
                 <select className= {`select ${size}`} onChange={this.searchHandleChange}> 
                     {/*values of options correspond to the action to dispatch*/}
-                    <option value="standard"> Standard</option>
+                    {/* <option value="standard"> Standard</option>
                     <option value="war"> War of the Spark Limited</option>
                     <option value="rna"> Ravnica Allegiance Limited</option>
                     <option value="grn"> Guilds of Ravnica Limited</option>
@@ -39,7 +40,8 @@ export class SearchSelector extends React.Component {
                     <option value="dom"> Dominaria Limited</option>
                     <option value="rix"> Rivals of Ixalan Limited </option>
                     <option value="hou"> OLD: Hour of Devastation Limited</option>
-                    <option value="aer"> OLD: Aether Revolt Limited</option>
+                    <option value="aer"> OLD: Aether Revolt Limited</option> */}
+                    {Object.keys(formatConstants).map((code) => <option value={`${code}`}>{code}</option>)}
                 </select>
                 <button className={`button ${size}`} onClick={() => this.createQuery()} > Get Cards </button>
                 <button className={`button ${size}`} onClick={()=> this.props.dispatch(clearCards())}> Clear Cards </button>
@@ -87,7 +89,9 @@ export class SearchSelector extends React.Component {
     }
 
     searchHandleChange(e) {
-        this.props.dispatch(formatActions[e.target.value]());
+        console.log('handling change, should be dispatching')
+        console.log(formatActions)
+        this.props.dispatch(formatActions[e.target.value.toLowerCase()]());
     }
 
     sortHandleChange(e){

@@ -1,16 +1,26 @@
-//Format Tests:
+import format, { searchStrings } from "../client/reducers/format";
+import * as constants from "../client/actions/format-constants";
 
-import {
-    STANDARD, M19, DOM,
-    RIX, XLN, HOU, AKH,
-    AER, KLD, GRN, RNA
-} from "../client/actions/format";
+//Tests every case in format constants. Tests below are spot tests in case the loop created general tests fail. 
+Object.keys(constants).map((code) => {
+    test(`Test ${code} case`, () => {
+        //Arrange
+        const expected = searchStrings[code]
+        const action = {
+                type: constants[code]
+            }
+            //Act
+        const actual = format(undefined, action)
+            //Assert
+        expect(actual).toEqual(expected)
+    })
+})
 
-import format, {searchStrings} from "../client/reducers/format";
+
 
 test("Initial state is standard", () => {
     //Arrange
-    const expected = searchStrings.standard;
+    const expected = searchStrings.STANDARD;
     //Act
     const actual = format(undefined, {});
     //Assert
@@ -19,7 +29,7 @@ test("Initial state is standard", () => {
 
 // test("Test casename case", ()=>{
 //     //Arrange
-//     const expected = searchStrings.casename;
+//     const expected = searchStrings.CASENAME;
 //     const action = {
 //         type: VARNAME
 //     };
@@ -29,11 +39,11 @@ test("Initial state is standard", () => {
 //     expect(actual).toEqual(expected);
 // });
 
-test("Test standard case", ()=>{
+test("Test standard case", () => {
     //Arrange
-    const expected = searchStrings.standard;
+    const expected = searchStrings.STANDARD;
     const action = {
-        type: STANDARD
+        type: constants.STANDARD
     };
     //Act
     const actual = format(undefined, action);
@@ -41,11 +51,11 @@ test("Test standard case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test m19 case", ()=>{
+test("Test m19 case", () => {
     //Arrange
-    const expected = searchStrings.m19;
+    const expected = searchStrings.M19;
     const action = {
-        type: M19
+        type: constants.M19
     };
     //Act
     const actual = format(undefined, action);
@@ -53,11 +63,11 @@ test("Test m19 case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test dom case", ()=>{
+test("Test dom case", () => {
     //Arrange
-    const expected = searchStrings.dom;
+    const expected = searchStrings.DOM;
     const action = {
-        type: DOM
+        type: constants.DOM
     };
     //Act
     const actual = format(undefined, action);
@@ -65,11 +75,11 @@ test("Test dom case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test rix case", ()=>{
+test("Test rix case", () => {
     //Arrange
-    const expected = searchStrings.rix;
+    const expected = searchStrings.RIX;
     const action = {
-        type: RIX
+        type: constants.RIX
     };
     //Act
     const actual = format(undefined, action);
@@ -77,11 +87,11 @@ test("Test rix case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test xln case", ()=>{
+test("Test xln case", () => {
     //Arrange
-    const expected = searchStrings.xln;
+    const expected = searchStrings.XLN;
     const action = {
-        type: XLN
+        type: constants.XLN
     };
     //Act
     const actual = format(undefined, action);
@@ -89,11 +99,11 @@ test("Test xln case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test hou case", ()=>{
+test("Test hou case", () => {
     //Arrange
-    const expected = searchStrings.hou;
+    const expected = searchStrings.HOU;
     const action = {
-        type: HOU
+        type: constants.HOU
     };
     //Act
     const actual = format(undefined, action);
@@ -101,11 +111,11 @@ test("Test hou case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test akh case", ()=>{
+test("Test akh case", () => {
     //Arrange
-    const expected = searchStrings.akh;
+    const expected = searchStrings.AKH;
     const action = {
-        type: AKH
+        type: constants.AKH
     };
     //Act
     const actual = format(undefined, action);
@@ -113,11 +123,11 @@ test("Test akh case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test aer case", ()=>{
+test("Test aer case", () => {
     //Arrange
-    const expected = searchStrings.aer;
+    const expected = searchStrings.AER;
     const action = {
-        type: AER
+        type: constants.AER
     };
     //Act
     const actual = format(undefined, action);
@@ -125,11 +135,11 @@ test("Test aer case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test kld case", ()=>{
+test("Test kld case", () => {
     //Arrange
-    const expected = searchStrings.kld;
+    const expected = searchStrings.KLD;
     const action = {
-        type: KLD
+        type: constants.KLD
     };
     //Act
     const actual = format(undefined, action);
@@ -137,11 +147,11 @@ test("Test kld case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test grn case", ()=>{
+test("Test grn case", () => {
     //Arrange
-    const expected = searchStrings.grn;
+    const expected = searchStrings.GRN;
     const action = {
-        type: GRN
+        type: constants.GRN
     };
     //Act
     const actual = format(undefined, action);
@@ -149,14 +159,14 @@ test("Test grn case", ()=>{
     expect(actual).toEqual(expected);
 });
 
-test("Test rna case", ()=>{
+test("Test rna case", () => {
     //Arrange
-    const expected = searchStrings.rna;
+    const expected = searchStrings.RNA;
     const action = {
-        type: RNA
+        type: constants.RNA
     };
     //Act
     const actual = format(undefined, action)
-    //Assert
+        //Assert
     expect(actual).toEqual(expected);
 });

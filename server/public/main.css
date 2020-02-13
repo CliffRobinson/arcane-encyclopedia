@@ -1,18 +1,17 @@
 html {
     height: 100%;
-    background: url(https://magic.wizards.com/sites/mtg/files/images/wallpaper/Syncopate_DAR_1920x1080_Wallpaper.jpg) no-repeat center center fixed;
+    background: url(https://media.magic.wizards.com/images/wallpaper/heliod-sun-crowned_thb_1920x1080_wallpaper.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
 body {
-    color:white;
-
+    color: white;
 }
 
 .topTwo {
     background-color: hsla(216, 13%, 42%, 0.75);
     position: fixed;
-    top:0;
+    top: 0;
     width: 100%;
 }
 
@@ -20,11 +19,10 @@ body {
     background-color: hsla(216, 13%, 42%, 0.75);
 }
 
-.manaSelector  {
+.manaSelector {
     position: relative;
     top: 0;
     margin-top: 65px;
-    
 }
 
 .manaRow {
@@ -35,7 +33,7 @@ body {
 .extended {
     position: relative;
     top: 0;
-    margin-top:65px;
+    margin-top: 65px;
     left: -212px;
     background-color: hsla(216, 13%, 42%, 0.75);
     width: 318px;
@@ -58,25 +56,19 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 80%;
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .manaButton {
-    
     transform: translateY(7px);
     height: 24px;
     width: 24px;
-    margin:5px;
+    margin: 5px;
 }
 
 i {
-    margin-top:-2.96px;
-    margin-bottom:2.96px;
-    
+    margin-top: -2.96px;
+    margin-bottom: 2.96px;
 }
 
 .helper {
@@ -86,15 +78,14 @@ i {
 }
 
 .flexContain {
-    display:grid;
+    display: grid;
     grid-template-columns: 1fr 106px;
-    
 }
 
 .tooltip-img {
-    width:350px;
+    width: 350px;
 }
 
-.tooltip-split{
-    transform:rotate(90deg)
+.tooltip-split {
+    transform: rotate(90deg)
 }
