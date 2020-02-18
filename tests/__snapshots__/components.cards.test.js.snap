@@ -434,7 +434,7 @@ Return all creature cards with power 2 or less from your graveyard to your hand.
         "prices": Object {
           "eur": "0.08",
           "tix": "0.04",
-          "usd": "0.10",
+          "usd": "0.08",
           "usd_foil": "0.79",
         },
         "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A46665089-aa3d-44c3-964d-6638dfbb5782&unique=prints",

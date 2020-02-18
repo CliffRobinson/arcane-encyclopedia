@@ -1,8 +1,8 @@
 import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualsFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName } from "../client/components/componentFunctions";
 
-import {data as fakeCards}  from "./testData.json";
-import {data as fakeGrnCards} from "./testGrnData.json";
-import {data as fakeExtraCards} from "./testExtraData.json";
+import { data as fakeCards } from "./testData.json";
+import { data as fakeGrnCards } from "./testGrnData.json";
+import { data as fakeExtraCards } from "./testExtraData.json";
 //Small set of sample data showing a wide variety of cards.
 
 
@@ -27,15 +27,15 @@ test("filterForTricks on fakeCards only shows essence scatter, garna and prepare
 
 function isATrick(card) {
     switch (card.layout) {
-    case "transform":
-        return (card.card_faces[0].type_line.includes("Instant") || card.card_faces[0].oracle_text.toLowerCase().includes("flash"));
-    case "split":
-        return card.card_faces[0].type_line.includes("Instant") ||
+        case "transform":
+            return (card.card_faces[0].type_line.includes("Instant") || card.card_faces[0].oracle_text.toLowerCase().includes("flash"));
+        case "split":
+            return card.card_faces[0].type_line.includes("Instant") ||
                 card.card_faces[0].oracle_text.toLowerCase().includes("flash") ||
                 card.card_faces[1].type_line.includes("Instant") ||
                 card.card_faces[1].oracle_text.toLowerCase().includes("flash");
-    default:
-        return (card.type_line.includes("Instant") || card.oracle_text.toLowerCase().includes("flash"));
+        default:
+            return (card.type_line.includes("Instant") || card.oracle_text.toLowerCase().includes("flash"));
     }
 }
 test("filterForTricks only shows cards with type instant or oracle text flash", () => {
@@ -75,14 +75,14 @@ test("filterLands removes Arch of Orazca (first element in the array).", () => {
 
 function isALand(card) {
     switch (card.layout) {
-    case "transform":
-        return card.card_faces[0].type_line.includes("Land");
-    default:
-        return card.type_line.includes("Land");
+        case "transform":
+            return card.card_faces[0].type_line.includes("Land");
+        default:
+            return card.type_line.includes("Land");
     }
 } //For the purposes of the test, we are only looking at the front face of a card to determine if it is a land. 
 
-test("filterLands returns no lands", ()=> {
+test("filterLands returns no lands", () => {
     //Arrange is isALand
 
     //Act
@@ -99,7 +99,7 @@ test("filterLands does not miss any lands - no lands should be left over.", () =
     //Act
     const remainder = fakeCards.filter((card) => !callbackToFilterLands(card));
     //Assert
-    for (const card of remainder){
+    for (const card of remainder) {
         expect(isALand(card)).toBeTruthy();
     }
 });
@@ -109,14 +109,14 @@ test("translateMana gets Nicol Bolas right", () => {
     //Arrange 
     const bolas = fakeCards[7].card_faces[0];
     const expected = {
-        w:0,
-        u:1,
-        b:1,
-        r:1,
-        g:0,
-        c:0,
-        generic:1,
-        total:4
+        w: 0,
+        u: 1,
+        b: 1,
+        r: 1,
+        g: 0,
+        c: 0,
+        generic: 1,
+        total: 4
     };
     //Act
     const actual = translateMana(bolas);
@@ -128,14 +128,14 @@ test("translateMana gets Thought-Knot Seer right", () => {
     //Arrange 
     const tks = fakeExtraCards[1];
     const expected = {
-        w:0,
-        u:0,
-        b:0,
-        r:0,
-        g:0,
-        c:1,
-        generic:3,
-        total:4
+        w: 0,
+        u: 0,
+        b: 0,
+        r: 0,
+        g: 0,
+        c: 1,
+        generic: 3,
+        total: 4
     };
     //Act
     const actual = translateMana(tks);
@@ -144,17 +144,17 @@ test("translateMana gets Thought-Knot Seer right", () => {
 });
 
 //Specific tests
-test("canCastCardWithMana will allow you to cast bolas with WUBRG", () =>{
+test("canCastCardWithMana will allow you to cast bolas with WUBRG", () => {
     //Arrange
     const bolas = fakeCards[7];
     const mana = {
-        w:1,
-        u:1,
-        b:1,
-        r:1,
-        g:1,
-        c:0,
-        total:5
+        w: 1,
+        u: 1,
+        b: 1,
+        r: 1,
+        g: 1,
+        c: 0,
+        total: 5
     };
     //Act
     const actual = canCastCardWithMana(bolas, mana);
@@ -162,17 +162,17 @@ test("canCastCardWithMana will allow you to cast bolas with WUBRG", () =>{
     expect(actual).toBeTruthy();
 });
 
-test("canCastCardWithMana will not allow you to cast Bolas with WUURG", () =>{
+test("canCastCardWithMana will not allow you to cast Bolas with WUURG", () => {
     //Arrange
     const bolas = fakeCards[7];
     const mana = {
-        w:1,
-        u:1,
-        b:2,
-        r:0,
-        g:1,
-        c:0, 
-        total:5
+        w: 1,
+        u: 1,
+        b: 2,
+        r: 0,
+        g: 1,
+        c: 0,
+        total: 5
     };
     //Act
     const actual = canCastCardWithMana(bolas, mana);
@@ -180,82 +180,102 @@ test("canCastCardWithMana will not allow you to cast Bolas with WUURG", () =>{
     expect(actual).toBeFalsy();
 });
 
-test("canCastCardWithMana lets you cast Fresh-faced recruit with either 1W or 1R", ()=> {
+test("canCastCardWithMana lets you cast Fresh-faced recruit with either 1W or 1R", () => {
     //Arrange
     const oneW = {
-        w:1,
-        u:0,
-        b:0,
-        r:0,
-        g:0,
-        c:1,
-        total:2
+        w: 1,
+        u: 0,
+        b: 0,
+        r: 0,
+        g: 0,
+        c: 1,
+        total: 2
     };
     const oneR = {
-        w:0,
-        u:0,
-        b:0,
-        r:1,
-        g:0,
-        c:1,
-        total:2
+        w: 0,
+        u: 0,
+        b: 0,
+        r: 1,
+        g: 0,
+        c: 1,
+        total: 2
     };
     const oneU = {
-        w:0,
-        u:1,
-        b:0,
-        r:0,
-        g:0,
-        c:1,
-        total:2
+        w: 0,
+        u: 1,
+        b: 0,
+        r: 0,
+        g: 0,
+        c: 1,
+        total: 2
     };
-    const lovelySweetFreshFacedBoy = fakeGrnCards[2]; 
+    const lovelySweetFreshFacedBoy = fakeGrnCards[2];
     //Assert
     expect(canCastCardWithMana(lovelySweetFreshFacedBoy, oneW)).toBeTruthy();
     expect(canCastCardWithMana(lovelySweetFreshFacedBoy, oneR)).toBeTruthy();
     expect(canCastCardWithMana(lovelySweetFreshFacedBoy, oneU)).toBeFalsy();
 });
 
-test("canCastCardWithMana will let you cast Response // Resurgence with WW or RR", ()=>{
+test("canCastCardWithMana will let you cast Response // Resurgence with WW or RR", () => {
     //Arrange
     const res = fakeGrnCards[6];
     const WW = {
-        w:2,u:0, b:0, r:0, g:0,c:0,
-        generic:0,
-        total:2
+        w: 2,
+        u: 0,
+        b: 0,
+        r: 0,
+        g: 0,
+        c: 0,
+        generic: 0,
+        total: 2
     };
     const RR = {
-        w:0,u:0, b:0, r:2, g:0,c:0,
-        generic:0,
-        total:2
+        w: 0,
+        u: 0,
+        b: 0,
+        r: 2,
+        g: 0,
+        c: 0,
+        generic: 0,
+        total: 2
     };
     const WR = {
-        w:1,u:0, b:0, r:1, g:0,c:0,
-        generic:0,
-        total:2
+        w: 1,
+        u: 0,
+        b: 0,
+        r: 1,
+        g: 0,
+        c: 0,
+        generic: 0,
+        total: 2
     };
     const control = {
-        w:1,u:1, b:0, r:0, g:0,c:0,
-        generic:0,
-        total:2 
+        w: 1,
+        u: 1,
+        b: 0,
+        r: 0,
+        g: 0,
+        c: 0,
+        generic: 0,
+        total: 2
     };
-    
+
     //Assert
     expect(canCastCardWithMana(res, WW)).toBe(true);
     expect(canCastCardWithMana(res, RR)).toBe(true);
     expect(canCastCardWithMana(res, WR)).toBe(true);
-    expect(canCastCardWithMana(res, control)).toBe(false);    
+    expect(canCastCardWithMana(res, control)).toBe(false);
 });
 
-test("canCastCardWithMana tests against a hypothetical card with shared colored mana and hybrid costs", ()=> {
+test("canCastCardWithMana tests against a hypothetical card with shared colored mana and hybrid costs", () => {
     const hypotheticalCard = {
-        name:"hypothetical card",
-        mana_cost:"{W}{W/U}{U}"
+        name: "hypothetical card",
+        mana_cost: "{W}{W/U}{U}"
     };
-    const UWW = {   w:2, u:1, b:0, r:0, g:0, generic:0, total:3 };
-    const UUW = {   w:1, u:2, b:0, r:0, g:0, generic:0, total:3 };
-    const UUU = {   w:0, u:3, b:0, r:0, g:0, generic:0, total:3 };
-    const WWW = {   w:3, u:0, b:0, r:0, g:0, generic:0, total:3 };
+    const UWW = { w: 2, u: 1, b: 0, r: 0, g: 0, generic: 0, total: 3 };
+    const UUW = { w: 1, u: 2, b: 0, r: 0, g: 0, generic: 0, total: 3 };
+    const UUU = { w: 0, u: 3, b: 0, r: 0, g: 0, generic: 0, total: 3 };
+    const WWW = { w: 3, u: 0, b: 0, r: 0, g: 0, generic: 0, total: 3 };
 
     expect(canCastCardWithMana(hypotheticalCard, UWW)).toBeTruthy();
     expect(canCastCardWithMana(hypotheticalCard, UUW)).toBeTruthy();
@@ -264,15 +284,15 @@ test("canCastCardWithMana tests against a hypothetical card with shared colored 
 });
 
 //Specific Tests
-test("If you have no mana, FilterAllCards will remove all cards except the one land.", ()=>{
+test("If you have no mana, FilterAllCards will remove all cards except the one land.", () => {
     //Arrange
     const mana = {
-        w:0,
-        u:0,
-        b:0,
-        r:0,
-        g:0, 
-        total:0
+        w: 0,
+        u: 0,
+        b: 0,
+        r: 0,
+        g: 0,
+        total: 0
     };
     const expected = [fakeCards[0]]; //An array containing Arch of Orazca, the only land in the sample set.
     //Act
@@ -281,15 +301,15 @@ test("If you have no mana, FilterAllCards will remove all cards except the one l
     expect(actual).toEqual(expected);
 });
 
-test("If you have enough mana, FilterAllCards will allow you to cast all spells.", ()=>{
+test("If you have enough mana, FilterAllCards will allow you to cast all spells.", () => {
     //Arrange
     const mana = {
-        w:3,
-        u:3,
-        b:3,
-        r:3,
-        g:3, 
-        total:15
+        w: 3,
+        u: 3,
+        b: 3,
+        r: 3,
+        g: 3,
+        total: 15
     };
     const expected = fakeCards; //An array containing Arch of Orazca, the only land in the sample set.
     //Act
@@ -301,11 +321,11 @@ test("If you have enough mana, FilterAllCards will allow you to cast all spells.
 //sortFunctions
 //Specific tests
 
-test("sortFunctions.CompareName sorts correctly", ()=> {
+test("sortFunctions.CompareName sorts correctly", () => {
     //Arrange
     const expected = fakeCards.slice();
     //Act
-    let actual = fakeCards.slice().reverse().sort(() => Math.random()-0.5);
+    let actual = fakeCards.slice().reverse().sort(() => Math.random() - 0.5);
     actual.sort(sortFunctions.compareName);
     //clone, randomise, and then sort the array.
     //Assert
@@ -338,7 +358,7 @@ test("sortFunctions.CompareName sorts correctly", ()=> {
 // Test is based on total CMC, not CMC of individual faces.
 
 
-test("NEW: sortFunctions.CompareCMC sorts based on cost of front half of transform cards, and cheapest face of split cards", ()=> {
+test("NEW: sortFunctions.CompareCMC sorts based on cost of front half of transform cards, and cheapest face of split cards", () => {
     //Arrange
     const expected = [
         fakeCards[0], //Arch: 0
@@ -360,18 +380,18 @@ test("NEW: sortFunctions.CompareCMC sorts based on cost of front half of transfo
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("sortFunctions.comparePrice sorts correctly", ()=> {
+test("sortFunctions.comparePrice sorts correctly", () => {
     //Arrange
     const expected = [
-        fakeCards[7], //nicky B, 35.97
-        fakeCards[5], //g chainz, 3.82
-        fakeCards[0], //Arch, 1.82
-        fakeCards[2], //Dusk2Dawn, 0.99
-        fakeCards[8], //Prepare2fight, 0.16
+        fakeCards[7], //nicky B, 21.95
+        fakeCards[5], //g chainz, 1.85
+        fakeCards[0], //Arch, 1.15
+        fakeCards[2], //Dusk2Dawn, 0.50
+        fakeCards[4], //Garna, 0.18
+        fakeCards[8], //Prepare2fight, 0.13
         fakeCards[3], //E. scat, 0.09
-        fakeCards[4], //Garna, 0.08
         fakeCards[6], //L. Cubby, 0.08
-        fakeCards[1], //Die Young, 0.03        
+        fakeCards[1], //Die Young, 0.02        
     ];
     //Act
     let actual = fakeCards.slice().sort(sortFunctions.comparePrice);
@@ -381,7 +401,7 @@ test("sortFunctions.comparePrice sorts correctly", ()=> {
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("sortFunctions.compareColor sorts correctly", ()=>{
+test("sortFunctions.compareColor sorts correctly", () => {
     //Arrange
     const expected = [
         fakeCards[2], //D2D, W
@@ -402,16 +422,16 @@ test("sortFunctions.compareColor sorts correctly", ()=>{
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("sortFunctions.compareCollector sorts correctly", ()=>{
+test("sortFunctions.compareCollector sorts correctly", () => {
     //Arrange
     const expected = [
         fakeCards[3], //Escat, 54
+        fakeCards[2], //D2D, 63
         fakeCards[1], //Die young, 76
         fakeCards[5], //g Chainz, 129
         fakeCards[6], //l cubby, 161
         fakeCards[0], //arch, 185
         fakeCards[4], //Garna, 194
-        fakeCards[2], //D2D, 210
         fakeCards[7], //nicky, 218
         fakeCards[8], //prep2fight, 220
     ];
@@ -423,7 +443,7 @@ test("sortFunctions.compareCollector sorts correctly", ()=>{
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("sortFunctions.compareCollector sorts correctly for equal collector numbers", ()=> {
+test("sortFunctions.compareCollector sorts correctly for equal collector numbers", () => {
     //Arrange
     const expected = [
         fakeCards[3], //Escat, 54
@@ -447,7 +467,7 @@ test("sortFunctions.compareCollector sorts correctly for equal collector numbers
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("sortFunctions.compareRarity sorts correctly", ()=>{
+test("sortFunctions.compareRarity sorts correctly", () => {
     //Arrange
     const expected = [
         fakeCards[1], //Die young, common
@@ -468,7 +488,7 @@ test("sortFunctions.compareRarity sorts correctly", ()=>{
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("getRaritySortIndex returns '5' for invalid cards", ()=> {
+test("getRaritySortIndex returns '5' for invalid cards", () => {
     const badCard = {
         name: "not a card"
     };
@@ -477,7 +497,7 @@ test("getRaritySortIndex returns '5' for invalid cards", ()=> {
     expect(actual).toEqual(expected);
 });
 
-test("getColorSortIndex returns '7' for invalid cards", ()=> {
+test("getColorSortIndex returns '7' for invalid cards", () => {
     const badCard = {
         name: "not a card"
     };
@@ -486,11 +506,12 @@ test("getColorSortIndex returns '7' for invalid cards", ()=> {
     expect(actual).toEqual(expected);
 });
 
-test("compareName returns 0 for the same card", ()=> {
+test("compareName returns 0 for the same card", () => {
+    console.log('Comparing the same card, expect an error message to follow.')
     expect(compareName(fakeCards[0], fakeCards[0])).toBe(0);
 });
 
-test("customTextFilter can get oracle text of 'enters the battlefield' returning garna, gobbo and nicol bolas", ()=> {
+test("customTextFilter can get oracle text of 'enters the battlefield' returning garna, gobbo and nicol bolas", () => {
     //Arrange
     const expected = [
         fakeCards[4],
@@ -505,7 +526,7 @@ test("customTextFilter can get oracle text of 'enters the battlefield' returning
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("customTextFilter can get name of 'the' returning garna, nicol bolas", ()=> {
+test("customTextFilter can get name of 'the' returning garna, nicol bolas", () => {
     //Arrange
     const expected = [
         fakeCards[4],
@@ -526,12 +547,12 @@ test("customTextFilter can get the cards with the exact criteria belonging to on
     ];
     //Act
     const f1ot = "Flying\nWhen Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card.\n{4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.";
-    const actual = customTextFilter(fakeCards, "oracle_text",f1ot, true);
+    const actual = customTextFilter(fakeCards, "oracle_text", f1ot, true);
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
-    
+
 });
 
 test("customTextFilter can get the cards with the exact criteria belonging to one face", () => {
@@ -541,15 +562,15 @@ test("customTextFilter can get the cards with the exact criteria belonging to on
     ];
     //Act
     const f2ot = "+2: Draw two cards.\n−3: Nicol Bolas, the Arisen deals 10 damage to target creature or planeswalker.\n−4: Put target creature or planeswalker card from a graveyard onto the battlefield under your control.\n−12: Exile all but the bottom card of target player's library.";
-    const actual = customTextFilter(fakeCards, "oracle_text",f2ot, true);
+    const actual = customTextFilter(fakeCards, "oracle_text", f2ot, true);
     //Assert
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);
     expect(actualNames).toEqual(expectedNames);
-    
+
 });
 
-test("customTextFilter can get cards of type sorcery", ()=> {
+test("customTextFilter can get cards of type sorcery", () => {
     //Arrange
     const expected = [
         fakeCards[1], //Die young
@@ -625,7 +646,7 @@ test("customNumberFilter can get all cards with power over 2", () => {
     expect(actualNames).toEqual(expectedNames);
 });
 
-test("customTextFilter can get cards of the exact rarity common", ()=> {
+test("customTextFilter can get cards of the exact rarity common", () => {
     //Arrange
     const expected = [
         fakeCards[1], //Die young
@@ -642,7 +663,7 @@ test("customTextFilter can get cards of the exact rarity common", ()=> {
 test("customTextFilter does not return cards which do not have the filter criteria", () => {
     //Arrange
     const badCard = {
-        name:"not a card",
+        name: "not a card",
     };
     const expected = [];
     //Act
@@ -653,27 +674,27 @@ test("customTextFilter does not return cards which do not have the filter criter
     expect(actual).toEqual(expected);
 });
 
-test("mapManaToProps adds mana up correctly", ()=> {
+test("mapManaToProps adds mana up correctly", () => {
     //Arrange 
     const expected = {
         mana: {
-            w:1,
-            u:1,
-            b:1,
-            r:1,
-            g:1,
-            c:1,
-            total:6
+            w: 1,
+            u: 1,
+            b: 1,
+            r: 1,
+            g: 1,
+            c: 1,
+            total: 6
         }
     };
-    const state = {  
-        w:1,
-        u:1,
-        b:1,
-        r:1,
-        g:1,
-        c:1,
-        total:6
+    const state = {
+        w: 1,
+        u: 1,
+        b: 1,
+        r: 1,
+        g: 1,
+        c: 1,
+        total: 6
     };
     //Act
     const actual = mapManaToProps(state);
@@ -681,27 +702,27 @@ test("mapManaToProps adds mana up correctly", ()=> {
     expect(actual).toEqual(expected);
 });
 
-test("filterAllCards filters multiple conditions correctly", ()=> {
+test("filterAllCards filters multiple conditions correctly", () => {
     const expected = [
         fakeCards[8], //Prep2fight
         fakeCards[3], //Essence Scatter
-        
+
     ];
     const filters = [{
-        function:"customTextFilter",
+        function: "customTextFilter",
         key: "type_line",
-        value:"instant",
-        exact:false
+        value: "instant",
+        exact: false
     }];
     const mana = {
-        w:1,
-        u:1,
-        b:1,
-        r:1,
-        g:1,
-        c:1
+        w: 1,
+        u: 1,
+        b: 1,
+        r: 1,
+        g: 1,
+        c: 1
     };
-    const actual = filterAllCards(fakeCards, mana ,true, true, sortFunctions.comparePrice ,filters);
+    const actual = filterAllCards(fakeCards, mana, true, true, sortFunctions.comparePrice, filters);
 
     const expectedNames = expected.map(card => card.name);
     const actualNames = actual.map(card => card.name);

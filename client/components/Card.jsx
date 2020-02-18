@@ -21,6 +21,7 @@ const Card = (props) => {
             </React.Fragment>
         );
     case "normal":
+    case "adventure":
     case "saga":
         return (
             <React.Fragment> 

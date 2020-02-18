@@ -89,8 +89,6 @@ export class SearchSelector extends React.Component {
     }
 
     searchHandleChange(e) {
-        console.log('handling change, should be dispatching')
-        console.log(formatActions)
         this.props.dispatch(formatActions[e.target.value.toLowerCase()]());
     }
 
