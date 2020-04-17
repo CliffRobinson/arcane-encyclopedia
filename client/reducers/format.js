@@ -14,7 +14,7 @@ export const searchStrings = {
     M20: "e%3Am20",
     ELD: "e%3Aeld",
     THB: "e%3Athb",
-    IKR: "e%3Aikr",
+    IKO: "e%3Aiko",
     ZKR: "e%3Azkr"
 };
 

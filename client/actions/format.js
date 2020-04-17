@@ -90,9 +90,9 @@ export function thb() {
     };
 }
 
-export function ikr() {
+export function iko() {
     return {
-        type: constants.IKR
+        type: constants.IKO
     };
 }
 

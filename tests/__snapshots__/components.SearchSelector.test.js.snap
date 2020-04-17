@@ -85,9 +85,9 @@ exports[`searchSelector matches snapshot 1`] = `
       THB
     </option>
     <option
-      value="IKR"
+      value="IKO"
     >
-      IKR
+      IKO
     </option>
     <option
       value="ZKR"

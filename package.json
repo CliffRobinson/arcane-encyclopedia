@@ -22,7 +22,9 @@
         "testURL": "http://localhost/",
         "setupFiles": [
             "./tests/setup.js"
-        ]
+        ],
+        "collectCoverage": true,
+        "verbose": true
     },
     "dependencies": {
         "@babel/core": "^7.9.0",
