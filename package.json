@@ -48,9 +48,7 @@
         "superagent": "^5.2.2",
         "terminal-sweetness": "^1.0.3",
         "webpack": "^4.42.1",
-        "webpack-dev-server": "^3.10.3"
-    },
-    "devDependencies": {
+        "webpack-dev-server": "^3.10.3",
         "enzyme": "^3.3.0",
         "enzyme-adapter-react-16": "^1.1.1",
         "jest": "^25.2.4",
