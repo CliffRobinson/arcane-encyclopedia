@@ -96,6 +96,12 @@ export function iko() {
     };
 }
 
+export function m21() {
+    return {
+        type: constants.M21
+    };
+}
+
 export function zkr() {
     return {
         type: constants.ZKR
