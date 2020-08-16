@@ -6,6 +6,12 @@ export function standard() {
     };
 }
 
+export function historic() {
+    return {
+        type: constants.HISTORIC
+    };
+}
+
 export function m19() {
     return {
         type: constants.M19
@@ -100,6 +106,12 @@ export function m21() {
     return {
         type: constants.M21
     };
+}
+
+export function akr() {
+    return {
+        type: constants.AKR
+    }
 }
 
 export function zkr() {

@@ -15,6 +15,11 @@ exports[`searchSelector matches snapshot 1`] = `
       STANDARD
     </option>
     <option
+      value="HISTORIC"
+    >
+      HISTORIC
+    </option>
+    <option
       value="M19"
     >
       M19
@@ -88,6 +93,16 @@ exports[`searchSelector matches snapshot 1`] = `
       value="IKO"
     >
       IKO
+    </option>
+    <option
+      value="M21"
+    >
+      M21
+    </option>
+    <option
+      value="AKR"
+    >
+      AKR
     </option>
     <option
       value="ZKR"

@@ -1,5 +1,6 @@
 export const searchStrings = {
     STANDARD: "f%3astandard",
+    HISTORIC: "f%3ahistoric",
     M19: "e%3am19",
     DOM: "e%3adom",
     RIX: "%28e%3Axln+or+e%3Arix%29",
@@ -16,6 +17,7 @@ export const searchStrings = {
     THB: "e%3Athb",
     IKO: "e%3Aiko",
     M21: "e%3Am21",
+    AKR: "e%3Aakr",
     ZKR: "e%3Azkr",
 };
 

@@ -1,4 +1,5 @@
 export const STANDARD = "STANDARD";
+export const HISTORIC = "HISTORIC";
 export const M19 = "M19";
 export const DOM = "DOM";
 export const RIX = "RIX";
@@ -15,4 +16,5 @@ export const ELD = "ELD";
 export const THB = "THB";
 export const IKO = "IKO"; //best guess for Ikoria set code
 export const M21 = "M21";
+export const AKR = "AKR";
 export const ZKR = "ZKR"; //best guess for Zendikar Rising set code
