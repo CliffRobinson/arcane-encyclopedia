@@ -18,7 +18,7 @@ export const searchStrings = {
     IKO: "e%3Aiko",
     M21: "e%3Am21",
     AKR: "e%3Aakr",
-    ZKR: "e%3Azkr",
+    ZNR: "e%3Aznr",
 };
 
 function format(state = searchStrings.STANDARD, action) {

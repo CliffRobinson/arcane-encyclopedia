@@ -17,4 +17,4 @@ export const THB = "THB";
 export const IKO = "IKO"; //best guess for Ikoria set code
 export const M21 = "M21";
 export const AKR = "AKR";
-export const ZKR = "ZKR"; //best guess for Zendikar Rising set code
+export const ZNR = "ZNR"; //best guess for Zendikar Rising set code

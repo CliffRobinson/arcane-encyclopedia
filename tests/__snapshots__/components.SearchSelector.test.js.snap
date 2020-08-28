@@ -105,9 +105,9 @@ exports[`searchSelector matches snapshot 1`] = `
       AKR
     </option>
     <option
-      value="ZKR"
+      value="ZNR"
     >
-      ZKR
+      ZNR
     </option>
   </select>
   <button

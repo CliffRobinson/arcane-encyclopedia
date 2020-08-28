@@ -114,8 +114,8 @@ export function akr() {
     }
 }
 
-export function zkr() {
+export function znr() {
     return {
-        type: constants.ZKR
+        type: constants.ZNR
     };
 }
