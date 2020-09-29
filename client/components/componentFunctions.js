@@ -24,6 +24,7 @@ export function canCastCardWithMana(card, mana) {
     //console.log(card);
     switch (card.layout) {
         case "split":
+        case "modal_dfc":
             return castFaceWithMana(card.card_faces[0], mana) || castFaceWithMana(card.card_faces[1], mana);
         case "transform":
             return castFaceWithMana(card.card_faces[0], mana);
@@ -110,6 +111,8 @@ export function callbackToFilterLands(card) {
     switch (card.layout) {
         case "transform":
             return !card.card_faces[0].type_line.includes("Land");
+        case "modal_dfc":
+            return !card.card_faces[0].type_line.includes("Land") && !card.card_faces[1].type_line.includes("Land")
         default:
             return !card.type_line.includes("Land");
     }

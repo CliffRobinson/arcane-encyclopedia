@@ -57,6 +57,7 @@ const Card = (props) => {
         );            
        
     default:
+        console.log(props.card)
         return (
             <div style={{maxWidth:"146 px", border:"1px solid black"}}>
                 The card {props.card.name} has a weird format and we can't display it.                
