@@ -19,6 +19,9 @@ export const searchStrings = {
     M21: "e%3Am21",
     AKR: "e%3Aakr",
     ZNR: "e%3Aznr",
+    KLR: "e%3Aklr",
+    KLM: "e%3Aklm",
+    STX: "e%3Astx",
 };
 
 function format(state = searchStrings.STANDARD, action) {

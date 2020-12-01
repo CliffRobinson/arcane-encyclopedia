@@ -119,3 +119,13 @@ export function znr() {
         type: constants.ZNR
     };
 }
+
+export function klr() {
+    return {
+        type: constants.KLR
+    }
+}
+
+export const klm = () => ({type:constants.KLM})
+
+export const stx = () => ({type:constants.STX})
