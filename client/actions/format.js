@@ -126,6 +126,6 @@ export function klr() {
     }
 }
 
-export const klm = () => ({type:constants.KLM})
+export const khm = () => ({type:constants.KHM})
 
 export const stx = () => ({type:constants.STX})

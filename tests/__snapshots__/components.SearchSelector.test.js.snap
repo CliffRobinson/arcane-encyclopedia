@@ -25,9 +25,9 @@ exports[`searchSelector matches snapshot 1`] = `
       STX
     </option>
     <option
-      value="KLM"
+      value="KHM"
     >
-      KLM
+      KHM
     </option>
     <option
       value="KLR"
@@ -183,5 +183,11 @@ exports[`searchSelector matches snapshot 1`] = `
     type="checkbox"
   />
    Exclude Lands
+  <input
+    defaultChecked={true}
+    onChange={[Function]}
+    type="checkbox"
+  />
+   Include foretell
 </div>
 `;

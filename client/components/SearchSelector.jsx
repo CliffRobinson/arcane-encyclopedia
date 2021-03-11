@@ -9,6 +9,7 @@ import * as sortActions from "../actions/sort";
 import {addCards, clearCards} from "../actions/cards";
 import {tricksToggle} from "../actions/onlyTricks";
 import {landsToggle} from "../actions/filterLands";
+import {foretellToggle} from "../actions/foretell"
 
 import {data as fakeCards} from "../../tests/testData.json";
 
@@ -58,6 +59,10 @@ export class SearchSelector extends React.Component {
 
                 <input type="checkbox" onClick={()=> this.props.dispatch(tricksToggle())} /> Only show tricks 
                 <input type="checkbox" onChange={()=> this.props.dispatch(landsToggle())} defaultChecked={true} /> Exclude Lands
+                <input type="checkbox" onChange={()=> {
+                    console.log('clicky happn!')
+                    return this.props.dispatch(foretellToggle())
+                    }} defaultChecked={true} /> Include foretell
 
                 {/* <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button> */}
             </div>

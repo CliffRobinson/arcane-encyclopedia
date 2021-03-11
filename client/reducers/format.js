@@ -20,7 +20,7 @@ export const searchStrings = {
     AKR: "e%3Aakr",
     ZNR: "e%3Aznr",
     KLR: "e%3Aklr",
-    KLM: "e%3Aklm",
+    KHM: "e%3Akhm",
     STX: "e%3Astx",
 };
 

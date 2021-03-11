@@ -1,7 +1,7 @@
 export const STANDARD = "STANDARD";
 export const HISTORIC = "HISTORIC";
 export const STX = "STX";
-export const KLM = "KLM";
+export const KHM = "KHM";
 export const KLR = "KLR";
 export const ZNR = "ZNR"; //best guess for Zendikar Rising set code
 export const AKR = "AKR";

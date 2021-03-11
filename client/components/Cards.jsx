@@ -11,7 +11,7 @@ export class Cards extends React.Component {
 
     render() {
         if (this.props.cards.length != 0) {
-            const cardsToDisplay = filterAllCards(this.props.cards, this.props.mana, this.props.onlyTricks, this.props.filterLands, sortFunctions[this.props.sort], this.props.customFilters);
+            const cardsToDisplay = filterAllCards(this.props.cards, this.props.mana, this.props.onlyTricks, this.props.filterLands, sortFunctions[this.props.sort], this.props.customFilters, this.props.foretell);
             return (
                 <div className="cards" >
                     <p> There are {this.props.cards.length} cards in the format </p>

@@ -18,6 +18,7 @@ import filterLands from "./filterLands";
 import sort from "./sort";
 import customFilters from "./customFilters";
 import list from "./list";
+import foretell from "./foretell";
 
 export default combineReducers({
     format,
@@ -28,5 +29,6 @@ export default combineReducers({
     filterLands,
     sort, 
     customFilters,
-    list
+    list,
+    foretell
 });

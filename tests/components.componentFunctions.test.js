@@ -1,8 +1,9 @@
-import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualsFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName } from "../client/components/componentFunctions";
+import { filterForTricks, callbackToFilterForTricks, filterLands, callbackToFilterLands, translateMana, canCastCardWithMana, filterAllCards, sortFunctions, customTextFilter, customNumberFilter, numberLessFilter, numberEqualsFilter, numberMoreFilter, filterFuncs, getRaritySortIndex, getColorSortIndex, mapManaToProps, compareName, getForetellCost } from "../client/components/componentFunctions";
 
 import { data as fakeCards } from "./testData.json";
 import { data as fakeGrnCards } from "./testGrnData.json";
 import { data as fakeExtraCards } from "./testExtraData.json";
+import fakeForetellCard from './testForetellCard.json';
 //Small set of sample data showing a wide variety of cards.
 
 
@@ -282,6 +283,26 @@ test("canCastCardWithMana tests against a hypothetical card with shared colored 
     expect(canCastCardWithMana(hypotheticalCard, UUU)).toBeFalsy();
     expect(canCastCardWithMana(hypotheticalCard, WWW)).toBeFalsy();
 });
+
+test("canCastCardWithMana can cast Alrund's Epiphany with 4UU when foretell is true", () => {
+    const fourUU = { w: 0, u: 2, b: 0, r: 0, g: 0, c:0, generic: 4, total: 6 };
+
+    expect(canCastCardWithMana(fakeForetellCard, fourUU, true)).toBeTruthy();
+})
+
+test("canCastCardWithMana cannot cast Alrund's Epiphany with 4UU when foretell is false", () => {
+    const fourUU = { w: 0, u: 2, b: 0, r: 0, g: 0, c:0,  generic: 4, total: 6 };
+
+    expect(canCastCardWithMana(fakeForetellCard, fourUU, false)).toBeFalsy();
+})
+
+test("getForetellCost get 4UU from Alrund's Epiphany", () => {
+    expect(getForetellCost(fakeForetellCard)).toEqual('{4}{U}{U}');
+})
+
+test("getForetellCost returns false for card with no foretell", () => {
+    expect(getForetellCost(fakeCards[1])).toBe(false);
+})
 
 //Specific Tests
 test("If you have no mana, FilterAllCards will remove all cards except the one land.", () => {

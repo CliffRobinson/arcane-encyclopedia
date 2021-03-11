@@ -1,8 +1,8 @@
 const colors = ["w", "u", "b", "r", "g", "c"];
 
-export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, customFilters) {
+export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, customFilters, foretell) {
     //console.log("filtering all");
-    let output = cards.filter((card) => canCastCardWithMana(card, mana));
+    let output = cards.filter((card) => canCastCardWithMana(card, mana, foretell));
     if (excludeLands) {
         output = filterLands(output);
     }
@@ -20,28 +20,33 @@ export function filterAllCards(cards, mana, onlyTricks, excludeLands, sort, cust
     return output;
 }
 
-export function canCastCardWithMana(card, mana) {
+export function canCastCardWithMana(card, mana, foretell) {
     //console.log(card);
     switch (card.layout) {
         case "split":
         case "modal_dfc":
-            return castFaceWithMana(card.card_faces[0], mana) || castFaceWithMana(card.card_faces[1], mana);
+            return castFaceWithMana(card.card_faces[0], mana, foretell) || castFaceWithMana(card.card_faces[1], mana, foretell);
         case "transform":
-            return castFaceWithMana(card.card_faces[0], mana);
+            return castFaceWithMana(card.card_faces[0], mana, foretell);
         default:
-            return castFaceWithMana(card, mana);
+            return castFaceWithMana(card, mana, foretell);
     }
 }
 
-function castFaceWithMana(face, mana) {
+function castFaceWithMana(face, mana, foretell) {
+    console.log(`checking cast for face ${face.name}, foretell is ${foretell}`)
+    if (foretell && getForetellCost(face)) return (castFaceWithMana(face, mana, false) || castFaceWithMana({mana_cost:getForetellCost(face)}, mana, false));
+    console.log(`foretell is ${foretell}`)
     const cardCost = translateMana(face);
     if (cardCost.total > mana.total) { //If the card costs more mana than you have, return false
+        console.log(`cardcost is ${cardCost.total}, mana is ${mana.total}`)
         return false;
     } else {
         for (let i = 0; i < colors.length; i++) { //Then check if there is more of each colored mana than the specific color requirements
             const bool = mana[colors[i]] < cardCost[colors[i]];
             //console.log(`Color is: ${colors[i]}, comparing Mana: ${mana[colors[i]]} to CardCost: ${cardCost[colors[i]]}, result is ${bool}`);
             if (bool) {
+                console.log('that?')
                 return false;
             }
         }
@@ -71,7 +76,7 @@ export function translateMana(face) { //Now altered to take an individual face
         generic: 0
     };
     let stringMana = face.mana_cost;
-    //console.log("Mana in scryfall is: ", stringMana);
+    // console.log("Mana in scryfall is: ", stringMana);
     const arrayMana = stringMana.slice(1, -1).split("}{");
     //console.log("ArrayMana is", arrayMana);
     arrayMana.map((symbol) => {
@@ -327,4 +332,19 @@ export function mapManaToProps(state) {
         delete props[color];
     });
     return props;
+}
+
+export function getForetellCost(card) {
+    return getKeywordCost(card, 'Foretell');
+}
+
+function getKeywordCost(card, keyword) {
+    if (card.oracle_text.includes(keyword)) {
+        const indexOfStartOfCost = card.oracle_text.indexOf("Foretell")+9;
+        const stringCost = card.oracle_text.slice(indexOfStartOfCost, card.oracle_text.indexOf("(", indexOfStartOfCost)-1);
+        // console.log(`This card has keyword ${keyword}, with a cost of ${stringCost}!!1`);
+        return stringCost;
+    } else {
+        return false;
+    }
 }
