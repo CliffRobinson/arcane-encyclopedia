@@ -62,7 +62,7 @@ export class SearchSelector extends React.Component {
                 <input type="checkbox" onChange={()=> {
                     console.log('clicky happn!')
                     return this.props.dispatch(foretellToggle())
-                    }} defaultChecked={true} /> Include foretell
+                    }} defaultChecked={false} /> Include foretell
 
                 {/* <button className={`button ${size}`} onClick={this.getFakes}> Get Fakes </button> */}
             </div>

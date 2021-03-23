@@ -38,6 +38,8 @@ function castFaceWithMana(face, mana, foretell) {
     if (foretell && getForetellCost(face)) return (castFaceWithMana(face, mana, false) || castFaceWithMana({mana_cost:getForetellCost(face)}, mana, false));
     console.log(`foretell is ${foretell}`)
     const cardCost = translateMana(face);
+    console.log(`foretell is ${foretell}, cost is:`)
+    console.log(cardCost)
     if (cardCost.total > mana.total) { //If the card costs more mana than you have, return false
         console.log(`cardcost is ${cardCost.total}, mana is ${mana.total}`)
         return false;
@@ -340,9 +342,9 @@ export function getForetellCost(card) {
 
 function getKeywordCost(card, keyword) {
     if (card.oracle_text.includes(keyword)) {
-        const indexOfStartOfCost = card.oracle_text.indexOf("Foretell")+9;
-        const stringCost = card.oracle_text.slice(indexOfStartOfCost, card.oracle_text.indexOf("(", indexOfStartOfCost)-1);
-        // console.log(`This card has keyword ${keyword}, with a cost of ${stringCost}!!1`);
+        const indexOfStartOfCost = card.oracle_text.indexOf(keyword+" {")+keyword.length;
+        const stringCost = card.oracle_text.slice(indexOfStartOfCost+1,card.oracle_text.indexOf(" ",indexOfStartOfCost+1));
+        console.log(`${card.name} has keyword ${keyword}, with a cost of ${stringCost}!!1`);
         return stringCost;
     } else {
         return false;
