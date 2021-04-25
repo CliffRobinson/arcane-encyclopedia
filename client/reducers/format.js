@@ -21,7 +21,7 @@ export const searchStrings = {
     ZNR: "e%3Aznr",
     KLR: "e%3Aklr",
     KHM: "e%3Akhm",
-    STX: "e%3Astx",
+    STX: "%28e%3Asta+or+e%3Astx%29",
 };
 
 function format(state = searchStrings.STANDARD, action) {
