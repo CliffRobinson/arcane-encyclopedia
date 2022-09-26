@@ -14,7 +14,7 @@ You can select the format using the dropdown menu at the top left:
 
 ![format selector](/server/public/images/format.png)
 
-Click on your preferred format (at the moment I have those formats supported by the MTG:Arena computer game), and click 'Get Cards' to load the cards into the app. The cards are obtained from the API at https://scryfall.com, and its servers provide the cards in batches of 175 at a time, so they won't all load straight away. The app takes all cars available in an entire format and then all processing is done client-side, so once the cards have loaded up, everything else loads pretty quickly. As soon as any cards are loaded, the screen will display how many it has. 
+Click on your preferred format (at the moment I have those formats supported by the MTG:Arena computer game), and click 'Get Cards' to load the cards into the app. The cards are obtained from the API at https://scryfall.com, and its servers provide the cards in batches of 175 at a time, so they won't all load straight away. The app takes all cards available in an entire format and then all processing is done client-side, so once the cards have loaded up, everything else loads pretty quickly. As soon as any cards are loaded, the screen will display how many it has. 
 
 If you select a new format and click 'Get Cards', the existing cards will be cleared before loading the new ones. You can clear all cards by clicking 'Clear Cards'. 
 
@@ -40,15 +40,13 @@ It's built into the app. Click the checkbox labelled 'Only show tricks' and the 
 
 The other built in filter removes lands, and is on by default. Uncheck it you want to see what utility and basic lands are available in the format. Since all lands cost no mana, they will show up no matter how much mana you select. 
 
-## My opponent has 3 different dual lands, what mana do I put in?
+## Can I narrow down the info more?
 
-This was a tricky one. In trying to solve it, I came up with a way of filtering the cards on a variety of criteria. Below the format selector is a custom filter bar. Try clicking the 'Add filter' button, and you'll see something like this:
+Below the format selector is a custom filter bar. Try clicking the 'Add filter' button, and you'll see something like this:
 
 ![sort selector](/server/public/images/filters.png)
 
-To see what spells can be cast when your opponent has lots of type of mana available, just put it all in, so if they have a white and blue dual, a black and blue dual and a black and white dual, add two mana each of white, blue and black to the mana selector. Then add a filter and choose 'CMC less than' and put 4 in the text field. This will show every card of three mana or less castable in those combinations of colors. 
-
-You can use the filters for other things as well. If you're playing against a tribal deck you could put the type into a filter for 'type line contains' to see what creatures they might cast, or 'oracle text contains' if you want to see what spells and creatures care about that type. If you want to know what board wipes your opponent can cast, try an oracle text search for 'all creatures'. You can add as many filters as you like, although they will start to clog the screen if you add too many. The filters combine additively, not alternatively: putting in two type line filters for 'artifact' and 'creature' will only return cards which are both artifacts and creatures. 
+If you're playing against a tribal deck you could put the type into a filter for 'type line contains' to see what creatures they might cast, or 'oracle text contains' if you want to see what spells and creatures care about that type. If you want to know what board wipes your opponent can cast, try an oracle text search for 'all creatures'. You can add as many filters as you like, although they will start to clog the screen if you add too many. The filters combine additively, not alternatively: putting in two type line filters for 'artifact' and 'creature' will only return cards which are both artifacts and creatures. 
 
 ## What's next?
 
